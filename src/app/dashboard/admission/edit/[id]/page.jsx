@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
-import AdmissionFormCover from "@/components/admission/AdmissionFormCover";
 import AdmissionFormPage1 from "@/components/admission/AdmissionFormPage1";
 import AdmissionFormPage2 from "@/components/admission/AdmissionFormPage2";
 import AdmissionFormPage3 from "@/components/admission/AdmissionFormPage3";
@@ -343,14 +342,7 @@ export default function EditAdmissionPage() {
         onSubmit={handleFormSubmit}
         className="w-full md:w-[8.27in] max-w-full bg-white shadow-2xl rounded-sm print:shadow-none print:rounded-none flex flex-col gap-12 print:gap-0"
       >
-        <AdmissionFormCover
-          formData={formData}
-          handleChange={handleChange}
-        />
-        <div
-          className="hidden print:block page-break-after"
-          style={{ pageBreakAfter: "always" }}
-        />
+       
 
         <AdmissionFormPage1
           formData={formData}
