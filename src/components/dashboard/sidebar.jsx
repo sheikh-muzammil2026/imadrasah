@@ -184,8 +184,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                             />
                         </div>
                         <div>
-                            <h2 className="font-black text-sm sm:text-base text-amber-400 tracking-wide">আস-সালাম আইডিয়াল মাদরাসা</h2>
-                            <p className="text-[10px] text-emerald-300/80 font-medium tracking-wider">হবিগঞ্জ, বাংলাদেশ</p>
+                            <h2 className="font-black text-sm sm:text-base text-amber-400 tracking-wide">অনলাইন আইডিয়াল মাদরাসা</h2>
+                            <p className="text-[10px] text-emerald-300/80 font-medium tracking-wider">ঢাকা, বাংলাদেশ</p>
                         </div>
                     </Link>
                     <button onClick={() => setIsOpen(false)} className="lg:hidden text-emerald-300 hover:text-white text-base p-1">✕</button>
