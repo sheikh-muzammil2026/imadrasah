@@ -6,50 +6,50 @@ export default function Footer() {
       {/* প্রধান ফুটার কন্টেইনার - py-16 ব্যালেন্সড স্পেসিং */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+
           {/* ১. মাদরাসা পরিচিতি ও লোগো সেকশন */}
           <div className="space-y-5">
             <div className="flex items-center gap-3">
               <div className="bg-white text-emerald-950 font-black p-2 rounded-full w-11 h-11 flex items-center justify-center shadow-md flex-shrink-0 border border-emerald-100 dark:bg-emerald-800 dark:text-white dark:border-emerald-700">
-                AS
+                OIM
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-base text-amber-400 tracking-wide leading-none capitalize">
-                  As-Salam Ideal
+                  Online Ideal Madrasah
                 </span>
                 <span className="text-xs font-semibold text-emerald-100 mt-1 dark:text-emerald-400">
-                  আস-সালাম আইডিয়াল মাদরাসা
+                  অনলাইন আইডিয়াল মাদরাসা
                 </span>
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed font-normal dark:text-slate-400">
               দ্বীনি ও আধুনিক শিক্ষার এক অপূর্ব সমন্বয়। অভিজ্ঞ উলামায়ে কেরাম ও দক্ষ শিক্ষকমণ্ডলী দ্বারা পরিচালিত হবিগঞ্জের একটি নির্ভরযোগ্য দ্বীনি শিক্ষা প্রতিষ্ঠান।
             </p>
-            
+
             {/* সোশ্যাল মিডিয়া ও ওয়েবসাইট আইকন লিংক */}
             <div className="flex space-x-3 pt-2">
-              <a 
+              <a
                 href="https://facebook.com" // আপনার মাদরাসার অরিজিনাল ফেসবুক লিংক এখানে বসবে
-                target="_blank" 
-                rel="noopener noreferrer" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-emerald-900/50 text-emerald-200 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-all duration-200 dark:bg-slate-900 dark:hover:bg-emerald-600 dark:hover:text-white font-bold text-xs"
                 title="ফেসবুক পেজ"
               >
                 FB
               </a>
-              <a 
+              <a
                 href="https://youtube.com" // আপনার মাদরাসার অরিজিনাল ইউটিউব লিংক এখানে বসবে
-                target="_blank" 
-                rel="noopener noreferrer" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-emerald-900/50 text-emerald-200 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-all duration-200 dark:bg-slate-900 dark:hover:bg-emerald-600 dark:hover:text-white font-bold text-xs"
                 title="ইউটিউব চ্যানেল"
               >
                 YT
               </a>
-              <a 
+              <a
                 href="https://example.com" // মাদরাসার অন্য ওয়েবসাইটের লিংকটি এখানে বসবে
-                target="_blank" 
-                rel="noopener noreferrer" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-emerald-900/50 text-emerald-200 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-all duration-200 dark:bg-slate-900 dark:hover:bg-emerald-600 dark:hover:text-white font-bold text-xs"
                 title="অন্যান্য ওয়েবসাইট"
               >
@@ -114,7 +114,7 @@ export default function Footer() {
             <ul className="space-y-3.5 text-sm font-normal text-gray-400 dark:text-slate-400">
               <li className="flex items-start gap-2.5">
                 <span className="text-amber-400 mt-0.5 flex-shrink-0">📍</span>
-                <span className="leading-relaxed">হবিগঞ্জ সদর,<br />হবিগঞ্জ, সিলেট, বাংলাদেশ।<br /></span>
+                <span className="leading-relaxed">Dahaka,<br /> বাংলাদেশ।<br /></span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-amber-400 flex-shrink-0">📞</span>
@@ -122,7 +122,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-amber-400 flex-shrink-0">✉️</span>
-                <span className="break-all">info@assalammadrasah.com</span>
+                <span className="break-all">info@imadrasah.com</span>
               </li>
             </ul>
           </div>
@@ -134,11 +134,9 @@ export default function Footer() {
       <div className="bg-emerald-950 border-t border-emerald-900/60 text-xs py-5 px-4 dark:bg-slate-950 dark:border-slate-900">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
           <p className="text-gray-400 font-medium dark:text-slate-500">
-            &copy; ২০২৬ আস-সালাম আইডিয়াল মাদরাসা, হবিগঞ্জ। সর্বস্বত্ব সংরক্ষিত।
+            &copy; ২০২৬ অনলাইন আইডিয়াল মাদরাসা, ঢাকা। সর্বস্বত্ব সংরক্ষিত।
           </p>
-          <p className="text-emerald-300/70 font-serif tracking-wide text-sm sm:text-base dark:text-slate-600" dir="rtl">
-            مدرسة السلام النموذجية، حبيغنج
-          </p>
+
         </div>
       </div>
     </footer>
