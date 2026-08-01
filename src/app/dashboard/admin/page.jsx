@@ -42,7 +42,7 @@ export default function Dashboard() {
                         <span className="text-2xl">🕌</span>
                         <div>
                             <h2 className="font-black text-base sm:text-lg text-[#064e3b] tracking-wide">অনলাইন আইডিয়াল মাদ্রাসা</h2>
-                            <p className="text-[10px] text-amber-600 font-semibold tracking-wider">হবিগঞ্জ, বাংলাদেশ</p>
+                            <p className="text-[10px] text-amber-600 font-semibold tracking-wider">ঢাকা, বাংলাদেশ</p>
                         </div>
                     </div>
                     <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 bg-emerald-50/50 px-3 py-1.5 rounded-lg border border-emerald-100">
