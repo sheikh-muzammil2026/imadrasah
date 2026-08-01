@@ -6,7 +6,7 @@ import { MessageSquare, X, Send, Bot } from "lucide-react";
 export default function AIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "আস-সালামু আলাইকুম! আস-সালাম আইডিয়াল মাদরাসা পোর্টালে আপনাকে স্বাগতম। আমি আপনাকে কীভাবে সাহায্য করতে পারি?" }
+    { role: "assistant", content: "আস-সালামু আলাইকুম! অনলাইন আইডিয়াল মাদরাসা পোর্টালে আপনাকে স্বাগতম। আমি আপনাকে কীভাবে সাহায্য করতে পারি?" }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -72,7 +72,7 @@ export default function AIChatbot() {
                 <Bot className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <h4 className="font-bold text-sm tracking-wide font-serif">আস-সালাম এআই সহকারী</h4>
+                <h4 className="font-bold text-sm tracking-wide font-serif">এআই সহকারী</h4>
                 <p className="text-[10px] text-emerald-200/90 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> অনলাইন পোর্টাল গাইড
                 </p>
