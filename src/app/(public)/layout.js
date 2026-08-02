@@ -3,6 +3,7 @@ import BottomNavbar from '@/components/public/shared/BottomNavbar';
 import AIChatbot from "@/components/AIChatbot";
 import React from 'react';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import TopHeader from '@/components/public/shared/topHeader';
 
 
 export const metadata = {
@@ -25,7 +26,7 @@ export const metadata = {
 const layout = ({ children }) => {
   return (
     <div>
-
+      <TopHeader />
       <main className="min-h-screen pb-16 md:pb-0">
         {children}
       </main>
