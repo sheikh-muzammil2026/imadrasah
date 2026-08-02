@@ -14,16 +14,16 @@ export default function Header() {
           {/* বাংলা ও আরবি নাম একসাথে এক লাইনে বা পাশাপাশি */}
           <div className="flex flex-wrap justify-center md:justify-start items-baseline gap-2.5">
             <h1 className="text-lg sm:text-xl font-extrabold text-white tracking-wide">
-              আস-সালাম আইডিয়াল মাদ্রাসাহ
+              অনলাইন আইডিয়াল মাদ্রাসা
             </h1>
             <span className="text-sm sm:text-base font-bold text-[#E8C87C] tracking-wide dir-rtl" style={{ fontFamily: "'Amiri', serif" }}>
-              مدرسة السلام النموذجية
+              المدرسة المثالية عبر الإنترنت
             </span>
           </div>
 
           {/* ইংরেজি নাম */}
           <h2 className="text-xs sm:text-sm font-semibold text-gray-300">
-            As-Salam Ideal Madrasah, Habiganj
+            Online Ideal Madrasah, Dhaka, Bangladesh
           </h2>
 
           {/* স্লোগান */}
@@ -52,7 +52,7 @@ export default function Header() {
 
           <span className="flex items-center gap-1.5 text-gray-300">
             <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>হবিগঞ্জ, বাংলাদেশ</span>
+            <span>ঢাকা, বাংলাদেশ</span>
           </span>
         </div>
 

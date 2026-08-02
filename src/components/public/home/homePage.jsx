@@ -43,7 +43,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative w-full overflow-hidden flex items-center">
                     <p className="animate-marquee whitespace-nowrap text-sm md:text-base font-semibold">
-                        📢 আস-সালাম আইডিয়াল মাদ্রাসা (AIM)-এ ২০২৬ শিক্ষাবর্ষে হিফজ ও একাডেমিক বিভাগে ভর্তি চলছে! আসন সংখ্যা সীমিত। বিস্তারিত জানতে ভর্তি মেনু ভিজিট করুন। 🌟 আগামী ১৫ই জুলাই থেকে প্রথম সাময়িক পরীক্ষা শুরু হতে যাচ্ছে। সকল ছাত্রদের যথাসময়ে উপস্থিত থাকার নির্দেশ দেওয়া হলো।
+                        📢 অনলাইন আইডিয়াল মাদ্রাসা (OIM)-এ ২০২৬ শিক্ষাবর্ষে হিফজ ও একাডেমিক বিভাগে ভর্তি চলছে! আসন সংখ্যা সীমিত। বিস্তারিত জানতে ভর্তি মেনু ভিজিট করুন। 🌟 আগামী ১৫ই জুলাই থেকে প্রথম সাময়িক পরীক্ষা শুরু হতে যাচ্ছে। সকল ছাত্রদের যথাসময়ে উপস্থিত থাকার নির্দেশ দেওয়া হলো।
                     </p>
                 </div>
             </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="text-center max-w-2xl mx-auto mb-12">
                     <h2 className="text-3xl font-bold text-slate-900 border-b-4 border-emerald-600 pb-3 inline-block">
-                        এক নজরে aimhabiganj
+                        এক নজরে অনলাইন আইডিয়াল মাদ্রাসা
                     </h2>
                     <p className="text-gray-600 mt-4 text-sm md:text-base">
                         মাদ্রাসার সামগ্রিক অবকাঠামো, জনবল ও শিক্ষার্থীদের একটি সংক্ষিপ্ত পরিসংখ্যান।

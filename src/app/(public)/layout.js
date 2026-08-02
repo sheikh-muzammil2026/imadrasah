@@ -10,7 +10,7 @@ export const metadata = {
     default: "online Madrasah",
     template: "%s | online Madrasah",
   },
-  description: "আধুনিক ও সুশৃঙ্খল আবাসন ব্যবস্থাসহ চারবর্ষে হিফজ ও একাডেমিক শিক্ষার এক অনন্য প্রতিষ্ঠান, হবিগঞ্জ।",
+  description: "আধুনিক ও সুশৃঙ্খল আবাসন ব্যবস্থাসহ চারবর্ষে হিফজ ও একাডেমিক শিক্ষার এক অনন্য প্রতিষ্ঠান, ঢাকা, বাংলাদেশ।",
   keywords: ["imadrasah", "online Madrasah", "Hifz Madrasah"],
   openGraph: {
     title: "online Madrasah",

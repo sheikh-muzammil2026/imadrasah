@@ -184,7 +184,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                             />
                         </div>
                         <div>
-                            <h2 className="font-black text-sm sm:text-base text-amber-400 tracking-wide">অনলাইন আইডিয়াল মাদরাসা</h2>
+                            <h2 className="font-black text-sm sm:text-base text-amber-400 tracking-wide">অনলাইন আইডিয়াল মাদ্রাসা</h2>
                             <p className="text-[10px] text-emerald-300/80 font-medium tracking-wider">ঢাকা, বাংলাদেশ</p>
                         </div>
                     </Link>

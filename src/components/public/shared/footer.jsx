@@ -18,12 +18,12 @@ export default function Footer() {
                   Online Ideal Madrasah
                 </span>
                 <span className="text-xs font-semibold text-emerald-100 mt-1 dark:text-emerald-400">
-                  অনলাইন আইডিয়াল মাদরাসা
+                  অনলাইন আইডিয়াল মাদ্রাসা
                 </span>
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed font-normal dark:text-slate-400">
-              দ্বীনি ও আধুনিক শিক্ষার এক অপূর্ব সমন্বয়। অভিজ্ঞ উলামায়ে কেরাম ও দক্ষ শিক্ষকমণ্ডলী দ্বারা পরিচালিত হবিগঞ্জের একটি নির্ভরযোগ্য দ্বীনি শিক্ষা প্রতিষ্ঠান।
+              দ্বীনি ও আধুনিক শিক্ষার এক অপূর্ব সমন্বয়। অভিজ্ঞ উলামায়ে কেরাম ও দক্ষ শিক্ষকমণ্ডলী দ্বারা পরিচালিত ঢাকা, বাংলাদেশের একটি নির্ভরযোগ্য দ্বীনি শিক্ষা প্রতিষ্ঠান।
             </p>
 
             {/* সোশ্যাল মিডিয়া ও ওয়েবসাইট আইকন লিংক */}
@@ -114,7 +114,7 @@ export default function Footer() {
             <ul className="space-y-3.5 text-sm font-normal text-gray-400 dark:text-slate-400">
               <li className="flex items-start gap-2.5">
                 <span className="text-amber-400 mt-0.5 flex-shrink-0">📍</span>
-                <span className="leading-relaxed">Dahaka,<br /> বাংলাদেশ।<br /></span>
+                <span className="leading-relaxed">Dhaka,<br /> বাংলাদেশ।<br /></span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-amber-400 flex-shrink-0">📞</span>
@@ -134,7 +134,7 @@ export default function Footer() {
       <div className="bg-emerald-950 border-t border-emerald-900/60 text-xs py-5 px-4 dark:bg-slate-950 dark:border-slate-900">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
           <p className="text-gray-400 font-medium dark:text-slate-500">
-            &copy; ২০২৬ অনলাইন আইডিয়াল মাদরাসা, ঢাকা। সর্বস্বত্ব সংরক্ষিত।
+            &copy; ২০২৬ অনলাইন আইডিয়াল মাদ্রাসা, ঢাকা। সর্বস্বত্ব সংরক্ষিত।
           </p>
 
         </div>

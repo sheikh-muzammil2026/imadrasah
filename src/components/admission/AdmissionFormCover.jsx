@@ -42,27 +42,27 @@ export default function AdmissionFormCover({ formData, handleChange }) {
           {/* মনোগ্রাম লোগো ফ্রেম */}
           <div className="w-20 h-20 sm:w-26 sm:h-26 border-[3px] border-[#1b2d56] rounded-full flex items-center justify-center bg-white mb-2 p-1 shadow-sm print:w-24 print:h-24">
             <div className="w-full h-full rounded-full border border-dashed border-[#e36d27] flex flex-col items-center justify-center p-1">
-              <span className="text-[9px] sm:text-[12px] font-black text-[#1b2d56] tracking-tight leading-none">AIM</span>
+              <span className="text-[9px] sm:text-[12px] font-black text-[#1b2d56] tracking-tight leading-none">OIM</span>
               <span className="text-[6px] sm:text-[9px] text-[#e36d27] font-mono mt-0.5">Founded 2018</span>
             </div>
           </div>
 
           {/* আরবী নাম */}
           <h3 className="font-arabic text-lg sm:text-[22px] font-medium text-[#1b2d56] tracking-wide mb-0.5 antialiased" style={{ fontFamily: "serif" }}>
-            مدرسة السلام النموذجية
+            المدرسة المثالية عبر الإنترنت
           </h3>
           {/* বাংলা নাম */}
           <h1 className="text-xl sm:text-[30px] font-extrabold text-[#cc1e29] tracking-normal mb-0.5 drop-shadow-sm px-2 print:text-[28px]">
-            আস-সালাম আইডিয়াল মাদরাসা <span className="text-sm sm:text-lg font-bold">(এইম)</span>
+            অনলাইন আইডিয়াল মাদ্রাসা <span className="text-sm sm:text-lg font-bold">(ওআইএম)</span>
           </h1>
           {/* ইংরেজি নাম */}
           <h2 className="text-base sm:text-[24px] font-black text-[#231f20] font-sans tracking-tight mb-1 print:text-[22px]">
-            As-Salam Ideal Madrasah
+            Online Ideal Madrasah
           </h2>
 
           {/* স্লোগান সেকশন */}
           <p className="text-[10px] sm:text-[13px] font-black text-[#006cb7] font-sans tracking-wide flex items-center justify-center gap-0.5">
-            <span>A</span>
+            <span>O</span>
             <span className="relative inline-block text-[#cc1e29] font-serif not-italic font-black mx-[2px] pr-[2px]">
               I
               <span className="absolute -top-[2px] left-1/2 -translate-x-1/2 w-[4px] sm:w-[5px] h-[5px] sm:h-[7px] bg-[#cc1e29] rounded-b-full rounded-tl-full rotate-45"></span>
@@ -104,7 +104,7 @@ export default function AdmissionFormCover({ formData, handleChange }) {
         {/* ফুটার সেকশন */}
         <div className="w-full text-center mt-4 px-4 pb-2 relative z-10 print:mt-2">
           <h4 className="text-xs sm:text-base font-extrabold text-[#cc1e29] tracking-wide mb-0.5 px-2">
-            এইম ক্যাম্পাস, দক্ষিণ শ্যামলী আ/এ, হবিগঞ্জ-৩৩০০
+            ওআইএম ক্যাম্পাস, দক্ষিণ শ্যামলী আ/এ, ঢাকা, বাংলাদেশ
           </h4>
           <p className="text-[10px] sm:text-[14px] font-black text-[#1b2d56] font-mono mb-3 tracking-wide print:mb-2">
             মোবাইল (অফিস): ০১৩১৬ ২০১ ২০১, ০১৭৪৮ ৮৬৮ ১৬১

@@ -71,13 +71,13 @@ export default function LoginPage() {
                 {/* হেডার ও লোগো */}
                 <div className="text-center">
                     <div className="mx-auto h-12 w-12 rounded-full bg-emerald-800 text-white font-black flex items-center justify-center shadow-md border border-amber-400 text-lg">
-                        AS
+                        OI
                     </div>
                     <h2 className="mt-4 text-2xl font-extrabold text-gray-900 dark:text-amber-400">
                         অ্যাকাউন্টে লগইন করুন
                     </h2>
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        আস-সালাম আইডিয়াল মাদ্রাসা ম্যানেজমেন্ট সিস্টেম
+                        অনলাইন আইডিয়াল মাদ্রাসা ম্যানেজমেন্ট সিস্টেম
                     </p>
                 </div>
 

@@ -41,7 +41,7 @@ export default function Dashboard() {
                     <div className="flex items-center gap-3">
                         <span className="text-2xl">🕌</span>
                         <div>
-                            <h2 className="font-black text-base sm:text-lg text-[#064e3b] tracking-wide">অনলাইন আইডিয়াল মাদ্রাসা</h2>
+                            <h2 className="font-black text-base sm:text-lg text-[#064e3b] tracking-wide">অনলাইন আইডিয়াল মাদ্রাসা</h2>
                             <p className="text-[10px] text-amber-600 font-semibold tracking-wider">ঢাকা, বাংলাদেশ</p>
                         </div>
                     </div>

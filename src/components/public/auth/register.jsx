@@ -68,13 +68,13 @@ export default function RegisterPage() {
                 {/* হেডার */}
                 <div className="text-center">
                     <div className="mx-auto h-12 w-12 rounded-full bg-emerald-800 text-white font-black flex items-center justify-center shadow-md border border-amber-400 text-lg">
-                        AS
+                        OI
                     </div>
                     <h2 className="mt-4 text-2xl font-extrabold text-gray-900 dark:text-amber-400">
                         নতুন অ্যাকাউন্ট তৈরি করুন
                     </h2>
                     <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                        আস-সালাম আইডিয়াল মাদ্রাসার ডিজিটাল পোর্টালে যুক্ত হোন
+                        অনলাইন আইডিয়াল মাদ্রাসার ডিজিটাল পোর্টালে যুক্ত হোন
                     </p>
                 </div>
 

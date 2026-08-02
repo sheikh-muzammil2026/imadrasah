@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
   const phoneNumber = "12345678901";
 
   const message = encodeURIComponent(
-    "আস-সালামু আলাইকুম, আমি অনলাইন আইডিয়াল মাদরাসার অনলাইন পোর্টাল থেকে যোগাযোগ করছি। কিছু তথ্য জানতে চাচ্ছিলাম।"
+    "আস-সালামু আলাইকুম, আমি অনলাইন আইডিয়াল মাদ্রাসার অনলাইন পোর্টাল থেকে যোগাযোগ করছি। কিছু তথ্য জানতে চাচ্ছিলাম।"
   );
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;

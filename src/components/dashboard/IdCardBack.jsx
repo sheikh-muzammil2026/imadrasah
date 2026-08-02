@@ -29,7 +29,7 @@ export const IdCardBack = () => {
                         This card remains the property of
                     </p>
                     <p className="text-[8.5px] font-bold font-serif text-black leading-tight">
-                        As-Salam Ideal Madrasah (AIM)
+                        Online Ideal Madrasah (OIM)
                     </p>
                     <p className="text-[7.5px] font-serif leading-tight font-normal text-black">
                         Not Transferable
@@ -38,13 +38,13 @@ export const IdCardBack = () => {
                         This card identifies you as a student of
                     </p>
                     <p className="text-[8px] font-bold font-serif text-black leading-tight">
-                        As-Salam Ideal Madrasah (AIM)
+                        Online Ideal Madrasah (OIM)
                     </p>
                     <p className="text-[7px] leading-tight font-serif font-normal text-black">
                         You must produce this card on demand
                     </p>
                     <p className="text-[7px] leading-tight font-serif font-normal text-black">
-                        If you leave the institute you must return this card to the office of AIM
+                        If you leave the institute you must return this card to the office of OIM
                     </p>
 
                     {/* হাইলাইটেড রিকোভারি নোটিশ */}
@@ -60,14 +60,14 @@ export const IdCardBack = () => {
                     </div>
 
                     <p className="text-[8.5px] font-bold font-serif text-black leading-none mt-0.5">
-                        As-Salam Ideal Madrasah (AIM)
+                        Online Ideal Madrasah (OIM)
                     </p>
 
                     {/* ঠিকানা ও যোগাযোগ */}
                     <div className="text-[7.5px] font-serif leading-snug text-black mt-0.5">
                         <p className="font-normal text-gray-900">Holding No: 4577-03</p>
                         <p className="font-normal text-gray-900">South Shaymoli R/A</p>
-                        <p className="font-normal text-gray-900">Habiganj-3300</p>
+                        <p className="font-normal text-gray-900">Dhaka, Bangladesh</p>
                         <p className="font-bold tracking-wider font-mono text-[8px] mt-0.5 text-black">
                             01316-209-201
                         </p>

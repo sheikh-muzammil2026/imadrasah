@@ -22,7 +22,7 @@ export default function TopHeader() {
         <div className="flex-shrink-0 w-[60px] h-[60px] md:w-[85px] md:h-[85px] relative rounded-full overflow-hidden p-[2px] bg-transparent">
           <Link href={'/'}> <Image
             src="/aimlogo1.png"
-            alt="As-Salam Ideal Madrasah Logo"
+            alt="Online Ideal Madrasah Logo"
             fill
             sizes="(max-width: 768px) 60px, 85px"
             className="object-cover scale-[1.06] rounded-full"
@@ -35,23 +35,23 @@ export default function TopHeader() {
 
           {/* ১. আরবি নাম: ফন্ট সাইজ বাড়িয়ে স্বাভাবিক ফ্লুইড অবস্থায় আনা হয়েছে */}
           <p className="text-xl md:text-5xl font-arabic text-emerald-200/90 tracking-wide dark:text-slate-400" dir="rtl" lang="ar">
-            مدرسة السلام النموذجية
+            المدرسة المثالية عبر الإنترنت
           </p>
 
           {/* ২. বাংলা নাম: ফন্ট সাইজ বড় করে রেগুলার এলাইনমেন্ট */}
           <p className="text-sm md:text-5xl font-bold text-emerald-50 tracking-normal dark:text-slate-200 leading-tight font-shalda">
-            আস-সালাম আইডিয়াল মাদ্রাসা
+            অনলাইন আইডিয়াল মাদ্রাসা
           </p>
 
           {/* ৩. ইংরেজি নাম */}
           <h1 className="text-xl md:text-5xl font-black tracking-wide text-amber-400 dark:text-emerald-400 capitalize drop-shadow-sm leading-none font-britanic">
-            As-Salam Ideal Madrasah
+            Online Ideal Madrasah
           </h1>
 
           {/* ৪. স্লোগান: সম্পূর্ণ নতুন লাইনে এবং রাইট সাইডে পুশ করা হয়েছে */}
           <div className="w-full flex justify-end pt-1 md:pt-1.5 border-t border-white/5">
             <p className="text-[10px] md:text-sm font-medium tracking-widest text-amber-300/85 italic uppercase dark:text-emerald-300/70">
-              AIM For Ultimate Success
+              OIM For Ultimate Success
             </p>
           </div>
 
