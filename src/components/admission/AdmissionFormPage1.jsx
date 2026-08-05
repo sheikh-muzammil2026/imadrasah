@@ -576,9 +576,9 @@ export default function AdmissionFormPage1({ formData, handleChange, handleNeste
                   <td className="p-1.5 print:p-1">
                     <select name="divisionPreHifz.type" value={formData.divisionPreHifz?.type || ""} onChange={handleChange} className="border border-gray-300 rounded p-0.5 text-xs bg-white w-full print:border-none">
                       <option value="">বাছাই করুন</option>
-                      <option value="আবাসিক">আবাসিক</option>
-                      <option value="অনাবাসিক">অনাবাসিক</option>
-                      <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+                      <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+                      <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+                      <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
                     </select>
                   </td>
                 </tr>
@@ -607,9 +607,9 @@ export default function AdmissionFormPage1({ formData, handleChange, handleNeste
                   <td className="p-1.5 print:p-1">
                     <select name="divisionHifz.type" value={formData.divisionHifz?.type || ""} onChange={handleChange} className="border border-gray-300 rounded p-0.5 text-xs bg-white w-full print:border-none">
                       <option value="">বাছাই করুন</option>
-                      <option value="আবাসিক">আবাসিক</option>
-                      <option value="অনাবাসিক">অনাবাসিক</option>
-                      <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+                      <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+                      <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+                      <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
                     </select>
                   </td>
                 </tr>
@@ -662,9 +662,9 @@ export default function AdmissionFormPage1({ formData, handleChange, handleNeste
                     {formData.divisionAcademy?.active && (
                       <select name="divisionAcademy.type" value={formData.divisionAcademy?.type || ""} onChange={handleChange} className="border border-gray-300 rounded p-0.5 text-xs bg-white w-full print:border-none">
                         <option value="">বাছাই করুন</option>
-                        <option value="আবাসিক">আবাসিক</option>
-                        <option value="অনাবাসিক">অনাবাসিক</option>
-                        <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+                        <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+                        <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+                        <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
                       </select>
                     )}
                   </td>
@@ -696,9 +696,9 @@ export default function AdmissionFormPage1({ formData, handleChange, handleNeste
                   </select>
                   <select name="divisionPreHifz.type" value={formData.divisionPreHifz?.type || ""} onChange={handleChange} className="border border-gray-300 rounded p-1 text-xs bg-white w-full">
                     <option value="">ধরণ বাছাই</option>
-                    <option value="আবাসিক">আবাসিক</option>
-                    <option value="অনাবাসিক">অনাবাসিক</option>
-                    <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+                    <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+                    <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+                    <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
                   </select>
                 </div>
               </div>
@@ -726,9 +726,9 @@ export default function AdmissionFormPage1({ formData, handleChange, handleNeste
                   </select>
                   <select name="divisionHifz.type" value={formData.divisionHifz?.type || ""} onChange={handleChange} className="border border-gray-300 rounded p-1 text-xs bg-white w-full">
                     <option value="">ধরণ বাছাই</option>
-                    <option value="আবাসিক">আবাসিক</option>
-                    <option value="অনাবাসিক">অনাবাসিক</option>
-                    <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+                    <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+                    <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+                    <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
                   </select>
                 </div>
               </div>
@@ -779,9 +779,9 @@ export default function AdmissionFormPage1({ formData, handleChange, handleNeste
 
                       <select name="divisionAcademy.type" value={formData.divisionAcademy?.type || ""} onChange={handleChange} className="border border-gray-300 rounded p-1 text-xs bg-white w-full">
                         <option value="">ধরণ বাছাই</option>
-                        <option value="আবাসিক">আবাসিক</option>
-                        <option value="অনাবাসিক">অনাবাসিক</option>
-                        <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+                        <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+                        <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+                        <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
                       </select>
                     </div>
                   </div>

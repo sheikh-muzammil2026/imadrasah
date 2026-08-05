@@ -97,35 +97,35 @@ export default function AdmissionFormPage3({ formData, handleChange }) {
           <ul className="space-y-2.5 pl-2 mt-4 text-xs sm:text-sm">
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>অত্র মাদরাসার যাবতীয় নিয়ম কানুন মেনে চলব।</span>
+              <span>অনলাইন আইডিয়াল মাদরাসার যাবতীয় নিয়ম কানুন ও ওস্তাদদের নির্দেশাবলী মেনে চলব।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>পাঁচ ওয়াক্ত সালাত জামা'তের সাথে আদায় করব।</span>
+              <span>পাঁচ ওয়াক্ত সালাত নিয়মিত ও যথাসময়ে আদায় করব।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>মাথার চুল ও হাত পায়ের নখ ছোট রাখব।</span>
+              <span>সবদা সুন্নাহ ও ইসলামি আদব বজায় রাখব।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>অনুমতি (গেট পাস) ছাড়া বা অভিভাবক ছাড়া কখনো মাদরাসা ক্যাম্পাসের বাহিরে যাব না।</span>
+              <span>অনлайн ক্লাসের শিডিউল মেনে নিয়মিত ক্লাসে অংশ নিব এবং পোর্টালে সক্রিয় থাকব।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>কখনো বিদ্যুৎ, খাবার সহ অন্য যেকোনো কিছুর অপচয়/নষ্ট করব না।</span>
+              <span>অনলাইন রিসোর্স ও লার্নিং প্ল্যাটফর্মের কোনো ক্ষতি বা অপব্যবহার করব না।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>মাদরাসা ক্যাম্পাসে নিজের কাছে কোন ধরনের মোবাইল, ইলেকট্রনিক্স ডিভাইস, চাকু-ছুরি বা এই জাতীয় কোন ক্ষতিকর জিনিস রাখব না।</span>
+              <span>অনলাইন ক্লাসের সময় অন্য কোনো অনৈতিক কাজে ডিভাইস বা ইন্টারনেট ব্যবহার করব না।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>উপরে ক্লাসের ভাইদের শ্রদ্ধা ও সম্মান করব। ছোটদের বা নিচের ক্লাসের শিক্ষার্থীদের আদর ও স্নেহ করব।</span>
+              <span>ভার্চুয়াল ক্লাসরুম ও ফোরামে ওস্তাদদের এবং সহপাঠীদের সাথে শ্রদ্ধা ও মার্জিত আচরণ করব।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>
-              <span>কোন অবস্থাতেই নিজেদের মধ্যে কোন প্রকার ফেৎনা-ফাসাদ, মারামারি, বকাবকি করব না।</span>
+              <span>অনলাইন গ্রুপ বা ফোরামে কোনো প্রকার বিতর্ক, কুরুচিপূর্ণ কথা বা ফেৎনা-ফাসাদ সৃষ্টি করব না।</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-orange-500 mt-1">★</span>

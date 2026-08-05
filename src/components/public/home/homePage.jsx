@@ -15,8 +15,8 @@ export default function HomePage() {
         },
         {
             url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200",
-            title: "আধুনিক ও সুশৃঙ্খল আবাসন ব্যবস্থা",
-            subtitle: "ছাত্রদের মননশীল ও নৈতিক বিকাশে আমরা অঙ্গীকারাবদ্ধ",
+            title: "আধুনিক ও সুশৃঙ্খল অনলাইন লার্নিং",
+            subtitle: "শিক্ষার্থীদের মননশীল ও নৈতিক বিকাশে আমরা অঙ্গীকারাবদ্ধ",
         },
         {
             url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200",
@@ -43,7 +43,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative w-full overflow-hidden flex items-center">
                     <p className="animate-marquee whitespace-nowrap text-sm md:text-base font-semibold">
-                        📢 অনলাইন আইডিয়াল মাদ্রাসা (OIM)-এ ২০২৬ শিক্ষাবর্ষে হিফজ ও একাডেমিক বিভাগে ভর্তি চলছে! আসন সংখ্যা সীমিত। বিস্তারিত জানতে ভর্তি মেনু ভিজিট করুন। 🌟 আগামী ১৫ই জুলাই থেকে প্রথম সাময়িক পরীক্ষা শুরু হতে যাচ্ছে। সকল ছাত্রদের যথাসময়ে উপস্থিত থাকার নির্দেশ দেওয়া হলো।
+                        📢 অনলাইন আইডিয়াল মাদ্রাসা (OIM)-এ ২০২৬ শিক্ষাবর্ষে হিফজ ও একাডেমিক বিভাগে ভর্তি চলছে! আসন সংখ্যা সীমিত। বিস্তারিত জানতে ভর্তি মেনু ভিজিট করুন। 🌟 আগামী ১৫ই জুলাই থেকে প্রথম সাময়িক পরীক্ষা শুরু হতে যাচ্ছে। সকল শিক্ষার্থীদের যথাসময়ে অনলাইন পোর্টালে উপস্থিত থাকার নির্দেশ দেওয়া হলো।
                     </p>
                 </div>
             </div>
@@ -154,7 +154,7 @@ export default function HomePage() {
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                     <div>
                         <h3 className="text-2xl font-bold text-amber-400 mb-2">আপনি কি একজন অভিভাবক?</h3>
-                        <p className="text-emerald-100 text-sm">আপনার সন্তানের দৈনিক উপস্থিতি, পরীক্ষার রেজাল্ট এবং মাদ্রাসার ফি সংক্রান্ত যাবতীয় ট্র্যাকিং করুন সহজে।</p>
+                        <p className="text-emerald-100 text-sm">আপনার সন্তানের অনলাইন উপস্থিতি, জুম ক্লাসের অগ্রগতি, পরীক্ষার রেজাল্ট এবং কোর্স ফি সংক্রান্ত যাবতীয় ট্র্যাকিং করুন সহজে।</p>
                     </div>
                     <div className="md:col-span-2 flex flex-wrap gap-4 md:justify-end">
                         <Link

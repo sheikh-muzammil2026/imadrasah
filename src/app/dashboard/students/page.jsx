@@ -14,7 +14,7 @@ export default function AllStudentsPage() {
   const [selectedDivision, setSelectedDivision] = useState("all"); // preHifz, hifz, academy
   const [selectedAcademyType, setSelectedAcademyType] = useState("all"); // প্রাক-প্রাথমিক, প্রাথমিক, ইত্যাদি
   const [selectedClass, setSelectedClass] = useState("all");
-  const [selectedType, setSelectedType] = useState("all"); // আবাসিক, অনাবাসিক, ডে-কেয়ার
+  const [selectedType, setSelectedType] = useState("all"); // নিয়মিত অনলাইন, অনলাইন পার্ট-টাইম, অনলাইন উইকেন্ড
   const [selectedFeeCategory, setSelectedFeeCategory] = useState("all");
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function AllStudentsPage() {
     const matchesClass =
       selectedClass === "all" || details.className === selectedClass;
 
-    // টাইপ ফিল্টার (আবাসিক/অনাবাসিক/ডে-কেয়ার)
+    // টাইপ ফিল্টার (নিয়মিত অনলাইন/অনলাইন পার্ট-টাইম/অনলাইন উইকেন্ড)
     const matchesType =
       selectedType === "all" || details.type === selectedType;
 
@@ -314,17 +314,17 @@ export default function AllStudentsPage() {
             </select>
           </div>
 
-          {/* টাইপ ফিল্টার (আবাসিক/অনাবাসিক/ডে-কেয়ার) */}
+          {/* টাইপ ফিল্টার (নিয়মিত অনলাইন/অনলাইন পার্ট-টাইম/অনলাইন উইকেন্ড) */}
           <div>
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
               className="w-full px-3 py-2 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-emerald-600 focus:bg-white font-medium text-slate-700"
             >
-              <option value="all">সকল টাইপ (আবাসিক/অনাবাসিক)</option>
-              <option value="আবাসিক">আবাসিক</option>
-              <option value="অনাবাসিক">অনাবাসিক</option>
-              <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+              <option value="all">সকল অনলাইন টাইপ</option>
+              <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+              <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+              <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
             </select>
           </div>
 

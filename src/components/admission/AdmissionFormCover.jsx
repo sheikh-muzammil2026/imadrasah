@@ -104,7 +104,7 @@ export default function AdmissionFormCover({ formData, handleChange }) {
         {/* ফুটার সেকশন */}
         <div className="w-full text-center mt-4 px-4 pb-2 relative z-10 print:mt-2">
           <h4 className="text-xs sm:text-base font-extrabold text-[#cc1e29] tracking-wide mb-0.5 px-2">
-            ওআইএম ক্যাম্পাস, দক্ষিণ শ্যামলী আ/এ, ঢাকা, বাংলাদেশ
+            অনলাইন আইডিয়াল মাদ্রাসা (OIM), গ্লোবাল অনলাইন লার্নিং প্ল্যাটফর্ম
           </h4>
           <p className="text-[10px] sm:text-[14px] font-black text-[#1b2d56] font-mono mb-3 tracking-wide print:mb-2">
             মোবাইল (অফিস): ০১৩১৬ ২০১ ২০১, ০১৭৪৮ ৮৬৮ ১৬১

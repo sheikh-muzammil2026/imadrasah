@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 export default function AdminGalleryPage() {
     const [itemType, setItemType] = useState('photo'); // photo | video
     const [title, setTitle] = useState('');
-    const [tag, setTag] = useState('ক্যাম্পাস'); // ফটো ট্যাগ
+    const [tag, setTag] = useState('অনলাইন ক্যাম্পাস'); // ফটো ট্যাগ
     const [videoUrl, setVideoUrl] = useState(''); // ভিডিও লিঙ্ক
     const [videoLength, setVideoLength] = useState(''); // ভিডিও ডিউরেশন
     const [platform, setPlatform] = useState('YouTube'); // YouTube | Facebook
@@ -132,7 +132,7 @@ export default function AdminGalleryPage() {
                         <div>
                             <label className="block text-xs font-bold text-gray-500 mb-1">ফটো ট্যাগ (Tag)</label>
                             <select value={tag} onChange={(e) => setTag(e.target.value)} className="w-full p-3 border border-gray-200 rounded-xl text-sm bg-white font-semibold text-gray-700">
-                                <option value="ক্যাম্পাস">ক্যাম্পাস</option>
+                                <option value="অনলাইন ক্যাম্পাস">অনলাইন ক্যাম্পাস</option>
                                 <option value="অনুষ্ঠান">অনুষ্ঠান</option>
                                 <option value="প্রতিযোগিতা">প্রতিযোগিতা</option>
                                 <option value="শিক্ষা">শিক্ষা</option>

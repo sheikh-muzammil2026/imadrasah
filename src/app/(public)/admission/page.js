@@ -151,7 +151,7 @@ export default function AdmissionGuidelinePage() {
                             </tr>
                             {/* হিফজ বিভাগ */}
                             <tr className="hover:bg-gray-50/50 transition-colors">
-                                <td className="p-4 text-emerald-900">হিফজ বিভাগ (আবাসিক)</td>
+                                <td className="p-4 text-emerald-900">হিফজ বিভাগ (অনলাইন লাইভ ও মেন্টরিং)</td>
                                 <td className="p-4 text-center font-mono text-gray-900">{guideSettings.fee_hifz_adm || 'N/A'}/-</td>
                                 <td className="p-4 text-center font-mono text-gray-600">{guideSettings.fee_hifz_monthly || 'N/A'}/-</td>
                             </tr>

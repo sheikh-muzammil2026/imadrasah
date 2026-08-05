@@ -113,13 +113,13 @@ export default function Navbar() {
             ],
         },
         {
-            name: "আবাসন",
+            name: "ভার্চুয়াল ক্যাম্পাস",
             dropdown: [
-                { name: "ছাত্রাবাস পরিচিতি", href: "/hostel#about" },
-                { name: "আবাসিক হলের পরিচালকবৃন্দ", href: "/hostel#directors" },
-                { name: "আবাসন প্রাপ্তির নিয়মাবলী", href: "/hostel#rules" },
-                { name: "আবাসন চার্ট", href: "/hostel#chart" },
-                { name: "দৈনিক আবাসিক কার্যসূচি", href: "/hostel#routine" },
+                { name: "ডিজিটাল ক্যাম্পাস পরিচিতি", href: "/virtual-campus#about" },
+                { name: "অনলাইন মেন্টরবৃন্দ", href: "/virtual-campus#directors" },
+                { name: "অনলাইন ক্লাসের নিয়মাবলী", href: "/virtual-campus#rules" },
+                { name: "শিক্ষা কার্যক্রম চার্ট", href: "/virtual-campus#chart" },
+                { name: "দৈনিক অনলাইন কার্যসূচি", href: "/virtual-campus#routine" },
             ],
         },
         {

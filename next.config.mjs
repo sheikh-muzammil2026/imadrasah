@@ -11,6 +11,15 @@ const nextConfig = {
     ],
   },
   reactCompiler: true,
+  async redirects() {
+    return [
+      {
+        source: '/hostel',
+        destination: '/virtual-campus',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

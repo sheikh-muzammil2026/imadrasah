@@ -176,7 +176,7 @@ export default function AdmissionFormPage2({ formData, handleChange }) {
             )}
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-              <span className="font-semibold text-gray-700">২. পরিষ্কার-পরিচ্ছন্ন থাকতে পছন্দ করে কি?</span>
+              <span className="font-semibold text-gray-700">২. নিয়মিত অনলাইন লাইভ ক্লাসে অংশ নিতে পারবে কি?</span>
               <div className="flex gap-4 mt-1 sm:mt-0">
                 <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="cleanlinessLover" value="হ্যাঁ" checked={formData.cleanlinessLover === "হ্যাঁ"} onChange={handleChange} className="accent-orange-600" /> হ্যাঁ</label>
                 <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="cleanlinessLover" value="না" checked={formData.cleanlinessLover === "না"} onChange={handleChange} className="accent-orange-600" /> না</label>
@@ -184,7 +184,7 @@ export default function AdmissionFormPage2({ formData, handleChange }) {
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-              <span className="font-semibold text-gray-700">৩. খাবার গ্রহণে সে কি অনাগ্রহী?</span>
+              <span className="font-semibold text-gray-700">৩. অনলাইন ক্লাসের জন্য স্মার্টফোন/ল্যাপটপ ও ইন্টারনেট সংযোগ আছে কি?</span>
               <div className="flex gap-4 mt-1 sm:mt-0">
                 <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="foodReluctance" value="হ্যাঁ" checked={formData.foodReluctance === "হ্যাঁ"} onChange={handleChange} className="accent-orange-600" /> হ্যাঁ</label>
                 <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="foodReluctance" value="না" checked={formData.foodReluctance === "না"} onChange={handleChange} className="accent-orange-600" /> না</label>
@@ -192,10 +192,10 @@ export default function AdmissionFormPage2({ formData, handleChange }) {
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-              <span className="font-semibold text-gray-700">৪. কী ধরণের খাবার খেতে বেশি পছন্দ করে?</span>
+              <span className="font-semibold text-gray-700">৪. আপনার ইন্টারনেট সংযোগের ধরণ কেমন?</span>
               <div className="flex flex-wrap gap-4 mt-1 sm:mt-0">
-                <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="favFoodType" value="বাসায় তৈরি খাবার" checked={formData.favFoodType === "বাসায় তৈরি খাবার"} onChange={handleChange} className="accent-orange-600" /> বাসায় তৈরি খাবার</label>
-                <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="favFoodType" value="ফাস্টফুড" checked={formData.favFoodType === "ফাস্টফুড"} onChange={handleChange} className="accent-orange-600" /> ফাস্টফুড</label>
+                <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="favFoodType" value="মোবাইল ডাটা" checked={formData.favFoodType === "মোবাইল ডাটা"} onChange={handleChange} className="accent-orange-600" /> মোবাইল ডাটা</label>
+                <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="favFoodType" value="ব্রডব্যান্ড ওয়াইফাই" checked={formData.favFoodType === "ব্রডব্যান্ড ওয়াইফাই"} onChange={handleChange} className="accent-orange-600" /> ব্রডব্যান্ড ওয়াইফাই</label>
                 <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name="favFoodType" value="অন্যান্য" checked={formData.favFoodType === "অন্যান্য"} onChange={handleChange} className="accent-orange-600" /> অন্যান্য</label>
               </div>
             </div>
@@ -211,11 +211,11 @@ export default function AdmissionFormPage2({ formData, handleChange }) {
             {/* ৬ ও ৭ নং প্রশ্ন */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1 w-full">
-                <span className="text-gray-700 font-semibold">৬. সাধারণত রাতে কখন ঘুমায়?</span>
+                <span className="text-gray-700 font-semibold">৬. অনলাইন ক্লাসের সুবিধাজনক সময় (শুরু)?</span>
                 <input type="time" name="sleepTime" value={formData.sleepTime || ""} onChange={handleChange} className="w-full border-b border-gray-400 text-left focus:outline-none pb-0.5 cursor-pointer bg-transparent" />
               </div>
               <div className="flex flex-col gap-1 w-full">
-                <span className="text-gray-700 font-semibold">৭. সকালে কখন ঘুম থেকে উঠে?</span>
+                <span className="text-gray-700 font-semibold">৭. অনলাইন ক্লাসের সুবিধাজনক সময় (শেষ)?</span>
                 <input type="time" name="wakeUpTime" value={formData.wakeUpTime || ""} onChange={handleChange} className="w-full border-b border-gray-400 text-left focus:outline-none pb-0.5 cursor-pointer bg-transparent" />
               </div>
             </div>
@@ -513,9 +513,9 @@ export default function AdmissionFormPage2({ formData, handleChange }) {
       {/* বিশেষ জ্ঞাতব্য বিষয় */}
       <div className="w-full bg-[#1a1a1a] text-white p-3 rounded-sm text-xs md:text-sm space-y-1 my-4 shadow-sm">
         <span className="font-bold text-orange-400 underline block mb-1">বিশেষ জ্ঞাতব্য বিষয়:</span>
-        <p className="pl-2">● ভর্তি পরীক্ষায় উত্তীর্ণ হয়ে যথাসময়ে ভর্তি না হলে ভর্তির অযোগ্য হিসেবে বিবেচিত হবে।</p>
-        <p className="pl-2">● কোনো শিক্ষার্থী কোনো কারণে ভর্তি বাতিল করলে তার প্রদেয় ফি ফেরত পাবে না।</p>
-        <p className="pl-2">● কোনো শিক্ষার্থী অনুমোদিত অভিভাবক ছাড়া মাদরাসা ক্যাম্পাস ত্যাগ করতে পারবে না।</p>
+        <p className="pl-2">● কোর্স এনরোলমেন্ট বা ভর্তি কার্যক্রম সম্পন্ন করে যথাসময়ে ক্লাসে যুক্ত হতে হবে।</p>
+        <p className="pl-2">● কোনো শিক্ষার্থী কোনো কারণে ভর্তি বাতিল বা কোর্স ড্রপ করলে তার প্রদেয় ফি ফেরত পাবে না।</p>
+        <p className="pl-2">● কোনো শিক্ষার্থী অনলাইন ক্লাসের নিয়ম ও ওস্তাদের অনুশাসন অমান্য করতে পারবে না।</p>
       </div>
 
       {/* সেকশন ৩: অভিভাবকের অঙ্গীকারনামা */}
@@ -535,7 +535,7 @@ export default function AdmissionFormPage2({ formData, handleChange }) {
             কে ভর্তি করার ইচ্ছা পোষণ করলাম।
           </p>
           <p>
-            সে অত্র প্রতিষ্ঠানে যাতায়াতকালে কোনো দুর্ঘটনার সম্মুখীন হলে কিংবা ক্যাম্পাসে অবস্থানকালে কাউকে অবহিত না করে কোথাও চলে গেলে অথবা অন্য যেকোনো দুর্ঘটনা ঘটলে আমি বৈধ অভিভাবক হিসেবে তার সকল দায়-দায়িত্ব বহন করব, ইন-শা-আল্লাহ। আমি উপরিউক্ত শর্তসমূহ স্বজ্ঞানে অবগত হয়ে নিম্নে স্বাক্ষর প্রদান করলাম।
+            আমি আমার সন্তানকে অনলাইন ক্লাসের জন্য উপযুক্ত ও নিরাপদ ডিভাইস ব্যবহারের তদারকি করব এবং পড়াশোনার সময় ছাড়া অন্য কাজে ইন্টারনেট ব্যবহারের ওপর নজর রাখব। আমি বৈধ অভিভাবক হিসেবে তার পড়াশোনার অগ্রগতির খোঁজখবর রাখব। আমি উপরিউক্ত শর্তসমূহ স্বজ্ঞানে অবগত হয়ে নিম্নে স্বাক্ষর প্রদান করলাম।
           </p>
         </div>
 

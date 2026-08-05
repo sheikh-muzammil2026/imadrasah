@@ -1,14 +1,14 @@
-// components/public/hostel/HostelDirectors.jsx
+// components/public/virtual-campus/CampusMentors.jsx
 "use client";
 
-export default function HostelDirectors({ data }) {
+export default function CampusMentors({ data }) {
   const fallbackData = {
-    title: "আবাসিক হলের পরিচালকবৃন্দ",
-    subtitle: "ছাত্রাবাসের সার্বিক শৃঙ্খলা ও ছাত্রদের দেখভালে নিয়োজিত জিম্মাদার ওস্তাদগণ",
+    title: "অনলাইন মেন্টর ও ওস্তাদবৃন্দ",
+    subtitle: "শিক্ষার্থীদের সার্বিক লার্নিং সাপোর্ট, ডাউট সলভিং ও একাডেমিক সহায়তায় নিয়োজিত মেন্টর ওস্তাদগণ",
     list: [
-      { id: 1, name: "মাওলানা আব্দুল করিম", role: "প্রধান নাযেম (আবাসিক প্রধান)", room: "হাদিস হল, ১০১" },
-      { id: 2, name: "হাফেজ মাওলানা নোমান", role: "সহকারী নাযেম (শৃঙ্খলা)", room: "কুরআন হল, ২০২" },
-      { id: 3, name: "মুফতি সোলায়মান আহমেদ", role: "আবাসিক তত্ত্বাবধায়ক (খাদ্য ও পুষ্টি)", room: "নূরানী হল, ৩০৫" }
+      { id: 1, name: "মাওলানা আব্দুল করিম", role: "প্রধান মেন্টর (অনলাইন একাডেমি)", room: "ভার্চুয়াল অফিস, ০১" },
+      { id: 2, name: "হাফেজ মাওলানা নোমান", role: "অনলাইন কোর্স কো-অর্ডিনেটর", room: "ভার্চুয়াল অফিস, ০২" },
+      { id: 3, name: "মুফতি সোলায়মান আহমেদ", role: "মেন্টর ও ওস্তাদ (তাজউইদ ও কুরআন)", room: "ভার্চুয়াল অফিস, ০৩" }
     ]
   };
 
@@ -32,7 +32,7 @@ export default function HostelDirectors({ data }) {
             <h4 className="text-base font-bold text-emerald-950 dark:text-emerald-300">{director.name}</h4>
             <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1">{director.role}</p>
             <div className="text-[11px] font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-slate-900 py-1 px-3 rounded-full inline-block mt-3 border border-gray-100 dark:border-slate-800">
-              📍 অফিস/কক্ষ: {director.room}
+              📧 ভার্চুয়াল রুম: {director.room}
             </div>
           </div>
         ))}

@@ -352,7 +352,7 @@ export default function IdCardGenerator() {
 
           <div>
             <label className="block text-xs font-semibold text-gray-600 mb-1">
-              আবাসিক স্ট্যাটাস
+              অনলাইন লার্নিং টাইপ
             </label>
             <select
               value={selectedType}
@@ -360,9 +360,9 @@ export default function IdCardGenerator() {
               className="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-500"
             >
               <option value="all">সকল টাইপ</option>
-              <option value="আবাসিক">আবাসিক</option>
-              <option value="অনাবাসিক">অনাবাসিক</option>
-              <option value="ডে-কেয়ার">ডে-কেয়ার</option>
+              <option value="নিয়মিত অনলাইন">নিয়মিত অনলাইন</option>
+              <option value="অনলাইন পার্ট-টাইম">অনলাইন পার্ট-টাইম</option>
+              <option value="অনলাইন উইকেন্ড">অনলাইন উইকেন্ড</option>
             </select>
           </div>
 

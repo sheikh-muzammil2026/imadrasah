@@ -351,7 +351,7 @@ export default function AdminAdmissionDashboard() {
 
                             {/* হিফজ বিভাগ */}
                             <div className="p-4 border border-gray-100 rounded-xl bg-gray-50/60 space-y-3">
-                                <p className="text-xs font-black text-emerald-900 border-b pb-1">হিফজ বিভাগ (আবাসিক)</p>
+                                <p className="text-xs font-black text-emerald-900 border-b pb-1">হিফজ বিভাগ (অনলাইন লাইভ ও মেন্টরিং)</p>
                                 <div>
                                     <label className="block text-[10px] text-gray-400 font-bold">ভর্তি ফি</label>
                                     <input type="text" value={guideSettings.fee_hifz_adm} onChange={(e) => setGuideSettings({ ...guideSettings, fee_hifz_adm: e.target.value })} className="w-full p-2 border border-gray-200 rounded-lg text-xs font-bold" placeholder="৩,০০০/-" />

@@ -101,7 +101,7 @@ export default function Footer() {
                 <Link href="/smart-classroom/live" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">স্মার্ট লাইভ ক্লাস</Link>
               </li>
               <li>
-                <Link href="/hostel#routine" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">আবাসিক কার্যসূচি</Link>
+                <Link href="/virtual-campus#routine" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">অনলাইন কার্যসূচি</Link>
               </li>
             </ul>
           </div>
@@ -114,7 +114,7 @@ export default function Footer() {
             <ul className="space-y-3.5 text-sm font-normal text-gray-400 dark:text-slate-400">
               <li className="flex items-start gap-2.5">
                 <span className="text-amber-400 mt-0.5 flex-shrink-0">📍</span>
-                <span className="leading-relaxed">Dhaka,<br /> বাংলাদেশ।<br /></span>
+                <span className="leading-relaxed">গ্লোবাল অনলাইন প্ল্যাটফর্ম<br /> (বিশ্বব্যাপী সেবা)।<br /></span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-amber-400 flex-shrink-0">📞</span>
@@ -134,7 +134,7 @@ export default function Footer() {
       <div className="bg-emerald-950 border-t border-emerald-900/60 text-xs py-5 px-4 dark:bg-slate-950 dark:border-slate-900">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
           <p className="text-gray-400 font-medium dark:text-slate-500">
-            &copy; ২০২৬ অনলাইন আইডিয়াল মাদ্রাসা, ঢাকা। সর্বস্বত্ব সংরক্ষিত।
+            &copy; ২০২৬ অনলাইন আইডিয়াল মাদ্রাসা (OIM)। সর্বস্বত্ব সংরক্ষিত।
           </p>
 
         </div>

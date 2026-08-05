@@ -29,7 +29,7 @@ export default function ContactComponent() {
         <h2 className="text-3xl font-bold text-emerald-900 dark:text-emerald-400 flex items-center justify-center gap-2">
           <span className="text-amber-500">❖</span> আমাদের সাথে যোগাযোগ করুন <span className="text-amber-500">❖</span>
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">যেকোনো জিজ্ঞাসা, তথ্য বা পরামর্শের জন্য আমাদের লিখুন অথবা সরাসরি চলে আসুন</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">যেকোনো জিজ্ঞাসা, তথ্য বা পরামর্শের জন্য আমাদের সাথে ইমেইল, মোবাইল অথবা মেসেজের মাধ্যমে যোগাযোগ করুন</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -37,11 +37,11 @@ export default function ContactComponent() {
         {/* বাম পাশ: যোগাযোগের তথ্য কার্ড */}
         <div className="lg:col-span-5 bg-emerald-900 text-emerald-50 p-6 sm:p-8 rounded-2xl shadow-md space-y-6">
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-amber-400 mb-2">প্রধান কার্যালয়</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-amber-400 mb-2">ভার্চুয়াল গ্লোবাল অফিস</h3>
             <p className="text-xs sm:text-sm leading-relaxed opacity-90 font-medium">
-              জামিয়া ইসলামিয়া মাদরাসা ক্যাম্পাস<br />
-              প্রধান সড়ক, ব্লক-সি, সেক্টর-২,<br />
-              ঢাকা - ১২২৯, বাংলাদেশ।
+              অনলাইন লার্নিং প্ল্যাটফর্ম (OIM)<br />
+              গ্লোবাল ভার্চুয়াল এডুকেশন সিস্টেম<br />
+              ঢাকা, বাংলাদেশ (অনলাইন সুবিধা বিশ্বব্যাপী)
             </p>
           </div>
 

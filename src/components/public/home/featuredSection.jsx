@@ -28,7 +28,7 @@ export default function FeaturedSections() {
             textMain: "text-slate-900 dark:text-white",
             textSub: "text-slate-600 dark:text-gray-300",
             link: "/departments/academic",
-            points: ["প্লে থেকে দশম শ্রেণী", "স্মার্ট মাল্টিমিডিয়া ক্লাস", "ইংরেজি ও গণিতে বিশেষ যত্ন", "কম্পিউটার ও আইটি ল্যাব"],
+            points: ["প্লে থেকে দশম শ্রেণী", "অনলাইন ভার্চুয়াল ক্লাস", "ইংরেজি ও গণিতে বিশেষ যত্ন", "বেসিক কম্পিউটার ও আইটি দক্ষতা"],
             icon: "📚"
         }
     ];

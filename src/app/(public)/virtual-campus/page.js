@@ -1,21 +1,21 @@
-// app/hostel/page.js
+// app/virtual-campus/page.js
 "use client";
 
 import { useEffect, useState } from "react";
-import { HostelAbout, HostelChart } from "@/components/public/hostel/HostelIntro";
-import HostelDirectors from "@/components/public/hostel/HostelDirectors";
-import HostelRules from "@/components/public/hostel/HostelRules";
-import HostelRoutine from "@/components/public/hostel/HostelRoutine";
+import { CampusAbout, CampusChart } from "@/components/public/virtual-campus/CampusIntro";
+import CampusMentors from "@/components/public/virtual-campus/CampusMentors";
+import CampusRules from "@/components/public/virtual-campus/CampusRules";
+import CampusRoutine from "@/components/public/virtual-campus/CampusRoutine";
 
-export default function HostelPage() {
-  const [hostelData, setHostelData] = useState(null);
+export default function VirtualCampusPage() {
+  const [campusData, setCampusData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchHostelData() {
+    async function fetchCampusData() {
       try {
         // ফিউচার এপিআই ইন্টিগ্রেশনের জন্য স্টেট প্লেসহোল্ডার
-        setHostelData({
+        setCampusData({
           about: null,
           directors: null,
           rules: null,
@@ -23,12 +23,12 @@ export default function HostelPage() {
           routine: null,
         });
       } catch (error) {
-        console.error("Hostel data fetch error:", error);
+        console.error("Campus data fetch error:", error);
       } finally {
         setLoading(false);
       }
     }
-    fetchHostelData();
+    fetchCampusData();
   }, []);
 
   if (loading) {
@@ -42,29 +42,29 @@ export default function HostelPage() {
   return (
     <div className="scroll-smooth min-h-screen bg-gray-50 dark:bg-slate-900">
       
-      {/* ১. ছাত্রাবাস পরিচিতি সেকশন */}
+      {/* ১. ডিজিটাল ক্যাম্পাস পরিচিতি সেকশন */}
       <section id="about" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <HostelAbout data={hostelData?.about} />
+        <CampusAbout data={campusData?.about} />
       </section>
 
-      {/* ২. আবাসিক হলের পরিচালকবৃন্দ সেকশন (অল্টারনেট ব্যাকগ্রাউন্ড) */}
+      {/* ২. অনলাইন মেন্টরবৃন্দ সেকশন (অল্টারনেট ব্যাকগ্রাউন্ড) */}
       <section id="directors" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <HostelDirectors data={hostelData?.directors} />
+        <CampusMentors data={campusData?.directors} />
       </section>
 
-      {/* ৩. আবাসন প্রাপ্তির নিয়মাবলী সেকশন */}
+      {/* ৩. অনলাইন ক্লাসের নিয়মাবলী সেকশন */}
       <section id="rules" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <HostelRules data={hostelData?.rules} />
+        <CampusRules data={campusData?.rules} />
       </section>
 
-      {/* ৪. আবাসন চার্ট সেকশন (অল্টারনেট ব্যাকগ্রাউন্ড) */}
+      {/* ৪. শিক্ষা কার্যক্রম চার্ট সেকশন (অল্টারনেট ব্যাকগ্রাউন্ড) */}
       <section id="chart" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <HostelChart data={hostelData?.chart} />
+        <CampusChart data={campusData?.chart} />
       </section>
 
-      {/* ৫. দৈনিক আবাসিক কার্যসূচি সেকশন */}
+      {/* ৫. দৈনিক অনলাইন কার্যসূচি সেকশন */}
       <section id="routine" className="py-16">
-        <HostelRoutine data={hostelData?.routine} />
+        <CampusRoutine data={campusData?.routine} />
       </section>
 
     </div>

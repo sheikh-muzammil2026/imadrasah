@@ -75,7 +75,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 { title: "অনলাইন এক্সাম কন্ট্রোল", href: "/dashboard/smart-classroom/exam" },
             ]
         },
-        { id: "attendance", title: "ডিজিটাল হাজিরা", icon: "📅", href: "/dashboard/attendance", roles: ["admin", "teacher"] },
+        { id: "attendance", title: "অনলাইন হাজিরা লগ", icon: "📅", href: "/dashboard/attendance", roles: ["admin", "teacher"] },
         {
             id: "students",
             title: "শিক্ষার্থী ব্যবস্থাপনা",
@@ -88,8 +88,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 { title: "শিক্ষার্থীর আইডি কার্ড জেনারেটর", href: "/dashboard/students/id-card" },
                 { title: "প্রসঙ্গ / ছাড়পত্র (TC & Character Cert)", href: "/dashboard/students/certificates" },
                 { title: "অভিভাবকের তথ্য ও যোগাযোগ", href: "/dashboard/students/parents" },
-                { title: "শিক্ষার্থীর উপস্থিতি রিপোর্ট", href: "/dashboard/students/attendance-report" },
-                { title: "আবাসিক/হোস্টেল শিক্ষার্থী", href: "/dashboard/students/hostel" },
+                { title: "অনলাইন উপস্থিতি রিপোর্ট", href: "/dashboard/students/attendance-report" },
+                { title: "নিয়মিত অনলাইন শিক্ষার্থী", href: "/dashboard/students?type=নিয়মিত%20অনলাইন" },
                 { title: "ঝরে পড়া / নিষ্ক্রিয় শিক্ষার্থী", href: "/dashboard/students/inactive" },
             ]
         },
@@ -121,7 +121,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             dropdown: [
                 { title: "সন্তানের প্রোফাইল", href: "/dashboard/parent/child-profile" },
                 { title: "একাডেমিক রেজাল্ট", href: "/dashboard/parent/results" },
-                { title: "হাজিরা রিপোর্ট", href: "/dashboard/parent/attendance" },
+                { title: "অনলাইন উপস্থিতি রিপোর্ট", href: "/dashboard/parent/attendance" },
                 { title: "ফি ও অনলাইন পেমেন্ট", href: "/dashboard/parent/payments" },
                 { title: "ক্লাস ও পরীক্ষার রুটিন", href: "/dashboard/parent/routines" },
                 { title: "শিক্ষকদের নোটিশ", href: "/dashboard/parent/notices" },

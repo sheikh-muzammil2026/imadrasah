@@ -8,16 +8,16 @@ import TopHeader from '@/components/public/shared/topHeader';
 
 export const metadata = {
   title: {
-    default: "online Madrasah",
-    template: "%s | online Madrasah",
+    default: "অনলাইন আইডিয়াল মাদ্রাসা (OIM)",
+    template: "%s | অনলাইন আইডিয়াল মাদ্রাসা (OIM)",
   },
-  description: "আধুনিক ও সুশৃঙ্খল আবাসন ব্যবস্থাসহ চারবর্ষে হিফজ ও একাডেমিক শিক্ষার এক অনন্য প্রতিষ্ঠান, ঢাকা, বাংলাদেশ।",
-  keywords: ["imadrasah", "online Madrasah", "Hifz Madrasah"],
+  description: "অনলাইন লার্নিং ও মেন্টরশিপের মাধ্যমে হিফজ, নাজেরা ও একাডেমিক শিক্ষার এক অনন্য প্ল্যাটফর্ম। বিশ্বের যেকোনো প্রান্ত থেকে দ্বীনি শিক্ষা অর্জন করুন ঘরে বসেই।",
+  keywords: ["online madrasah", "oim", "online hifz", "virtual madrasah", "islamic learning platform"],
   openGraph: {
-    title: "online Madrasah",
-    description: "আধুনিক ও সুশৃঙ্খল আবাসন ব্যবস্থাসহ ৬ মাসে হিফজ একাডেমিক শিক্ষার এক অনন্য প্রতিষ্ঠান।",
+    title: "অনলাইন আইডিয়াল মাদ্রাসা (OIM)",
+    description: "লাইভ জুম ও গুগল মিট ক্লাস, রেকর্ডেড মডিউল এবং ১-অন-১ মেন্টরিং-এর মাধ্যমে হিফজ ও একাডেমিক শিক্ষার এক অনন্য প্ল্যাটফর্ম।",
     url: "https://imadrasah.vercel.app", // আপনার বর্তমান ডোমেইন
-    siteName: "online Madrasah",
+    siteName: "অনলাইন আইডিয়াল মাদ্রাসা (OIM)",
     locale: "bn_BD",
     type: "website",
   },
