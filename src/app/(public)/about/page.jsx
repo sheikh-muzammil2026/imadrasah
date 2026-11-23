@@ -1,105 +1,84 @@
-// app/about/page.js
-"use client";
-
-import { useEffect, useState } from "react";
-import Profile from "@/components/public/about/Profile";
-import Founder from "@/components/public/about/Founder";
-import Vision from "@/components/public/about/Vision";
-import Committee from "@/components/public/about/Committee";
-import Features from "@/components/public/about/Features";
-import Roadmap from "@/components/public/about/Roadmap";
-import Testimonials from "@/components/public/about/Testimonials";
-import Policies from "@/components/public/about/Policies";
-// নতুন কম্পোনেন্টগুলোর ইম্পোর্ট পাথ ঠিক করে দেওয়া হলো
-import Faculty from "@/components/public/about/Faculty";
-import Staff from "@/components/public/about/Staff";
-import Roster from "@/components/public/about/Roster";
+import Link from "next/link";
+import { BookOpen, CheckCircle, Shield, Award, Users } from "lucide-react";
 
 export default function AboutPage() {
-  const [aboutData, setAboutData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function getAboutData() {
-      try {
-        // এপিআই কানেকশন চালু হলে এখানে ডাটা সেট হবে
-        setAboutData({
-          profile: null,
-          founder: null,
-          vision: null,
-          committee: null,
-          features: null,
-          roadmap: null,
-          testimonials: null,
-          policies: null,
-          faculty: null,
-          staff: null,
-          roster: null,
-        });
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    getAboutData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-emerald-800"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="scroll-smooth min-h-screen bg-gray-50 dark:bg-slate-900">
-      {/* প্রতিটি সেকশনে scroll-mt-24 ক্লাসটি যুক্ত করা হয়েছে */}
-      <section id="profile" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <Profile data={aboutData?.profile} />
-      </section>
+    <div className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* Hero Intro */}
+      <div className="text-center max-w-3xl mx-auto space-y-4">
+        <span className="text-xs font-bold text-[#0288D1] bg-[#D6EEFA]/40 px-3 py-1 rounded-full">
+          আমাদের পরিচিতি
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#064E73]">
+          কুরআন কানন ইনস্টিটিউট বাংলাদেশ
+        </h1>
+        <p className="text-sm sm:text-base text-[#4A606D] leading-relaxed">
+          আট বছর ধরে আমরা শিশু ও বয়স্কদের সহীহ কুরআন শিক্ষা দিয়ে আসছি। অনলাইন কোর্স, লাইভ ক্লাস, ই-বুক ও প্রতিদিনের অগ্রগতি রিপোর্ট — সবই এক জায়গায়।
+        </p>
+      </div>
 
-      <section id="founder" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <Founder data={aboutData?.founder} />
-      </section>
+      {/* Vision & Mission */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white rounded-xl border border-[#E2EEF5] p-6 shadow-soft space-y-3">
+          <div className="w-10 h-10 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center font-bold">
+            <BookOpen className="w-5 h-5" />
+          </div>
+          <h2 className="text-xl font-bold text-[#064E73]">আমাদের লক্ষ্য (Vision)</h2>
+          <p className="text-xs sm:text-sm text-[#4A606D] leading-relaxed">
+            বিশ্বের প্রতিটি ঘরে ঘরে বিশুদ্ধ কুরআন তিলাওয়াতের সুর ছড়িয়ে দেওয়া। যাতে কোনো মুসলমান ভৌগোলিক দূরত্ব বা সময়ের অভাবে আল্লাহর কালাম শিক্ষা থেকে বঞ্চিত না হন।
+          </p>
+        </div>
 
-      <section id="vision" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <Vision data={aboutData?.vision} />
-      </section>
+        <div className="bg-white rounded-xl border border-[#E2EEF5] p-6 shadow-soft space-y-3">
+          <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold">
+            <Shield className="w-5 h-5" />
+          </div>
+          <h2 className="text-xl font-bold text-[#064E73]">আমাদের উদ্দেশ্য (Mission)</h2>
+          <p className="text-xs sm:text-sm text-[#4A606D] leading-relaxed">
+            অভিজ্ঞ ও আন্তর্জাতিক সনদপ্রাপ্ত ক্বারীগণের তত্ত্বাবধানে সম্পূর্ণ অনলাইন প্ল্যাটফর্মে ব্যক্তিগত যত্ন ও নিয়মিত মূল্যায়নের মাধ্যমে মানসম্মত ইসলামি শিক্ষা নিশ্চিত করা।
+          </p>
+        </div>
+      </div>
 
-      <section id="committee" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <Committee data={aboutData?.committee} />
-      </section>
+      {/* Founder Profile Message */}
+      <div className="bg-white rounded-2xl border border-[#E2EEF5] p-8 shadow-soft flex flex-col md:flex-row items-center gap-8">
+        <div className="w-32 h-32 rounded-full bg-[#064E73] text-white flex flex-col items-center justify-center shrink-0 shadow-md border-4 border-[#D6EEFA]">
+          <Users className="w-12 h-12 text-blue-200" />
+          <span className="text-[10px] text-amber-300 font-bold mt-1">প্রতিষ্ঠাতা</span>
+        </div>
+        <div className="space-y-3 text-center md:text-left">
+          <h3 className="text-2xl font-bold text-[#064E73]">
+            হাফেজ মাওলানা ক্বারী লোকমান আল মাহমুদ
+          </h3>
+          <p className="text-xs font-semibold text-[#0288D1]">
+            প্রতিষ্ঠাতা পরিচালক ও প্রধান প্রশিক্ষক, কুরআন কানন
+          </p>
+          <p className="text-xs sm:text-sm text-[#4A606D] leading-relaxed italic">
+            "কুরআন শিক্ষা প্রতিটি মুসলমানের ওপর ফরজ। আধুনিক প্রযুক্তির সর্বোচ্চ সদ্ব্যবহার করে আমরা কুরআন শিক্ষাকে সহজ, আকর্ষণীয় ও সবার জন্য উন্মুক্ত করতে নিরলস কাজ করে যাচ্ছি। আল্লাহ তায়ালা আমাদের এই ক্ষুদ্র প্রয়াসকে কবুল করুন।"
+          </p>
+        </div>
+      </div>
 
-      <section id="features" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <Features data={aboutData?.features} />
-      </section>
-
-      <section id="roadmap" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <Roadmap data={aboutData?.roadmap} />
-      </section>
-
-      <section id="testimonials" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <Testimonials data={aboutData?.testimonials} />
-      </section>
-
-      <section id="policies" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <Policies data={aboutData?.policies} />
-      </section>
-
-      {/* নতুন ৩টি সেকশন যুক্ত করা হলো */}
-      <section id="faculty" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60">
-        <Faculty data={aboutData?.faculty} />
-      </section>
-
-      <section id="staff" className="py-16 scroll-mt-24 border-b border-gray-100 dark:border-slate-800/60 bg-emerald-50/10 dark:bg-slate-900/40">
-        <Staff data={aboutData?.staff} />
-      </section>
-
-      <section id="roster" className="py-16 scroll-mt-24">
-        <Roster data={aboutData?.roster} />
-      </section>
+      {/* Policies & Transparency Section */}
+      <div id="policies" className="bg-[#F5FAFD] border border-[#E2EEF5] rounded-xl p-8 space-y-6">
+        <h3 className="text-xl font-bold text-[#064E73]">
+          প্রাতিষ্ঠানিক নীতিমালা ও স্বচ্ছতা
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#4A606D]">
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#064E73] text-sm">১. ক্লাসের নিয়মাবলি</h4>
+            <p>সঠিক সময়ে লাইভ ক্লাসে উপস্থিতি আবশ্যক। অনুপস্থিত থাকলে ক্লাস রেকর্ডিং প্রদান করা হয়।</p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#064E73] text-sm">২. রিফান্ড পলিসি</h4>
+            <p>প্রথম ৩টি ক্লাসের মধ্যে সন্তুষ্ট না হলে কোনো প্রশ্ন ছাড়াই সম্পূর্ণ ফি রিফান্ড করা হয়।</p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#064E73] text-sm">৩. হাদিয়া ও অনুদান স্বচ্ছতা</h4>
+            <p>সকল সাদাকাহ ও উন্নয়ন তহবিলের আয়-ব্যয়ের হিসাব প্রতিমাসে দাতা সদস্যবৃন্দের মাঝে প্রকাশ করা হয়।</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

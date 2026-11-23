@@ -1,67 +1,61 @@
-"use client";
-
 export default function StatsSection() {
-    const stats = [
-        {
-            number: "১,২০০+",
-            label: "মোট শিক্ষার্থী",
-            desc: "হিফজ ও একাডেমিক বিভাগ মিলিয়ে",
-            icon: "👨‍🎓",
-        },
-        {
-            number: "৪৫+",
-            label: "বিজ্ঞ শিক্ষক ও উলামা",
-            desc: "সার্বক্ষণিক মায়া ও যত্নে নিয়োজিত",
-            icon: "👨‍🏫",
-        },
-        {
-            number: "১৫+",
-            label: "অনলাইন ব্যাচ ও ক্লাসরুম",
-            desc: "লাইভ জুম ও গুগল মিট ক্লাস সুবিধা",
-            icon: "🖥️",
-        },
-        {
-            number: "১০০%",
-            label: "পরীক্ষায় সফলতার হার",
-            desc: "বিগত বছরের বোর্ড ও মাদ্রাসা ফলাফল",
-            icon: "🏆",
-        },
-    ];
+  const stats = [
+    {
+      number: "১২,৪০০+",
+      label: "নিবন্ধিত শিক্ষার্থী",
+      numberColor: "text-[#0288D1]",
+      circleColor: "bg-[#D6EEFA]/80",
+    },
+    {
+      number: "৩৮",
+      label: "চলমান কোর্স",
+      numberColor: "text-[#0288D1]",
+      circleColor: "bg-[#D6EEFA]/80",
+    },
+    {
+      number: "২৬",
+      label: "অভিজ্ঞ শিক্ষক",
+      numberColor: "text-[#0288D1]",
+      circleColor: "bg-[#D6EEFA]/80",
+    },
+    {
+      number: "৯১০+",
+      label: "সার্টিফিকেট প্রদান",
+      numberColor: "text-[#064E73]",
+      circleColor: "bg-[#FEF3C7]/90",
+    },
+  ];
 
-    return (
-        <section className="py-16 bg-emerald-900 dark:bg-slate-900 text-white relative overflow-hidden transition-colors duration-300">
-            {/* ব্যাকগ্রাউন্ড ডেকোরেশন প্যাটার্ন */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none">
-                <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-white blur-2xl" />
-            </div>
+  return (
+    <section className="py-8 bg-[#F5FAFD]">
+      {/* হিরো ব্যানারের প্রস্থের সাথে সামঞ্জস্য রেখে max-w-5xl ব্যবহার করা হয়েছে */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="group bg-white rounded-2xl p-6 relative overflow-hidden shadow-[0_6px_24px_rgba(6,78,115,0.05)] border border-[#EBF3F8] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(6,78,115,0.08)]"
+            >
+              {/* ছবির মতো উপরে-ডান কোণায় অফসেট পূর্ণ বৃত্ত (Quarter/Offset Circle) */}
+              <div
+                aria-hidden="true"
+                className={`w-16 h-16 rounded-full ${stat.circleColor} absolute -top-3 -right-3 pointer-events-none transition-transform duration-300 group-hover:scale-110`}
+              />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {stats.map((stat, index) => (
-                        <div
-                            key={index}
-                            className="bg-emerald-950/40 dark:bg-slate-950/40 p-6 rounded-xl border border-emerald-800 dark:border-slate-800 text-center transform hover:-translate-y-1 transition-all duration-300 shadow-lg group"
-                        >
-                            {/* আইকন */}
-                            <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300 select-none">
-                                {stat.icon}
-                            </div>
-                            {/* সংখ্যা */}
-                            <p className="text-3xl sm:text-4xl font-black text-amber-400 tracking-wide mb-1 font-sans">
-                                {stat.number}
-                            </p>
-                            {/* টাইটেল */}
-                            <h3 className="text-base sm:text-lg font-bold text-white mb-1">
-                                {stat.label}
-                            </h3>
-                            {/* ছোট ডেসক্রিপশন */}
-                            <p className="text-xs text-emerald-200/70 dark:text-gray-400">
-                                {stat.desc}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+              <div className="relative z-10 space-y-1.5">
+                <h3
+                  className={`text-3xl sm:text-[32px] font-bold tracking-tight leading-none ${stat.numberColor}`}
+                >
+                  {stat.number}
+                </h3>
+                <p className="text-[13px] sm:text-sm font-medium text-[#5A7184]">
+                  {stat.label}
+                </p>
+              </div>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

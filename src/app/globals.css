@@ -1,57 +1,81 @@
 @import "tailwindcss";
 
-/* --- কাস্টম ফন্ট ডিক্লেয়ারেশন --- */
-@font-face {
-  font-family: 'ShaldaMJ';
-  src: url('/shaldaMJ.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+:root {
+  --color-navy-dark: #064E73;
+  --color-navy-deep: #04354F;
+  --color-primary: #0288D1;
+  --color-primary-hover: #0277BD;
+  --color-gold-olive: #8D7B2B;
+  --color-gold-warm: #C89D28;
+  --color-amber: #F59E0B;
+  --color-amber-bar: #FBBF24;
+  --color-bg-ice: #F5FAFD;
+  --color-accent-soft: #D6EEFA;
+  --color-cream-soft: #FEF3C7;
+  --color-surface: #FFFFFF;
+  --color-border: #E2EEF5;
+  --color-thumb-bg: #ECECEC;
+  --color-text-muted: #4A606D;
+  --color-footer-text: #E0F2FE;
 }
 
-@font-face {
-  font-family: 'BritanicBold';
-  src: url('/britanic.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-.font-shalda {
-  font-family: 'ShaldaMJ', sans-serif;
-}
-
-.font-britanic {
-  font-family: 'BritanicBold', sans-serif;
-}
-
-/* --- Notice Board Marquee Animation --- */
 html {
   scroll-behavior: smooth;
 }
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
 
-.animate-marquee {
-  display: inline-block;
-  animation: marquee 25s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-@utility font-arabic {
-  font-family: var(--font-reem-kufi), sans-serif;
-}
-
-/* পুরো ওয়েবসাইটের ডিফল্ট ফন্ট আকর্ষণীয় করার জন্য */
 body {
+  font-family: var(--font-hind-siliguri), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-slate);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Font Utilities */
+@utility font-arabic {
+  font-family: var(--font-reem-kufi), serif;
+}
+
+@utility font-bengali {
   font-family: var(--font-hind-siliguri), sans-serif;
+}
+
+/* Subtle Diamond Lattice Pattern */
+.bg-lattice {
+  background-image: radial-gradient(rgba(2, 136, 209, 0.08) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(2, 136, 209, 0.08) 1.5px, #F5FAFD 1.5px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+/* Soft Elevation Shadow */
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(6, 78, 115, 0.06);
+}
+
+.shadow-card-hover {
+  transition: all 0.25s ease-in-out;
+}
+
+.shadow-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(6, 78, 115, 0.1);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

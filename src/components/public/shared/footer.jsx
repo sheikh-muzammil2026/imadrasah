@@ -1,143 +1,148 @@
 import Link from "next/link";
+import { BookOpen, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-emerald-950 print:hidden text-gray-300 transition-colors duration-300 border-t-4 border-amber-500 dark:bg-slate-950 dark:border-emerald-600">
-      {/* প্রধান ফুটার কন্টেইনার - py-16 ব্যালেন্সড স্পেসিং */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-          {/* ১. মাদরাসা পরিচিতি ও লোগো সেকশন */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="bg-white text-emerald-950 font-black p-2 rounded-full w-11 h-11 flex items-center justify-center shadow-md flex-shrink-0 border border-emerald-100 dark:bg-emerald-800 dark:text-white dark:border-emerald-700">
-                OIM
+    <footer className="bg-[#064E73] text-white pt-14">
+      {/* 4-Column Grid Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Column 1: Brand Info & App badge */}
+          <div className="space-y-4">
+            <div className="bg-white rounded-xl px-4 py-2.5 inline-flex items-center gap-2.5 shadow-sm">
+              <div className="w-8 h-8 rounded-full bg-[#0288D1]/10 flex items-center justify-center text-[#0288D1]">
+                <BookOpen className="w-4 h-4" />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-base text-amber-400 tracking-wide leading-none capitalize">
-                  Online Ideal Madrasah
+                <span className="font-extrabold text-sm text-[#064E73] leading-none">
+                  কুরআন কানন
                 </span>
-                <span className="text-xs font-semibold text-emerald-100 mt-1 dark:text-emerald-400">
-                  অনলাইন আইডিয়াল মাদ্রাসা
+                <span className="text-[10px] text-gray-500 font-medium">
+                  ইনস্টিটিউট বাংলাদেশ
                 </span>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed font-normal dark:text-slate-400">
-              দ্বীনি ও আধুনিক শিক্ষার এক অপূর্ব সমন্বয়। অভিজ্ঞ উলামায়ে কেরাম ও দক্ষ শিক্ষকমণ্ডলী দ্বারা পরিচালিত ঢাকা, বাংলাদেশের একটি নির্ভরযোগ্য দ্বীনি শিক্ষা প্রতিষ্ঠান।
+
+            <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
+              কুরআন কাননে সর্বস্তরের মুসলমান-যাদের কুরআন শিক্ষার সুযোগ হয়নি অথবা দ্বীনি প্রতিষ্ঠানে যাওয়ার সুযোগ নেই তাদের জন্য একটি বিশ্বস্ত প্ল্যাটফর্ম।
             </p>
 
-            {/* সোশ্যাল মিডিয়া ও ওয়েবসাইট আইকন লিংক */}
-            <div className="flex space-x-3 pt-2">
+            {/* Google Play Badge */}
+            <div className="pt-2">
               <a
-                href="https://facebook.com" // আপনার মাদরাসার অরিজিনাল ফেসবুক লিংক এখানে বসবে
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-emerald-900/50 text-emerald-200 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-all duration-200 dark:bg-slate-900 dark:hover:bg-emerald-600 dark:hover:text-white font-bold text-xs"
-                title="ফেসবুক পেজ"
+                href="#google-play"
+                className="inline-flex items-center gap-2.5 bg-black/60 hover:bg-black/80 border border-white/20 rounded-lg px-3.5 py-2 text-white transition duration-150"
               >
-                FB
-              </a>
-              <a
-                href="https://youtube.com" // আপনার মাদরাসার অরিজিনাল ইউটিউব লিংক এখানে বসবে
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-emerald-900/50 text-emerald-200 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-all duration-200 dark:bg-slate-900 dark:hover:bg-emerald-600 dark:hover:text-white font-bold text-xs"
-                title="ইউটিউব চ্যানেল"
-              >
-                YT
-              </a>
-              <a
-                href="https://example.com" // মাদরাসার অন্য ওয়েবসাইটের লিংকটি এখানে বসবে
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-emerald-900/50 text-emerald-200 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-all duration-200 dark:bg-slate-900 dark:hover:bg-emerald-600 dark:hover:text-white font-bold text-xs"
-                title="অন্যান্য ওয়েবসাইট"
-              >
-                WEB
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M3.609 1.814L13.793 12 3.61 22.186a1.99 1.99 0 01-.61-.914V2.728c.15-.355.372-.676.609-.914zm11.233 11.234l2.43 2.43-11.83 6.83 9.4-9.26zm2.43-2.096l2.128 1.228a1.298 1.298 0 010 2.24l-2.128 1.228-2.083-2.083 2.083-2.613zm-2.43-2.096L5.442 3.526l11.83 6.83-2.43 2.43z" />
+                </svg>
+                <div className="flex flex-col text-left">
+                  <span className="text-[9px] uppercase tracking-wider text-gray-300">GET IT ON</span>
+                  <span className="text-xs font-bold leading-tight">Google Play</span>
+                </div>
               </a>
             </div>
           </div>
 
-          {/* ২. গুরুত্বপূর্ণ লিংকসমূহ */}
+          {/* Column 2: দ্রুত লিংক */}
           <div>
-            <h3 className="text-base font-black text-amber-400 border-b border-emerald-800/60 pb-2 mb-4 tracking-wide dark:text-emerald-400 dark:border-slate-800">
-              গুরুত্বপূর্ণ লিংক
-            </h3>
-            <ul className="space-y-3 text-sm font-normal text-gray-400 dark:text-slate-400">
+            <h3 className="text-base font-bold text-white mb-2">দ্রুত লিংক</h3>
+            <div className="w-8 h-0.5 bg-[#FBBF24] mb-4 rounded-full" />
+            <ul className="space-y-2.5 text-sm text-blue-100">
               <li>
-                <Link href="/about" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">আমাদের সম্পর্কে</Link>
+                <Link href="/" className="hover:text-amber-300 transition duration-150">হোম</Link>
               </li>
               <li>
-                <Link href="/notices" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">নোটিশ বোর্ড</Link>
+                <Link href="/about" className="hover:text-amber-300 transition duration-150">পরিচিতি</Link>
               </li>
               <li>
-                <Link href="/gallery" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">মিডিয়া গ্যালারি</Link>
+                <Link href="/courses" className="hover:text-amber-300 transition duration-150">কোর্স</Link>
               </li>
               <li>
-                <Link href="/results" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">পরীক্ষার ফলাফল</Link>
+                <Link href="/ebooks" className="hover:text-amber-300 transition duration-150">ই-বুক</Link>
               </li>
               <li>
-                <Link href="/contact#feedback" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">অভিযোগ ও পরামর্শ</Link>
+                <Link href="/donation" className="hover:text-amber-300 transition duration-150">ডোনেশন</Link>
               </li>
             </ul>
           </div>
 
-          {/* ৩. শিক্ষা ও ভর্তি কার্যক্রম */}
+          {/* Column 3: আইনি তথ্য */}
           <div>
-            <h3 className="text-base font-black text-amber-400 border-b border-emerald-800/60 pb-2 mb-4 tracking-wide dark:text-emerald-400 dark:border-slate-800">
-              শিক্ষা ও ভর্তি
-            </h3>
-            <ul className="space-y-3 text-sm font-normal text-gray-400 dark:text-slate-400">
+            <h3 className="text-base font-bold text-white mb-2">আইনি তথ্য</h3>
+            <div className="w-8 h-0.5 bg-[#FBBF24] mb-4 rounded-full" />
+            <ul className="space-y-2.5 text-sm text-blue-100">
               <li>
-                <Link href="/admission#process" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">ভর্তি প্রক্রিয়া</Link>
+                <Link href="/about#terms" className="hover:text-amber-300 transition duration-150">শর্তাবলী</Link>
               </li>
               <li>
-                <Link href="/admission#fees" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">ভর্তি ও মাসিক ফি</Link>
+                <Link href="/about#privacy" className="hover:text-amber-300 transition duration-150">গোপনীয়তা নীতি</Link>
               </li>
               <li>
-                <Link href="/admission/form" className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors duration-150 dark:text-emerald-500">✍️ অনলাইন ভর্তি ফরম</Link>
+                <Link href="/about#refund" className="hover:text-amber-300 transition duration-150">রিফান্ড নীতি</Link>
               </li>
               <li>
-                <Link href="/smart-classroom/live" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">স্মার্ট লাইভ ক্লাস</Link>
+                <Link href="/about#app-privacy" className="hover:text-amber-300 transition duration-150">অ্যাপের গোপনীয়তা নীতি</Link>
               </li>
               <li>
-                <Link href="/virtual-campus#routine" className="hover:text-amber-400 dark:hover:text-white transition-colors duration-150">অনলাইন কার্যসূচি</Link>
+                <Link href="/about#delete-account" className="hover:text-amber-300 transition duration-150">অ্যাকাউন্ট মুছে ফেলা</Link>
+              </li>
+              <li>
+                <Link href="/about#faq" className="hover:text-amber-300 transition duration-150">সচরাচর জিজ্ঞাসা</Link>
               </li>
             </ul>
           </div>
 
-          {/* ৪. যোগাযোগ ও ঠিকানা */}
+          {/* Column 4: যোগাযোগ */}
           <div>
-            <h3 className="text-base font-black text-amber-400 border-b border-emerald-800/60 pb-2 mb-4 tracking-wide dark:text-emerald-400 dark:border-slate-800">
-              যোগাযোগ করুন
-            </h3>
-            <ul className="space-y-3.5 text-sm font-normal text-gray-400 dark:text-slate-400">
-              <li className="flex items-start gap-2.5">
-                <span className="text-amber-400 mt-0.5 flex-shrink-0">📍</span>
-                <span className="leading-relaxed">গ্লোবাল অনলাইন প্ল্যাটফর্ম<br /> (বিশ্বব্যাপী সেবা)।<br /></span>
+            <h3 className="text-base font-bold text-white mb-2">যোগাযোগ</h3>
+            <div className="w-8 h-0.5 bg-[#FBBF24] mb-4 rounded-full" />
+            <ul className="space-y-3 text-sm text-blue-100">
+              <li className="flex items-center gap-2">
+                <span className="text-[#0288D1] text-xs">◆</span>
+                <a href="mailto:info@qurankanon.com" className="hover:text-amber-300 transition break-all">
+                  info@qurankanon.com
+                </a>
               </li>
-              <li className="flex items-center gap-2.5">
-                <span className="text-amber-400 flex-shrink-0">📞</span>
-                <span>+৮৮০১৮৩৬-৩৭৬১৭৪</span>
+              <li className="flex items-center gap-2">
+                <span className="text-[#0288D1] text-xs">◆</span>
+                <a href="tel:+8801767911188" className="hover:text-amber-300 transition">
+                  +880 1767 911 188
+                </a>
               </li>
-              <li className="flex items-center gap-2.5">
-                <span className="text-amber-400 flex-shrink-0">✉️</span>
-                <span className="break-all">info@imadrasah.com</span>
+              <li className="flex items-center gap-2">
+                <span className="text-[#0288D1] text-xs">◆</span>
+                <span>উত্তরা, ঢাকা, বাংলাদেশ</span>
               </li>
             </ul>
-          </div>
 
+            {/* Social Icons */}
+            <div className="flex items-center gap-2.5 mt-5">
+              {[
+                { name: "Facebook", icon: "f", href: "https://facebook.com" },
+                { name: "YouTube", icon: "yt", href: "https://youtube.com" },
+                { name: "WhatsApp", icon: "wa", href: "https://wa.me/8801767911188" },
+                { name: "TikTok", icon: "tt", href: "https://tiktok.com" },
+              ].map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-blue-200/40 hover:border-amber-400 hover:text-amber-400 flex items-center justify-center text-xs font-bold transition duration-150"
+                  title={s.name}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* কপিরাইট ও আরবি নাম অংশ */}
-      <div className="bg-emerald-950 border-t border-emerald-900/60 text-xs py-5 px-4 dark:bg-slate-950 dark:border-slate-900">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
-          <p className="text-gray-400 font-medium dark:text-slate-500">
-            &copy; ২০২৬ অনলাইন আইডিয়াল মাদ্রাসা (OIM)। সর্বস্বত্ব সংরক্ষিত।
-          </p>
-
-        </div>
+      {/* Copyright Bar */}
+      <div className="bg-[#04354F] py-4 text-center text-xs text-blue-200 border-t border-white/5">
+        <p>© ২০২৬ কুরআন কানন - সর্বস্বত্ব সংরক্ষিত।</p>
       </div>
     </footer>
   );

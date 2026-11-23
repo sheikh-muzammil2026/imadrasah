@@ -1,149 +1,154 @@
-// components/public/contact/ContactComponent.jsx
 "use client";
+
 import { useState } from "react";
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { toast } from "react-toastify";
 
 export default function ContactComponent() {
   const [formData, setFormData] = useState({
     name: "",
-    mobile: "",
+    phone: "",
+    email: "",
     subject: "",
-    message: ""
+    message: "",
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("অভিযোগ ও পরামর্শ ডেটা:", formData);
-    alert("আপনার মূল্যবান পরামর্শটি কনসোলে সাবমিট হয়েছে। জাজাকাল্লাহু খাইরান!");
-    setFormData({ name: "", mobile: "", subject: "", message: "" });
+    setSubmitted(true);
+    toast.success("আপনার বার্তা সফলভাবে পাঠানো হয়েছে। দ্রুত আপনার সাথে যোগাযোগ করা হবে।");
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6">
-      {/* হেডার সেকশন */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-emerald-900 dark:text-emerald-400 flex items-center justify-center gap-2">
-          <span className="text-amber-500">❖</span> আমাদের সাথে যোগাযোগ করুন <span className="text-amber-500">❖</span>
-        </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">যেকোনো জিজ্ঞাসা, তথ্য বা পরামর্শের জন্য আমাদের সাথে ইমেইল, মোবাইল অথবা মেসেজের মাধ্যমে যোগাযোগ করুন</p>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <h1 className="text-3xl font-extrabold text-[#064E73]">যোগাযোগ করুন</h1>
+        <p className="text-sm text-[#4A606D]">
+          ভর্তি বা যেকোনো পরামর্শের জন্য আমাদের সাথে সরাসরি যোগাযোগ করুন
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        {/* বাম পাশ: যোগাযোগের তথ্য কার্ড */}
-        <div className="lg:col-span-5 bg-emerald-900 text-emerald-50 p-6 sm:p-8 rounded-2xl shadow-md space-y-6">
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-amber-400 mb-2">ভার্চুয়াল গ্লোবাল অফিস</h3>
-            <p className="text-xs sm:text-sm leading-relaxed opacity-90 font-medium">
-              অনলাইন লার্নিং প্ল্যাটফর্ম (OIM)<br />
-              গ্লোবাল ভার্চুয়াল এডুকেশন সিস্টেম<br />
-              ঢাকা, বাংলাদেশ (অনলাইন সুবিধা বিশ্বব্যাপী)
-            </p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Contact Info Cards */}
+        <div className="space-y-4">
+          <div className="bg-white rounded-xl border border-[#E2EEF5] p-5 shadow-soft flex items-start gap-4">
+            <div className="w-10 h-10 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center shrink-0">
+              <Phone className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-bold text-sm text-[#064E73]">হটলাইন ও হোয়াটসঅ্যাপ</h3>
+              <a href="tel:+8801767911188" className="text-xs text-[#0288D1] font-semibold block mt-1 hover:underline">
+                +880 1767 911 188
+              </a>
+              <span className="text-[11px] text-gray-400">সকাল ৯:০০ - রাত ১০:০০</span>
+            </div>
           </div>
 
-          <hr className="border-emerald-800" />
-
-          <div className="space-y-3 text-xs sm:text-sm font-medium">
-            <p className="flex items-center gap-3">
-              <span>📞</span> 
-              <span>+৮৮০১৭১২-৩৪৫৬৭৮, +৮৮০১৯৮৭-৬৫৪৩২১</span>
-            </p>
-            <p className="flex items-center gap-3">
-              <span>✉️</span> 
-              <span>info@jamiamadrasa.edu.bd</span>
-            </p>
-            <p className="flex items-center gap-3">
-              <span>⏱️</span> 
-              <span>শনিবার - বৃহস্পতিবার: সকাল ৮:০০ - বিকাল ৫:০০</span>
-            </p>
+          <div className="bg-white rounded-xl border border-[#E2EEF5] p-5 shadow-soft flex items-start gap-4">
+            <div className="w-10 h-10 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center shrink-0">
+              <Mail className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-bold text-sm text-[#064E73]">ইমেইল ঠিকানা</h3>
+              <a href="mailto:info@qurankanon.com" className="text-xs text-[#0288D1] font-semibold block mt-1 hover:underline">
+                info@qurankanon.com
+              </a>
+              <span className="text-[11px] text-gray-400">২৪ ঘণ্টার মধ্যে রিপ্লাই</span>
+            </div>
           </div>
 
-          <hr className="border-emerald-800" />
-
-          {/* সোশ্যাল মিডিয়া লিংক প্লেসহোল্ডার */}
-          <div>
-            <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">সোশ্যাল মিডিয়া</h4>
-            <div className="flex gap-3 text-sm">
-              <span className="bg-emerald-800 px-3 py-1.5 rounded-lg cursor-pointer hover:bg-emerald-700 transition-colors">Facebook</span>
-              <span className="bg-emerald-800 px-3 py-1.5 rounded-lg cursor-pointer hover:bg-emerald-700 transition-colors">YouTube</span>
+          <div className="bg-white rounded-xl border border-[#E2EEF5] p-5 shadow-soft flex items-start gap-4">
+            <div className="w-10 h-10 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center shrink-0">
+              <MapPin className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-bold text-sm text-[#064E73]">অফিস ঠিকানা</h3>
+              <p className="text-xs text-[#4A606D] mt-1">
+                সেক্টর-১১, উত্তরা, ঢাকা-১২৩০, বাংলাদেশ।
+              </p>
             </div>
           </div>
         </div>
 
-        {/* ডান পাশ: অভিযোগ ও পরামর্শ ফর্ম (#feedback) */}
-        <div id="feedback" className="lg:col-span-7 bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700/60 p-6 sm:p-8 rounded-2xl shadow-sm scroll-mt-24">
-          <h3 className="text-lg font-bold text-emerald-900 dark:text-emerald-400 mb-1 flex items-center gap-2">
-            ✉️ অভিযোগ ও পরামর্শ বক্স
-          </h3>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">মাদরাসার মানোন্নয়নে আপনার যেকোনো গঠনমূলক পরামর্শ বা অভিযোগ আমাদের অবগত করুন।</p>
+        {/* Contact Form */}
+        <div className="lg:col-span-2 bg-white rounded-xl border border-[#E2EEF5] p-6 sm:p-8 shadow-soft">
+          {submitted ? (
+            <div className="text-center py-10 space-y-3">
+              <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+              <h3 className="text-lg font-bold text-[#064E73]">ধন্যবাদ!</h3>
+              <p className="text-xs text-[#4A606D]">
+                আপনার বার্তাটি গ্রহণ করা হয়েছে। আমাদের প্রতিনিধি দ্রুত যোগাযোগ করবেন।
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-[#064E73] mb-1">
+                    আপনার নাম *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-3 py-2 border border-[#E2EEF5] rounded-lg text-xs bg-[#F5FAFD] focus:outline-hidden focus:border-[#0288D1]"
+                    placeholder="পুরো নাম লিখুন"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-[#064E73] mb-1">
+                    মোবাইল নম্বর *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-3 py-2 border border-[#E2EEF5] rounded-lg text-xs bg-[#F5FAFD] focus:outline-hidden focus:border-[#0288D1]"
+                    placeholder="01XXXXXXXXX"
+                  />
+                </div>
+              </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-gray-600 dark:text-gray-300 mb-1.5">আপনার নাম</label>
+                <label className="block text-xs font-semibold text-[#064E73] mb-1">
+                  ইমেইল (ঐচ্ছিক)
+                </label>
                 <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder="উদা: আবদুল্লাহ"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-200 text-xs sm:text-sm p-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-emerald-800 font-medium"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-3 py-2 border border-[#E2EEF5] rounded-lg text-xs bg-[#F5FAFD] focus:outline-hidden focus:border-[#0288D1]"
+                  placeholder="example@mail.com"
                 />
               </div>
+
               <div>
-                <label className="block text-xs font-bold text-gray-600 dark:text-gray-300 mb-1.5">মোবাইল নাম্বার</label>
-                <input
-                  type="text"
-                  name="mobile"
+                <label className="block text-xs font-semibold text-[#064E73] mb-1">
+                  আপনার বার্তা / প্রশ্ন *
+                </label>
+                <textarea
                   required
-                  placeholder="উদা: ০১৭XXXXXXXX"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  className="w-full bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-200 text-xs sm:text-sm p-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-emerald-800 font-medium"
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-3 py-2 border border-[#E2EEF5] rounded-lg text-xs bg-[#F5FAFD] focus:outline-hidden focus:border-[#0288D1]"
+                  placeholder="আপনি কোন কোর্সে আগ্রহী বা কী জানতে চান লিখুন..."
                 />
               </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-bold text-gray-600 dark:text-gray-300 mb-1.5">বিষয়</label>
-              <input
-                type="text"
-                name="subject"
-                required
-                placeholder="উদা: শিক্ষা ব্যবস্থা সংক্রান্ত পরামর্শ"
-                value={formData.subject}
-                onChange={handleChange}
-                className="w-full bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-200 text-xs sm:text-sm p-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-emerald-800 font-medium"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-gray-600 dark:text-gray-300 mb-1.5">বিস্তারিত বিবরণ</label>
-              <textarea
-                name="message"
-                required
-                rows="4"
-                placeholder="আপনার বার্তাটি এখানে লিখুন..."
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-200 text-xs sm:text-sm p-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-emerald-800 font-medium resize-none"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs sm:text-sm p-3.5 rounded-xl transition-all shadow-sm"
-            >
-              🚀 বার্তা পাঠান
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="bg-[#0288D1] hover:bg-[#0277BD] text-white text-xs font-bold px-6 py-2.5 rounded-lg shadow-xs transition duration-150 flex items-center gap-2"
+              >
+                <Send className="w-3.5 h-3.5" />
+                <span>বার্তা পাঠান</span>
+              </button>
+            </form>
+          )}
         </div>
-
       </div>
     </div>
   );

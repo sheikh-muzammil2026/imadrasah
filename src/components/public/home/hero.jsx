@@ -1,157 +1,170 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { BookOpen, Clock, Users, User } from "lucide-react";
 
 export default function HeroSection() {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [isDark, setIsDark] = useState(false);
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F7FBFE] to-[#F5FAFD] pt-10 pb-16 md:pt-16 md:pb-20">
+      {/* Subtle Diagonal Diamond Lattice Background Overlay */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-45"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%23D6EEFA' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-    // গ্লোবাল স্টেট সিঙ্ক করার জন্য লিসেনার
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (typeof window !== "undefined") {
-                setIsDark(!!window.__isDarkModeActive);
-            }
-        }, 500);
-        return () => clearInterval(interval);
-    }, []);
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Hero Header & CTAs */}
+        <div className="text-center max-w-3xl mx-auto">
+          {/* Arabic Bismillah */}
+          <p
+            dir="rtl"
+            className="font-arabic text-2xl sm:text-3xl text-[#0288D1] font-normal tracking-wide mb-3"
+          >
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+          </p>
 
-    const carouselImages = [
-        {
-            url: "/deenishikka.png",
-            title: "দ্বীনি শিক্ষার এক অনন্য নির্ভরযোগ্য প্রতিষ্ঠান",
-            subtitle: "জ্ঞানের আলোয় আলোকিত হোক আগামী প্রজন্ম",
-        },
-        {
-            url: "/hero2.png",
-            title: "আধুনিক ও সুশৃঙ্খল অনলাইন ক্যাম্পাস",
-            subtitle: "বিশ্বের যেকোনো প্রান্ত থেকে দ্বীনি জ্ঞান অর্জনের ডিজিটাল মাধ্যম",
-        },
-        {
-            url: "/hero3.png",
-            title: "হিফজ ও একাডেমিক শিক্ষার চমৎকার সমন্বয়",
-            subtitle: "অভিজ্ঞ উলামা ও দক্ষ শিক্ষক মণ্ডলী দ্বারা পরিচালিত",
-        },
-    ];
+          {/* Dual-Tone Main Heading: Deep Navy -> Warm Gold/Olive */}
+          <h1 className="text-4xl sm:text-5xl md:text-[56px] font-bold tracking-tight leading-tight">
+            <span className="text-[#064E73]">কুরআন </span>
+            <span className="bg-gradient-to-r from-[#8D7B2B] to-[#C89D28] bg-clip-text text-transparent">
+              কানন
+            </span>
+          </h1>
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
-        }, 5000);
-        return () => clearInterval(timer);
-    }, [carouselImages.length]);
+          {/* Dual-Tone Subtitle */}
+          <h2 className="mt-2 text-xl sm:text-2xl md:text-[26px] font-medium tracking-tight">
+            <span className="text-[#064E73]">একটি আন্তর্জাতিক অনলাইন </span>
+            <span className="bg-gradient-to-r from-[#8D7B2B] to-[#C89D28] bg-clip-text text-transparent">
+              শিক্ষাপ্রতিষ্ঠান
+            </span>
+          </h2>
 
-    // মোবাইল বাটনের কাস্টম ক্লিক হ্যান্ডলার
-    const handleMobileMenuClick = () => {
-        if (typeof window !== "undefined" && window.__toggleMobileMenu) {
-            window.__toggleMobileMenu();
-            setMenuOpen(!menuOpen);
-        }
-    };
+          {/* Description */}
+          <p className="mt-5 text-sm sm:text-[15px] text-[#4A606D] max-w-2xl mx-auto leading-relaxed">
+            আট বছর ধরে আমরা শিশু ও বয়স্কদের সহীহ কুরআন শিক্ষা দিয়ে আসছি। অনলাইন কোর্স,
+            <br className="hidden sm:inline" /> লাইভ ক্লাস, ই-বুক ও প্রতিদিনের অগ্রগতি রিপোর্ট — সবই এক জায়গায়।
+          </p>
 
-    const handleMobileThemeClick = () => {
-        if (typeof window !== "undefined" && window.__toggleMobileDarkMode) {
-            window.__toggleMobileDarkMode();
-            setIsDark(!isDark);
-        }
-    };
+          {/* Dual CTA Buttons */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3.5">
+            <Link
+              href="/courses"
+              className="bg-[#0288D1] hover:bg-[#0277BD] text-white font-semibold px-7 py-2.5 rounded-lg shadow-xs transition duration-150 text-sm sm:text-[15px]"
+            >
+              কোর্সে ভর্তি হোন
+            </Link>
 
-    return (
-        <div className="relative w-full select-none">
-
-
-            <div className="bg-amber-500 dark:bg-amber-400 text-slate-900 font-medium py-2 px-4 shadow-sm flex items-center overflow-hidden border-b border-amber-600 dark:border-amber-500 transition-colors duration-300 relative z-30">
-                <div className="bg-red-600 text-white px-3 py-1 text-xs font-bold rounded uppercase tracking-wider z-10 whitespace-nowrap mr-3 animate-pulse">
-                    জরুরী নোটিশ:
-                </div>
-                <div className="relative w-full overflow-hidden flex items-center">
-                    <p className="animate-marquee whitespace-nowrap text-sm md:text-base font-semibold">
-                        📢 অনলাইন আইডিয়াল মাদ্রাসা (OIM)-এ ২০২৬ শিক্ষাবর্ষে হিফজ ও একাডেমিক বিভাগে ভর্তি চলছে! আসন সংখ্যা সীমিত। 🌟 আগামী ২৩ আগস্ট থেকে অনলাইন দ্বিতীয় সাময়িক পরীক্ষা শুরু হতে যাচ্ছে। সকল ছাত্রদের যথাসময়ে অনলাইন পোর্টালে উপস্থিত থাকার নির্দেশ দেওয়া হলো।
-                    </p>
-                </div>
-            </div>
-
-            {/* ২. ব্যানার ক্যারোসল (Hero Banner Carousel) */}
-            <div className="relative h-[450px] md:h-[600px] w-full overflow-hidden bg-slate-900">
-
-                {/* মোবাইল কন্ট্রোল বাটনসমূহ: নোটিসের নিচে এবং ইমেজের টপ রাইট অংশে প্লেস করা হয়েছে */}
-                <div className="absolute top-4 right-4 z-40 flex lg:hidden items-center gap-2 bg-slate-950/30 backdrop-blur-md p-1.5 rounded-full border border-white/10">
-                    {/* থিম টগল বাটন */}
-                    <button
-                        onClick={handleMobileThemeClick}
-                        className="p-2 text-amber-300 hover:bg-white/10 rounded-full transition-colors focus:outline-none"
-                    >
-                        <span className="text-base">{isDark ? "☀️" : "🌙"}</span>
-                    </button>
-
-                    {/* প্রফেশনাল অ্যাকাউন্ট/ইউজার আইকন (হ্যামবার্গারের পরিবর্তে) */}
-                    <button
-                        onClick={handleMobileMenuClick}
-                        className="p-2 rounded-full text-emerald-300 hover:bg-white/10 hover:text-white transition-colors focus:outline-none"
-                        aria-label="User Account Menu"
-                    >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </button>
-                </div>
-
-                {carouselImages.map((slide, index) => (
-                    <div
-                        key={index}
-                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0 invisible"
-                            }`}
-                    >
-                        {/* ব্যাকগ্রাউন্ড ওভারলে */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-transparent z-10" />
-
-                        <img
-                            src={slide.url}
-                            alt={slide.title}
-                            className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[5000ms]"
-                        />
-
-                        {/* স্লাইড টেক্সট */}
-                        <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 md:px-24 z-20 max-w-3xl text-white pt-6">
-                            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-emerald-400 dark:text-amber-400 drop-shadow-md transition-colors duration-300">
-                                {slide.title}
-                            </h1>
-                            <p className="text-sm sm:text-base md:text-xl text-slate-200 mb-8 font-light">
-                                {slide.subtitle}
-                            </p>
-
-                            <div className="flex flex-wrap gap-4">
-                                <Link
-                                    href="/admission"
-                                    className="bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5 text-sm md:text-base"
-                                >
-                                    অনলাইন ভর্তি ফরম
-                                </Link>
-                                <Link
-                                    href="/about"
-                                    className="bg-transparent hover:bg-white/10 text-white border-2 border-white font-semibold px-6 py-3 rounded-xl transition text-sm md:text-base"
-                                >
-                                    আমাদের সম্পর্কে জানুন
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
-                {/* স্লাইডার ডট ইন্ডিকেটর */}
-                <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
-                    {carouselImages.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentSlide(index)}
-                            className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-amber-500 w-6" : "bg-white/50 w-2.5"
-                                }`}
-                        />
-                    ))}
-                </div>
-            </div>
+            <Link
+              href="/about"
+              className="bg-white hover:bg-[#F5FAFD] text-[#064E73] border border-[#0288D1]/60 font-semibold px-7 py-2.5 rounded-lg transition duration-150 text-sm sm:text-[15px]"
+            >
+              প্রতিষ্ঠান সম্পর্কে
+            </Link>
+          </div>
         </div>
-    );
+
+        {/* Featured Promo Banner Card */}
+        <div className="mt-12 max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-2xl border border-[#D6EEFA] bg-gradient-to-r from-[#D4EDFA] via-[#EBF6FC] to-[#CBE8F8] shadow-sm">
+            {/* Decorative Subtle Islamic Lanterns (Top Right) */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 right-10 hidden lg:flex items-start gap-5 opacity-35 text-[#0288D1]"
+            >
+              <div className="flex flex-col items-center">
+                <div className="w-[1px] h-7 bg-[#0288D1]" />
+                <div className="w-3.5 h-5 rounded-full border border-[#0288D1]" />
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-[1px] h-12 bg-[#0288D1]" />
+                <div className="w-4 h-6 rounded-full border border-[#0288D1]" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 px-6 py-6 sm:px-8 sm:py-7">
+              {/* Left Column: Instructor Photo Circle & Badge */}
+              <div className="lg:col-span-3 flex justify-center">
+                <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-b from-[#38BDF8] to-[#0288D1] p-1 shadow-md flex items-center justify-center overflow-hidden">
+                  {/* Replace this placeholder block with your instructor <img src="/images/ustadh.png" ... /> */}
+                  <div className="w-full h-full rounded-full bg-[#E0F2FE] flex flex-col items-center justify-center text-[#064E73]">
+                    <User className="w-16 h-16 text-[#0288D1]" />
+                    <span className="text-[11px] font-semibold mt-1">প্রধান প্রশিক্ষক</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Center Column: Schedule Info & Instructor Name */}
+              <div className="lg:col-span-5 space-y-3 text-center lg:text-left">
+                <ul className="space-y-1.5 text-xs sm:text-sm font-semibold text-[#064E73] inline-block text-left">
+                  <li className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-[#B91C1C] shrink-0" />
+                    <span>ক্লাস: সপ্তাহে ৩ দিন</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-[#0288D1] shrink-0" />
+                    <span>সময়: সন্ধ্যা ৭:৩০ – ৯:০০</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Users className="w-4 h-4 text-[#0288D1] shrink-0" />
+                    <span>প্রতি ব্যাচে: সর্বোচ্চ ১২ জন</span>
+                  </li>
+                </ul>
+
+                <div className="pt-1">
+                  <span className="inline-block bg-[#0288D1] text-white text-[11px] font-semibold px-3 py-0.5 rounded-full">
+                    প্রধান প্রশিক্ষক
+                  </span>
+                  <h3 className="mt-1.5 text-sm sm:text-base font-bold text-[#064E73]">
+                    হাফেজ মাওলানা ক্বারী
+                  </h3>
+                  <p className="text-lg sm:text-xl font-extrabold text-[#B91C1C] leading-snug">
+                    লোকমান আল মাহমুদ{" "}
+                    <span className="text-xs font-semibold text-[#4A606D]">হাফিজাহুল্লাহ</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column: Course Title Callout & Registration Phone */}
+              <div className="lg:col-span-4 flex flex-col items-center lg:items-end text-center lg:text-right space-y-3">
+                <div className="inline-flex flex-col items-center">
+                  <span className="bg-[#B91C1C] text-white text-[11px] font-bold px-3 py-0.5 rounded-full">
+                    মহিলাদের জন্য
+                  </span>
+                  <span className="mt-1 bg-[#F59E0B] text-white text-xs font-bold px-3 py-0.5 rounded-full shadow-2xs">
+                    ২ মাসব্যাপী
+                  </span>
+
+                  <p className="mt-2 text-sm sm:text-base font-extrabold text-[#064E73]">
+                    অনলাইন মাশকে
+                  </p>
+                  <h4 className="text-3xl sm:text-4xl font-black text-[#B91C1C] leading-none tracking-tight">
+                    কুরআন
+                  </h4>
+                  <span className="mt-1 inline-block bg-[#15803D] text-white text-base sm:text-lg font-extrabold px-4 py-0.5 rounded-md">
+                    প্রশিক্ষণ
+                  </span>
+                </div>
+
+                <div className="pt-1">
+                  <span className="block text-[11px] font-semibold text-[#064E73]">
+                    রেজিস্ট্রেশন করুন
+                  </span>
+                  <a
+                    href="tel:01767911188"
+                    className="text-lg sm:text-xl font-extrabold text-[#0288D1] hover:text-[#0277BD] tracking-wide transition"
+                  >
+                    01767 911 188
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

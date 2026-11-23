@@ -1,107 +1,136 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight, Video, Calendar, BookOpen } from "lucide-react";
 
-export default function FeaturedSections() {
-    const departments = [
-        {
-            id: "hifz",
-            title: "হিফজুল কুরআন বিভাগ",
-            sub: "Hifz Department",
-            tag: "তাহফীযুল কুরআন",
-            // লাইট মোডে সাদা ব্যাকগ্রাউন্ড উইথ এমারেল্ড বর্ডার, ডার্ক মোডে ডার্ক গ্রাডিয়েন্ট
-            cardBg: "bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-850",
-            borderStyle: "border-slate-200 dark:border-slate-800/80 hover:border-emerald-600",
-            textMain: "text-slate-900 dark:text-white",
-            textSub: "text-slate-600 dark:text-gray-300",
-            link: "/departments/hifz",
-            points: ["নূরানী ও নাজেরা ইবতিদায়ী", "আন্তর্জাতিক মানের তাজবীদ", "হিফজ রিভিশন (দাউর)", "খাস দোয়া ও ইবাদত প্রশিক্ষণ"],
-            icon: "🕌"
-        },
-        {	
-			id: "academic",
-            title: "একাডেমিক ও জেনারেল বিভাগ",
-            sub: "Academic & General Department",
-            tag: "আধুনিক শিক্ষা",
-            cardBg: "bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-850",
-            borderStyle: "border-slate-200 dark:border-slate-800/80 hover:border-emerald-600",
-            textMain: "text-slate-900 dark:text-white",
-            textSub: "text-slate-600 dark:text-gray-300",
-            link: "/departments/academic",
-            points: ["প্লে থেকে দশম শ্রেণী", "অনলাইন ভার্চুয়াল ক্লাস", "ইংরেজি ও গণিতে বিশেষ যত্ন", "বেসিক কম্পিউটার ও আইটি দক্ষতা"],
-            icon: "📚"
-        }
-    ];
+export default function CoursesSection() {
+  const [courses] = useState([
+    {
+      id: "course-1",
+      title: "আম্মা-পারা নাযেরা",
+      badge: "অনলাইন • রেকর্ড ভিডিও",
+      features: "২৩টি ভিডিও লেসন • পিডিএফ • কুইজ • সার্টিফিকেট",
+      meta: ["১২ সপ্তাহ", "৩৬ লেসন"],
+      price: "৳২০০০",
+      image: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      id: "course-2",
+      title: "মাশকে কুরআন প্রশিক্ষণ",
+      badge: "লাইভ সেশন",
+      features: "২৪টি লাইভ সেশন • অনুশীলন পিডিএফ • সার্টিফিকেট",
+      meta: ["৮ সপ্তাহ", "২৪ ক্লাস"],
+      price: "৳৩,৫০০",
+      image: "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?q=80&w=600&auto=format&fit=crop",
+    },
+    {
+      id: "course-3",
+      title: "কুরআন সহিহকরণ কোর্স",
+      badge: "রেকর্ড ভিডিও • সহজবোধ্য",
+      features: "সবার জন্য কুরআন শিক্ষা • মৌলিক তাজবীদ",
+      meta: ["লাইফটাইম", "রেকর্ডেড ভিডিও"],
+      price: "৳৯৮০",
+      image: "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?q=80&w=600&auto=format&fit=crop",
+    },
+  ]);
 
-    return (
-        <section className="py-16 md:py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <section className="py-12 bg-[#F5FAFD]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header Bar */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#064E73]">
+              চলমান কোর্স
+            </h2>
+            <div className="w-10 h-1 bg-[#0288D1] rounded-full mt-2" />
+          </div>
 
-                {/* সেকশন হেডার */}
-                <div className="text-center max-w-2xl mx-auto mb-16">
-                    <h2 className="text-emerald-700 dark:text-amber-400 font-bold text-xs sm:text-sm uppercase tracking-wider mb-2">
-                        আমাদের কারিকুলাম
-                    </h2>
-                    <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-                        প্রধান শিক্ষাক্রম ও বিভাগসমূহ
+          <Link
+            href="/courses"
+            className="bg-[#0288D1] hover:bg-[#0277BD] text-white text-sm font-bold px-4 py-2 rounded-lg transition duration-150 shadow-xs flex items-center gap-1.5"
+          >
+            <span>সব কোর্স</span>
+            <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* Carousel / 3-Column Grid */}
+        <div className="relative">
+          {/* Navigation Arrows for reference look */}
+          <div className="hidden lg:flex items-center justify-between absolute top-1/2 -left-4 -right-4 -translate-y-1/2 z-20 pointer-events-none">
+            <button
+              className="w-10 h-10 rounded-full bg-[#0288D1] hover:bg-[#0277BD] text-white flex items-center justify-center shadow-md pointer-events-auto transition cursor-pointer"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              className="w-10 h-10 rounded-full bg-[#0288D1] hover:bg-[#0277BD] text-white flex items-center justify-center shadow-md pointer-events-auto transition cursor-pointer"
+              aria-label="Next"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((course) => (
+              <div
+                key={course.id}
+                className="bg-white rounded-xl border border-[#E2EEF5] overflow-hidden shadow-soft hover:shadow-card-hover transition duration-200 flex flex-col"
+              >
+                {/* 16:9 Thumbnail Image */}
+                <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                  <div className="absolute top-3 left-3 bg-[#0288D1] text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+                    {course.badge}
+                  </div>
+                </div>
+
+                {/* Body Padding p-5 */}
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
+                  <div>
+                    <h3 className="text-lg font-bold text-[#064E73] hover:text-[#0288D1] transition">
+                      {course.title}
+                    </h3>
+                    <p className="text-xs text-[#4A606D] mt-1 line-clamp-1">
+                      {course.features}
                     </p>
-                    <div className="w-12 h-1 bg-amber-500 mx-auto mt-3 rounded-full" />
+
+                    {/* Meta tags with blue diamonds */}
+                    <div className="flex items-center gap-4 text-xs font-semibold text-[#0288D1] mt-3">
+                      {course.meta.map((m, idx) => (
+                        <span key={idx} className="flex items-center gap-1.5">
+                          <span className="text-[10px]">◆</span>
+                          <span className="text-[#4A606D]">{m}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Divider line */}
+                  <div className="border-t border-[#E2EEF5] pt-3 flex items-center justify-between">
+                    <span className="text-xl font-extrabold text-[#064E73]">
+                      {course.price}
+                    </span>
+                    <Link
+                      href={`/courses/${course.id}`}
+                      className="bg-[#0288D1] hover:bg-[#0277BD] text-white text-xs font-bold px-4 py-2 rounded-md shadow-xs transition"
+                    >
+                      বিস্তারিত
+                    </Link>
+                  </div>
                 </div>
-
-                {/* ডিপার্টমেন্ট কার্ডস লেআউট */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {departments.map((dept, index) => (
-                        <div
-                            key={index}
-							id={dept.id}
-                            className={`relative overflow-hidden rounded-3xl ${dept.cardBg} p-6 sm:p-10 shadow-md dark:shadow-none border-2 ${dept.borderStyle} flex flex-col justify-between group transition-all duration-300 hover:shadow-xl scroll-mt-24`}
-                        >
-                            {/* ব্যাকগ্রাউন্ড ডেকোরেশন আইকন */}
-                            <div className="absolute right-6 bottom-6 text-8xl text-slate-100 dark:text-slate-800/20 pointer-events-none font-bold select-none transition-transform duration-500 group-hover:scale-110">
-                                {dept.icon}
-                            </div>
-
-                            <div>
-                                {/* ব্যাজ */}
-                                <span className="inline-block bg-emerald-700 dark:bg-amber-500 text-white dark:text-slate-950 text-[10px] sm:text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-5">
-                                    {dept.tag}
-                                </span>
-
-                                {/* টাইটেল */}
-                                <h3 className={`text-xl sm:text-2xl font-black ${dept.textMain}`}>{dept.title}</h3>
-                                <p className="text-xs text-emerald-700 dark:text-amber-400/90 mb-5 font-mono font-semibold">{dept.sub}</p>
-
-                                {/* বিবরণ */}
-                                <p className={`text-sm ${dept.textSub} leading-relaxed mb-6`}>
-                                    {dept.description}
-                                </p>
-
-                                {/* মূল আকর্ষণের লিস্ট */}
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                                    {dept.points.map((pt, i) => (
-                                        <li key={i} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-gray-300">
-                                            <span className="text-emerald-600 dark:text-amber-400 font-bold">✔</span> {pt}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* অ্যাকশন বাটন */}
-                            <div className="pt-2">
-                                <Link
-                                    href={dept.link}
-                                    className="inline-flex items-center gap-2 bg-emerald-50 hover:bg-emerald-700 text-emerald-800 hover:text-white dark:bg-slate-800 dark:hover:bg-amber-500 dark:text-white dark:hover:text-slate-950 text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-all duration-300 shadow-sm"
-                                >
-                                    বিস্তারিত দেখুন
-                                    <span className="text-xs">➔</span>
-                                </Link>
-                            </div>
-
-                        </div>
-                    ))}
-                </div>
-
-            </div>
-        </section>
-    );
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
