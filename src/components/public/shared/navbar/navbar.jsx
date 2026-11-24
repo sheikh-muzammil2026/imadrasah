@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
-import { BookOpen, Menu, X, Sun, Moon, LogIn, LayoutDashboard, LogOut } from "lucide-react";
+import { BookOpen, Menu, X, Moon, LogIn, LayoutDashboard, LogOut } from "lucide-react";
+import { getCurrentUser, logoutUser, initStore } from "@/lib/store";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -12,41 +12,48 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [lang, setLang] = useState("bn");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
-  const userRole = user?.role?.toLowerCase() || "student";
+  const checkUser = () => {
+    initStore();
+    const u = getCurrentUser();
+    setUser(u);
+  };
 
   useEffect(() => {
+    checkUser();
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("storage", checkUser);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("storage", checkUser);
+    };
   }, []);
 
   const navLinks = [
     { name: "কোর্স", href: "/courses" },
     { name: "ই-বুক", href: "/ebooks" },
     { name: "পরিচিতি", href: "/about" },
+    { name: "প্রশ্নোত্তর (FAQ)", href: "/faq" },
     { name: "ডোনেশন", href: "/donation" },
   ];
 
+  const userRole = user?.role?.toLowerCase() || "student";
+
   const getDashboardLink = () => {
-    if (userRole === "admin") return "/dashboard/admin";
     if (userRole === "teacher") return "/dashboard/teacher";
+    if (userRole === "admin") return "/dashboard/admin";
     return "/dashboard/student";
   };
 
-  const handleLogout = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          setIsOpen(false);
-          router.push("/login");
-        },
-      },
-    });
+  const handleLogout = () => {
+    logoutUser();
+    setUser(null);
+    setIsOpen(false);
+    router.push("/login");
   };
 
   return (
@@ -73,14 +80,14 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-base font-semibold transition-colors duration-150 relative py-1 ${
+                  className={`text-sm font-bold transition-colors duration-150 relative py-1 ${
                     isActive
                       ? "text-[#0288D1]"
                       : "text-[#064E73] hover:text-[#0288D1]"
@@ -107,40 +114,40 @@ export default function Navbar() {
               <span className={lang === "en" ? "text-[#0288D1]" : "text-gray-400"}>EN</span>
             </button>
 
-            {/* Subtle Theme Toggle */}
-            <div
-              className="p-2 text-[#4A606D] hover:text-[#0288D1] rounded-full cursor-pointer transition"
-              title="থিম"
-            >
-              <Moon className="w-4 h-4" />
-            </div>
-
             {/* Auth Button */}
             {user ? (
               <div className="flex items-center gap-2">
                 <Link
                   href={getDashboardLink()}
-                  className="flex items-center gap-2 bg-[#0288D1] hover:bg-[#0277BD] text-white text-sm font-bold px-4 py-2 rounded-lg shadow-xs transition duration-150"
+                  className="flex items-center gap-1.5 bg-[#0288D1] hover:bg-[#0277BD] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-xs transition duration-150"
                 >
                   <LayoutDashboard className="w-4 h-4" />
-                  <span>ড্যাশবোর্ড</span>
+                  <span>ড্যাশবোর্ড ({user.role === "teacher" ? "শিক্ষক" : "শিক্ষার্থী"})</span>
                 </Link>
                 <button
                   onClick={handleLogout}
                   title="লগআউট"
-                  className="p-2 border border-[#E2EEF5] text-slate-500 hover:text-red-600 hover:border-red-200 rounded-lg transition"
+                  className="p-2 border border-[#E2EEF5] text-slate-500 hover:text-red-600 hover:border-red-200 rounded-lg transition cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
               </div>
             ) : (
-              <Link
-                href="/login"
-                className="flex items-center gap-2 bg-[#0288D1] hover:bg-[#0277BD] text-white text-sm font-bold px-5 py-2 rounded-lg shadow-xs transition duration-150"
-              >
-                <LogIn className="w-4 h-4" />
-                <span>লগইন</span>
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/login"
+                  className="flex items-center gap-1.5 bg-[#0288D1] hover:bg-[#0277BD] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-xs transition duration-150"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span>লগইন</span>
+                </Link>
+                <Link
+                  href="/register"
+                  className="border border-[#0288D1] text-[#064E73] hover:bg-[#F5FAFD] text-xs font-bold px-3 py-2 rounded-lg transition"
+                >
+                  রেজিস্টার
+                </Link>
+              </div>
             )}
           </div>
 

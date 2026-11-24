@@ -7,30 +7,34 @@ export default function Footer() {
       {/* 4-Column Grid Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Column 1: Brand Info & App badge */}
+          {/* Column 1: Brand Info & Google Play Badge */}
           <div className="space-y-4">
-            <div className="bg-white rounded-xl px-4 py-2.5 inline-flex items-center gap-2.5 shadow-sm">
-              <div className="w-8 h-8 rounded-full bg-[#0288D1]/10 flex items-center justify-center text-[#0288D1]">
-                <BookOpen className="w-4 h-4" />
+            <Link href="/" className="inline-block">
+              <div className="bg-white rounded-xl px-4 py-2.5 inline-flex items-center gap-2.5 shadow-sm hover:shadow-md transition">
+                <div className="w-8 h-8 rounded-full bg-[#0288D1]/10 flex items-center justify-center text-[#0288D1]">
+                  <BookOpen className="w-4 h-4" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-extrabold text-sm text-[#064E73] leading-none">
+                    কুরআন কানন
+                  </span>
+                  <span className="text-[10px] text-gray-500 font-medium">
+                    ইনস্টিটিউট বাংলাদেশ
+                  </span>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-sm text-[#064E73] leading-none">
-                  কুরআন কানন
-                </span>
-                <span className="text-[10px] text-gray-500 font-medium">
-                  ইনস্টিটিউট বাংলাদেশ
-                </span>
-              </div>
-            </div>
+            </Link>
 
             <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
               কুরআন কাননে সর্বস্তরের মুসলমান-যাদের কুরআন শিক্ষার সুযোগ হয়নি অথবা দ্বীনি প্রতিষ্ঠানে যাওয়ার সুযোগ নেই তাদের জন্য একটি বিশ্বস্ত প্ল্যাটফর্ম।
             </p>
 
             {/* Google Play Badge */}
-            <div className="pt-2">
+            <div className="pt-1">
               <a
-                href="#google-play"
+                href="https://play.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 bg-black/60 hover:bg-black/80 border border-white/20 rounded-lg px-3.5 py-2 text-white transition duration-150"
               >
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -44,51 +48,48 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: দ্রুত লিংক */}
+          {/* Column 2: প্ল্যাটফর্ম ও কোর্স (Active Links) */}
           <div>
-            <h3 className="text-base font-bold text-white mb-2">দ্রুত লিংক</h3>
+            <h3 className="text-base font-bold text-white mb-2">প্ল্যাটফর্ম ও কোর্স</h3>
             <div className="w-8 h-0.5 bg-[#FBBF24] mb-4 rounded-full" />
             <ul className="space-y-2.5 text-sm text-blue-100">
               <li>
-                <Link href="/" className="hover:text-amber-300 transition duration-150">হোম</Link>
+                <Link href="/" className="hover:text-amber-300 transition duration-150">হোম পেজ</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-amber-300 transition duration-150">পরিচিতি</Link>
+                <Link href="/about" className="hover:text-amber-300 transition duration-150">আমাদের পরিচিতি</Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-amber-300 transition duration-150">কোর্স</Link>
+                <Link href="/courses" className="hover:text-amber-300 transition duration-150">চলমান কোর্সসমূহ</Link>
               </li>
               <li>
-                <Link href="/ebooks" className="hover:text-amber-300 transition duration-150">ই-বুক</Link>
+                <Link href="/ebooks" className="hover:text-amber-300 transition duration-150">ডিজিটাল ই-বুক লাইব্রেরি</Link>
               </li>
               <li>
-                <Link href="/donation" className="hover:text-amber-300 transition duration-150">ডোনেশন</Link>
+                <Link href="/donation" className="hover:text-amber-300 transition duration-150">সাদাকাহ ও অনুদান</Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: আইনি তথ্য */}
+          {/* Column 3: সহায়তা ও আইন (Active Links) */}
           <div>
-            <h3 className="text-base font-bold text-white mb-2">আইনি তথ্য</h3>
+            <h3 className="text-base font-bold text-white mb-2">সহায়তা ও আইনি তথ্য</h3>
             <div className="w-8 h-0.5 bg-[#FBBF24] mb-4 rounded-full" />
             <ul className="space-y-2.5 text-sm text-blue-100">
               <li>
-                <Link href="/about#terms" className="hover:text-amber-300 transition duration-150">শর্তাবলী</Link>
+                <Link href="/faq" className="hover:text-amber-300 transition duration-150">হেল্প সেন্টার / সচরাচর জিজ্ঞাসা</Link>
               </li>
               <li>
-                <Link href="/about#privacy" className="hover:text-amber-300 transition duration-150">গোপনীয়তা নীতি</Link>
+                <Link href="/terms" className="hover:text-amber-300 transition duration-150">ব্যবহারের শর্তাবলি</Link>
               </li>
               <li>
-                <Link href="/about#refund" className="hover:text-amber-300 transition duration-150">রিফান্ড নীতি</Link>
+                <Link href="/privacy" className="hover:text-amber-300 transition duration-150">গোপনীয়তা নীতি</Link>
               </li>
               <li>
-                <Link href="/about#app-privacy" className="hover:text-amber-300 transition duration-150">অ্যাপের গোপনীয়তা নীতি</Link>
+                <Link href="/terms#refund" className="hover:text-amber-300 transition duration-150">রিফান্ড পলিসি</Link>
               </li>
               <li>
-                <Link href="/about#delete-account" className="hover:text-amber-300 transition duration-150">অ্যাকাউন্ট মুছে ফেলা</Link>
-              </li>
-              <li>
-                <Link href="/about#faq" className="hover:text-amber-300 transition duration-150">সচরাচর জিজ্ঞাসা</Link>
+                <Link href="/contact" className="hover:text-amber-300 transition duration-150">যোগাযোগ ও সাপোর্ট</Link>
               </li>
             </ul>
           </div>
@@ -112,7 +113,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[#0288D1] text-xs">◆</span>
-                <span>উত্তরা, ঢাকা, বাংলাদেশ</span>
+                <span>সেক্টর-১১, উত্তরা, ঢাকা, বাংলাদেশ</span>
               </li>
             </ul>
 
