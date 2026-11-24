@@ -29,7 +29,7 @@ export default function StatsSection() {
   return (
     <section className="py-8 bg-[#F5FAFD]">
       {/* হিরো ব্যানারের প্রস্থের সাথে সামঞ্জস্য রেখে max-w-5xl ব্যবহার করা হয়েছে */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {stats.map((stat, idx) => (
             <div

@@ -11,7 +11,7 @@ export default function HeroSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-45"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%23D6EEFA' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%23D6EEFA' stroke-width='1'/%3E%3C/svg%3E")`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -68,7 +68,7 @@ export default function HeroSection() {
         </div>
 
         {/* Featured Promo Banner Card */}
-        <div className="mt-12 max-w-5xl mx-auto">
+        <div className="mt-12 max-w-7xl mx-auto">
           <div className="relative overflow-hidden rounded-2xl border border-[#D6EEFA] bg-gradient-to-r from-[#D4EDFA] via-[#EBF6FC] to-[#CBE8F8] shadow-sm">
             {/* Decorative Subtle Islamic Lanterns (Top Right) */}
             <div

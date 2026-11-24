@@ -4,7 +4,7 @@ import { ChevronRight, HeartHandshake } from "lucide-react";
 export default function SadaqahBanner() {
   return (
     <section className="py-8 bg-[#F5FAFD]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl bg-gradient-to-r from-white to-[#EBF6FC] border border-[#D6EEFA] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-soft">
           {/* Left Text & CTA */}
           <div className="space-y-3 text-center md:text-left">
