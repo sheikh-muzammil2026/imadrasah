@@ -1,58 +1,43 @@
 "use client";
 
-// Pre-seeded demo accounts
+import { siteConfig } from "@/config/siteConfig";
+
+// Pre-seeded demo accounts (derived from siteConfig)
 export const DEMO_TEACHER = {
   id: "teacher-1",
-  name: "মাওলানা লোকমান আল মাহমুদ",
-  email: "teacher@qurankanon.com",
+  name: siteConfig.identity.founder.name,
+  email: `teacher@${siteConfig.identity.name.en.toLowerCase().replace(/[^a-z0-9]/g, "") || "madrasah"}.com`,
   role: "teacher",
   password: "password123",
-  title: "প্রধান প্রশিক্ষক ও পরিচালক",
-  phone: "01767911188",
+  title: siteConfig.identity.founder.role,
+  phone: siteConfig.contact.phone,
 };
 
 export const DEMO_STUDENT = {
   id: "student-1",
   name: "মুহাম্মদ আব্দুল্লাহ",
-  email: "student@qurankanon.com",
+  email: `student@${siteConfig.identity.name.en.toLowerCase().replace(/[^a-z0-9]/g, "") || "madrasah"}.com`,
   role: "student",
   password: "password123",
   phone: "01812345678",
 };
 
-// Initial default courses
-const INITIAL_COURSES = [
-  {
-    id: "course-1",
-    title: "আম্মা-পারা নাযেরা ও তাজবীদ কোর্স",
-    teacherId: "teacher-1",
-    teacherName: "মাওলানা লোকমান আল মাহমুদ",
-    category: "নাযেরা ও তাজবীদ",
-    schedule: "সপ্তাহে ৩ দিন (সোম, বুধ, শুক্র সন্ধ্যা ৭:৩০)",
-    fee: "৳২,০০০",
-    seats: 15,
-    enrolledCount: 12,
-    level: "প্রাথমিক",
-    badge: "অনলাইন লাইভ",
-    description: "সহীহ মাখরাজ ও সিফাতসহ ৩০তম পারা (আম্মা-পারা) বিশুদ্ধ তিলাওয়াত শিক্ষা।",
-    createdAt: "2026-01-10",
-  },
-  {
-    id: "course-2",
-    title: "মাশকে কুরআন ও তারতীল প্রশিক্ষণ",
-    teacherId: "teacher-1",
-    teacherName: "মাওলানা লোকমান আল মাহমুদ",
-    category: "মাশক",
-    schedule: "সপ্তাহে ৩ দিন (রবি, মঙ্গল, বৃহস্পতি রাত ৮:০০)",
-    fee: "৳৩,৫০০",
-    seats: 12,
-    enrolledCount: 8,
-    level: "মাধ্যমিক",
-    badge: "লাইভ ক্লাস",
-    description: "সরাসরি শিক্ষকের তত্ত্বাবধানে তিলাওয়াত অনুশীলন ও তারতীল সুর সংশোধন।",
-    createdAt: "2026-02-01",
-  },
-];
+// Initial default courses strictly derived from siteConfig.courses
+const INITIAL_COURSES = siteConfig.courses.map((c, idx) => ({
+  id: c.slug || `course-${idx + 1}`,
+  title: c.titleBn,
+  teacherId: "teacher-1",
+  teacherName: c.instructor,
+  category: c.department,
+  schedule: c.schedule,
+  fee: c.fee,
+  seats: 15,
+  enrolledCount: 10,
+  level: c.titleEn,
+  badge: c.badge || "অনলাইন লাইভ",
+  description: c.shortDesc,
+  createdAt: "2026-01-10",
+}));
 
 // Initial default assignments
 const INITIAL_ASSIGNMENTS = [
@@ -83,11 +68,11 @@ const INITIAL_ENROLLMENTS = [
   {
     id: "enroll-1",
     studentId: "student-1",
-    studentName: "মুহাম্মদ আব্দুল্লাহ",
-    studentEmail: "student@qurankanon.com",
-    courseId: "course-1",
-    courseTitle: "আম্মা-পারা নাযেরা ও তাজবীদ কোর্স",
-    teacherName: "মাওলানা লোকমান আল মাহমুদ",
+    studentName: DEMO_STUDENT.name,
+    studentEmail: DEMO_STUDENT.email,
+    courseId: siteConfig.courses[0]?.slug || "nurani",
+    courseTitle: siteConfig.courses[0]?.titleBn || "নূরানী বিভাগ",
+    teacherName: DEMO_TEACHER.name,
     enrolledAt: "2026-02-15",
     progress: 60,
   },
@@ -100,9 +85,9 @@ const INITIAL_SUBMISSIONS = [
     assignmentId: "assign-1",
     assignmentTitle: "সূরা আন-নাবা ১-১০ আয়াতের মাখরাজ রেকর্ড ও জমা",
     studentId: "student-1",
-    studentName: "মুহাম্মদ আব্দুল্লাহ",
-    studentEmail: "student@qurankanon.com",
-    courseId: "course-1",
+    studentName: DEMO_STUDENT.name,
+    studentEmail: DEMO_STUDENT.email,
+    courseId: siteConfig.courses[0]?.slug || "nurani",
     submittedAt: "2026-11-23",
     status: "graded",
     grade: "১৮/২০",
@@ -259,7 +244,7 @@ export function enrollStudent(student, course) {
     studentEmail: student.email,
     courseId: course.id,
     courseTitle: course.title,
-    teacherName: course.teacherName || "হাফেজ লোকমান আল মাহমুদ",
+    teacherName: course.teacherName || siteConfig.identity.founder.name,
     enrolledAt: new Date().toISOString().split("T")[0],
     progress: 10,
   };

@@ -25,6 +25,7 @@ import {
   gradeSubmission,
   initStore,
 } from "@/lib/store";
+import { siteConfig } from "@/config/siteConfig";
 
 export default function TeacherDashboard() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -92,7 +93,7 @@ export default function TeacherDashboard() {
     addCourse({
       ...courseForm,
       teacherId: currentUser?.id || "teacher-1",
-      teacherName: currentUser?.name || "মাওলানা লোকমান আল মাহমুদ",
+      teacherName: currentUser?.name || siteConfig.identity.founder.name,
       badge: "অনলাইন লাইভ",
     });
 
@@ -163,15 +164,15 @@ export default function TeacherDashboard() {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-white rounded-2xl border border-[#E2EEF5] p-6 shadow-soft flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-white rounded-2xl border border-[#90CAF9] p-6 shadow-soft flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold text-[#0288D1] bg-[#D6EEFA]/40 px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-[#0D47A1] bg-[#E3F2FD] border border-[#90CAF9]/60 px-3 py-1 rounded-full">
             শিক্ষক ব্যবস্থাপনা প্যানেল
           </span>
-          <h1 className="text-2xl font-black text-[#064E73] mt-2">
-            আসসালামু আলাইকুম, {currentUser?.name || "সম্মানিত শিক্ষক"}
+          <h1 className="text-2xl font-black text-[#0D47A1] mt-2">
+            আসসালামু আলাইকুম, {currentUser?.name || siteConfig.identity.founder.name || "সম্মানিত শিক্ষক"}
           </h1>
-          <p className="text-xs text-[#4A606D] mt-1">
+          <p className="text-xs text-slate-600 mt-1">
             আপনার চলমান কোর্সসমূহ, শিক্ষার্থী এবং অ্যাসাইনমেন্ট মূল্যায়ন পরিচালনা করুন।
           </p>
         </div>
@@ -179,14 +180,14 @@ export default function TeacherDashboard() {
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             onClick={() => setShowCourseModal(true)}
-            className="flex items-center gap-1.5 bg-[#0288D1] hover:bg-[#0277BD] text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow-xs transition"
+            className="flex items-center gap-1.5 bg-[#2196F3] hover:bg-[#1976D2] text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow-xs transition cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>নতুন কোর্স তৈরি</span>
           </button>
           <button
             onClick={() => setShowAssignModal(true)}
-            className="flex items-center gap-1.5 bg-[#064E73] hover:bg-[#04354F] text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow-xs transition"
+            className="flex items-center gap-1.5 bg-[#0D47A1] hover:bg-[#0a3880] text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow-xs transition cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>নতুন অ্যাসাইনমেন্ট</span>
@@ -196,28 +197,28 @@ export default function TeacherDashboard() {
 
       {/* Overview Cards (Total Students, Active Courses, Pending Grading) */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div className="bg-white rounded-xl p-5 border border-[#E2EEF5] shadow-soft relative overflow-hidden">
-          <div className="w-12 h-12 rounded-bl-full bg-[#D6EEFA] absolute top-0 right-0" />
+        <div className="bg-white rounded-xl p-5 border border-[#90CAF9]/60 shadow-soft relative overflow-hidden">
+          <div className="w-12 h-12 rounded-bl-full bg-[#E3F2FD] absolute top-0 right-0 border-l border-b border-[#90CAF9]/50" />
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-lg bg-[#E3F2FD] text-[#0D47A1] flex items-center justify-center font-bold border border-[#90CAF9]">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-[#4A606D]">মোট শিক্ষার্থী (Total Students)</p>
-              <h3 className="text-2xl font-extrabold text-[#064E73] mt-0.5">{totalStudents} জন</h3>
+              <p className="text-xs font-semibold text-slate-600">মোট শিক্ষার্থী (Total Students)</p>
+              <h3 className="text-2xl font-extrabold text-[#0D47A1] mt-0.5">{totalStudents} জন</h3>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-5 border border-[#E2EEF5] shadow-soft relative overflow-hidden">
-          <div className="w-12 h-12 rounded-bl-full bg-[#D6EEFA] absolute top-0 right-0" />
+        <div className="bg-white rounded-xl p-5 border border-[#90CAF9]/60 shadow-soft relative overflow-hidden">
+          <div className="w-12 h-12 rounded-bl-full bg-[#E3F2FD] absolute top-0 right-0 border-l border-b border-[#90CAF9]/50" />
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-lg bg-[#E3F2FD] text-[#2196F3] flex items-center justify-center font-bold border border-[#90CAF9]">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-[#4A606D]">চলমান কোর্স (Active Courses)</p>
-              <h3 className="text-2xl font-extrabold text-[#0288D1] mt-0.5">{activeCoursesCount} টি</h3>
+              <p className="text-xs font-semibold text-slate-600">চলমান কোর্স (Active Courses)</p>
+              <h3 className="text-2xl font-extrabold text-[#2196F3] mt-0.5">{activeCoursesCount} টি</h3>
             </div>
           </div>
         </div>

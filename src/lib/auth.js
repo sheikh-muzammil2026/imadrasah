@@ -1,15 +1,26 @@
-
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
+const uri = process.env.MONGODB_URI;
 
-const client = new MongoClient(process.env.MONGODB_URI);
+// Global singleton pattern to prevent multiple open connection pools
+let client;
+if (!global._mongoClientInstance) {
+  client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 5000,
+  });
+  global._mongoClientInstance = client;
+} else {
+  client = global._mongoClientInstance;
+}
+
 const db = client.db("imadrasah");
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
-    client
+    client,
   }),
   emailAndPassword: {
     enabled: true,
@@ -19,43 +30,8 @@ export const auth = betterAuth({
     additionalFields: {
       role: {
         type: "string",
-        defaultValue: "student"
+        defaultValue: "student",
       },
     },
   },
-  // socialProviders: {
-  //   google: {
-  //     clientId: process.env.GOOGLE_CLIENT_ID,
-  //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  //   },
-  // },
-
-  // databaseHooks: {
-  //   user: {
-  //     create: {
-  //       before: async (user) => {
-
-  //         if (!user.password) {
-  //           return {
-  //             data: {
-  //               ...user,
-  //               role: "parent",
-  //             },
-  //           };
-  //         }
-  //         return { data: user };
-  //       },
-  //     },
-  //   },
-  // },
-  // session: {
-  //   cookieCache: {
-  //     enabled: true,
-  //     strategy: "jwt",
-  //     maxAge: 60 * 24 * 30,
-  //   }
-  // },
-  // plugins: [
-  //   jwt()
-  // ]
 });

@@ -15,7 +15,7 @@ const nextConfig = {
     return [
       {
         source: '/hostel',
-        destination: '/virtual-campus',
+        destination: '/',
         permanent: true,
       },
     ];

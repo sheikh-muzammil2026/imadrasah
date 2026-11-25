@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Sidebar from "@/components/dashboard/sidebar";
 import { Menu, BookOpen, LogOut, User, GraduationCap, Shield } from "lucide-react";
 import { getCurrentUser, logoutUser, initStore } from "@/lib/store";
+import { siteConfig } from "@/config/siteConfig";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -60,18 +61,18 @@ export default function DashboardLayout({ children }) {
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         {/* Top Header */}
-        <header className="h-16 bg-white border-b border-[#E2EEF5] px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-2xs z-30">
+        <header className="h-16 bg-white border-b border-[#90CAF9]/60 px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-2xs z-30">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 text-[#064E73] hover:text-[#0288D1] lg:hidden"
+              className="p-2 text-[#0D47A1] hover:text-[#2196F3] lg:hidden"
               aria-label="Toggle Sidebar"
             >
               <Menu className="w-5 h-5" />
             </button>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-sm sm:text-base text-[#064E73] tracking-tight">
-                কুরআন কানন ড্যাশবোর্ড
+              <span className="font-extrabold text-sm sm:text-base text-[#0D47A1] tracking-tight">
+                {siteConfig.identity.name.bn} ড্যাশবোর্ড
               </span>
             </div>
           </div>

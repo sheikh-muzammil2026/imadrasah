@@ -1,17 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, Clock, Users, User } from "lucide-react";
+import { BookOpen, Clock, Users, User, ChevronRight } from "lucide-react";
+import { siteConfig } from "@/config/siteConfig";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F7FBFE] to-[#F5FAFD] pt-10 pb-16 md:pt-16 md:pb-20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#F0F7FD] to-[#E3F2FD] pt-10 pb-16 md:pt-16 md:pb-20">
       {/* Subtle Diagonal Diamond Lattice Background Overlay */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-45"
+        className="pointer-events-none absolute inset-0 opacity-40"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%23D6EEFA' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%2390CAF9' stroke-width='1'/%3E%3C/svg%3E")`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -22,45 +23,39 @@ export default function HeroSection() {
           {/* Arabic Bismillah */}
           <p
             dir="rtl"
-            className="font-arabic text-2xl sm:text-3xl text-[#0288D1] font-normal tracking-wide mb-3"
+            className="font-arabic text-2xl sm:text-3xl text-[#2196F3] font-normal tracking-wide mb-3"
           >
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </p>
 
-          {/* Dual-Tone Main Heading: Deep Navy -> Warm Gold/Olive */}
-          <h1 className="text-4xl sm:text-5xl md:text-[56px] font-bold tracking-tight leading-tight">
-            <span className="text-[#064E73]">কুরআন </span>
-            <span className="bg-gradient-to-r from-[#8D7B2B] to-[#C89D28] bg-clip-text text-transparent">
-              কানন
-            </span>
+          {/* Dual-Tone Main Heading */}
+          <h1 className="text-4xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight leading-tight text-[#0D47A1]">
+            <span>{siteConfig.identity.name.bn}</span>
           </h1>
 
           {/* Dual-Tone Subtitle */}
-          <h2 className="mt-2 text-xl sm:text-2xl md:text-[26px] font-medium tracking-tight">
-            <span className="text-[#064E73]">একটি আন্তর্জাতিক অনলাইন </span>
-            <span className="bg-gradient-to-r from-[#8D7B2B] to-[#C89D28] bg-clip-text text-transparent">
-              শিক্ষাপ্রতিষ্ঠান
-            </span>
+          <h2 className="mt-2 text-xl sm:text-2xl md:text-[26px] font-semibold tracking-tight text-[#2196F3]">
+            {siteConfig.identity.tagline.bn}
           </h2>
 
           {/* Description */}
-          <p className="mt-5 text-sm sm:text-[15px] text-[#4A606D] max-w-2xl mx-auto leading-relaxed">
-            আট বছর ধরে আমরা শিশু ও বয়স্কদের সহীহ কুরআন শিক্ষা দিয়ে আসছি। অনলাইন কোর্স,
-            <br className="hidden sm:inline" /> লাইভ ক্লাস, ই-বুক ও প্রতিদিনের অগ্রগতি রিপোর্ট — সবই এক জায়গায়।
+          <p className="mt-5 text-sm sm:text-[15px] text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            {siteConfig.identity.description.bn}
           </p>
 
           {/* Dual CTA Buttons */}
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3.5">
             <Link
               href="/courses"
-              className="bg-[#0288D1] hover:bg-[#0277BD] text-white font-semibold px-7 py-2.5 rounded-lg shadow-xs transition duration-150 text-sm sm:text-[15px]"
+              className="bg-[#2196F3] hover:bg-[#1976D2] text-white font-bold px-7 py-3 rounded-lg shadow-sm transition duration-150 text-sm sm:text-[15px] flex items-center gap-1.5"
             >
-              কোর্সে ভর্তি হোন
+              <span>এখনই কোর্সে ভর্তি হোন</span>
+              <ChevronRight className="w-4 h-4" />
             </Link>
 
             <Link
               href="/about"
-              className="bg-white hover:bg-[#F5FAFD] text-[#064E73] border border-[#0288D1]/60 font-semibold px-7 py-2.5 rounded-lg transition duration-150 text-sm sm:text-[15px]"
+              className="bg-white hover:bg-[#E3F2FD] text-[#0D47A1] border-2 border-[#0D47A1] font-bold px-7 py-3 rounded-lg transition duration-150 text-sm sm:text-[15px]"
             >
               প্রতিষ্ঠান সম্পর্কে
             </Link>
@@ -69,97 +64,50 @@ export default function HeroSection() {
 
         {/* Featured Promo Banner Card */}
         <div className="mt-12 max-w-7xl mx-auto">
-          <div className="relative overflow-hidden rounded-2xl border border-[#D6EEFA] bg-gradient-to-r from-[#D4EDFA] via-[#EBF6FC] to-[#CBE8F8] shadow-sm">
-            {/* Decorative Subtle Islamic Lanterns (Top Right) */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute top-0 right-10 hidden lg:flex items-start gap-5 opacity-35 text-[#0288D1]"
-            >
-              <div className="flex flex-col items-center">
-                <div className="w-[1px] h-7 bg-[#0288D1]" />
-                <div className="w-3.5 h-5 rounded-full border border-[#0288D1]" />
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-[1px] h-12 bg-[#0288D1]" />
-                <div className="w-4 h-6 rounded-full border border-[#0288D1]" />
-              </div>
-            </div>
-
+          <div className="relative overflow-hidden rounded-2xl border border-[#90CAF9] bg-gradient-to-r from-white via-[#E3F2FD]/80 to-[#E3F2FD] shadow-soft">
             <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 px-6 py-6 sm:px-8 sm:py-7">
-              {/* Left Column: Instructor Photo Circle & Badge */}
+              {/* Left Column: Instructor Photo Circle */}
               <div className="lg:col-span-3 flex justify-center">
-                <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-b from-[#38BDF8] to-[#0288D1] p-1 shadow-md flex items-center justify-center overflow-hidden">
-                  {/* Replace this placeholder block with your instructor <img src="/images/ustadh.png" ... /> */}
-                  <div className="w-full h-full rounded-full bg-[#E0F2FE] flex flex-col items-center justify-center text-[#064E73]">
-                    <User className="w-16 h-16 text-[#0288D1]" />
-                    <span className="text-[11px] font-semibold mt-1">প্রধান প্রশিক্ষক</span>
+                <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-b from-[#2196F3] to-[#0D47A1] p-1 shadow-md flex items-center justify-center overflow-hidden">
+                  <div className="w-full h-full rounded-full bg-[#E3F2FD] flex flex-col items-center justify-center text-[#0D47A1]">
+                    <User className="w-14 h-14 text-[#2196F3]" />
+                    <span className="text-[10px] font-bold mt-1 text-[#0D47A1]">প্রধান প্রশিক্ষক</span>
                   </div>
                 </div>
               </div>
 
               {/* Center Column: Schedule Info & Instructor Name */}
-              <div className="lg:col-span-5 space-y-3 text-center lg:text-left">
-                <ul className="space-y-1.5 text-xs sm:text-sm font-semibold text-[#064E73] inline-block text-left">
-                  <li className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-[#B91C1C] shrink-0" />
-                    <span>ক্লাস: সপ্তাহে ৩ দিন</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#0288D1] shrink-0" />
-                    <span>সময়: সন্ধ্যা ৭:৩০ – ৯:০০</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-[#0288D1] shrink-0" />
-                    <span>প্রতি ব্যাচে: সর্বোচ্চ ১২ জন</span>
-                  </li>
-                </ul>
-
-                <div className="pt-1">
-                  <span className="inline-block bg-[#0288D1] text-white text-[11px] font-semibold px-3 py-0.5 rounded-full">
-                    প্রধান প্রশিক্ষক
+              <div className="lg:col-span-6 space-y-2 text-center lg:text-left">
+                <div className="inline-block bg-[#2196F3] text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-2xs">
+                  বিশেষ লাইভ ব্যাচ
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0D47A1]">
+                  {siteConfig.identity.founder.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium">
+                  {siteConfig.identity.founder.role}, {siteConfig.identity.name.bn}
+                </p>
+                <div className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-700">
+                  <span className="flex items-center gap-1 font-semibold text-[#0D47A1]">
+                    <Clock className="w-3.5 h-3.5 text-[#2196F3]" />
+                    <span>ক্লাস: রাত ৯:০০ - ১০:০০</span>
                   </span>
-                  <h3 className="mt-1.5 text-sm sm:text-base font-bold text-[#064E73]">
-                    হাফেজ মাওলানা ক্বারী
-                  </h3>
-                  <p className="text-lg sm:text-xl font-extrabold text-[#B91C1C] leading-snug">
-                    লোকমান আল মাহমুদ{" "}
-                    <span className="text-xs font-semibold text-[#4A606D]">হাফিজাহুল্লাহ</span>
-                  </p>
+                  <span className="flex items-center gap-1 font-semibold text-[#0D47A1]">
+                    <Users className="w-3.5 h-3.5 text-[#2196F3]" />
+                    <span>সীমিত আসন</span>
+                  </span>
                 </div>
               </div>
 
-              {/* Right Column: Course Title Callout & Registration Phone */}
-              <div className="lg:col-span-4 flex flex-col items-center lg:items-end text-center lg:text-right space-y-3">
-                <div className="inline-flex flex-col items-center">
-                  <span className="bg-[#B91C1C] text-white text-[11px] font-bold px-3 py-0.5 rounded-full">
-                    মহিলাদের জন্য
-                  </span>
-                  <span className="mt-1 bg-[#F59E0B] text-white text-xs font-bold px-3 py-0.5 rounded-full shadow-2xs">
-                    ২ মাসব্যাপী
-                  </span>
-
-                  <p className="mt-2 text-sm sm:text-base font-extrabold text-[#064E73]">
-                    অনলাইন মাশকে
-                  </p>
-                  <h4 className="text-3xl sm:text-4xl font-black text-[#B91C1C] leading-none tracking-tight">
-                    কুরআন
-                  </h4>
-                  <span className="mt-1 inline-block bg-[#15803D] text-white text-base sm:text-lg font-extrabold px-4 py-0.5 rounded-md">
-                    প্রশিক্ষণ
-                  </span>
-                </div>
-
-                <div className="pt-1">
-                  <span className="block text-[11px] font-semibold text-[#064E73]">
-                    রেজিস্ট্রেশন করুন
-                  </span>
-                  <a
-                    href="tel:01767911188"
-                    className="text-lg sm:text-xl font-extrabold text-[#0288D1] hover:text-[#0277BD] tracking-wide transition"
-                  >
-                    01767 911 188
-                  </a>
-                </div>
+              {/* Right Column: CTA */}
+              <div className="lg:col-span-3 flex justify-center lg:justify-end">
+                <Link
+                  href="/courses"
+                  className="bg-[#0D47A1] hover:bg-[#0a3880] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-lg shadow-xs transition duration-150 flex items-center gap-1.5"
+                >
+                  <span>কোর্স সমূহ দেখুন</span>
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </div>

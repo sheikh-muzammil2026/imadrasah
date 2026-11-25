@@ -7,17 +7,20 @@ import EbooksSection from "@/components/public/home/ebooksSection";
 import WhyChooseUs from "@/components/public/home/whyChooseUs";
 import ReviewSection from "@/components/public/home/reviews";
 import SadaqahBanner from "@/components/public/home/sadaqahBanner";
+import FaqSection from "@/components/public/home/faqSection";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#F5FAFD]">
+    <div className="min-h-screen bg-[#E3F2FD]">
       <HeroSection />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <CoursesSection />
       <EbooksSection />
       <WhyChooseUs />
-      <ReviewSection />
+      {/* <ReviewSection /> */}
       <SadaqahBanner />
+      {/* FAQ Relocated to the bottom of Home page, above Footer */}
+      <FaqSection />
     </div>
   );
 }

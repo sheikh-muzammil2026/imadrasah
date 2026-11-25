@@ -5,15 +5,16 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   BookOpen,
   LayoutDashboard,
-  GraduationCap,
   Users,
-  Video,
   LogOut,
   Home,
   FileCheck,
   PlusCircle,
+  Briefcase,
+  GraduationCap,
 } from "lucide-react";
 import { logoutUser } from "@/lib/store";
+import { siteConfig } from "@/config/siteConfig";
 
 export default function Sidebar({ isOpen, setIsOpen, user }) {
   const pathname = usePathname();
@@ -26,6 +27,15 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
   };
 
   const getNavItems = () => {
+    if (userRole === "admin") {
+      return [
+        { title: "অ্যাডমিন ড্যাশবোর্ড", href: "/dashboard/admin", icon: LayoutDashboard },
+        { title: "কোর্স ভর্তি আবেদন", href: "/dashboard/admin/course-enrollments", icon: BookOpen },
+        { title: "শিক্ষক আবেদনসমূহ", href: "/dashboard/admin/teacher-applications", icon: Briefcase },
+        { title: "কোর্স ও বিভাগ", href: "/dashboard/admin#courses", icon: GraduationCap },
+        { title: "ব্যবহারকারী তালিকা", href: "/dashboard/admin#users", icon: Users },
+      ];
+    }
     if (userRole === "teacher") {
       return [
         { title: "ড্যাশবোর্ড ওভারভিউ", href: "/dashboard/teacher", icon: LayoutDashboard },
@@ -55,23 +65,27 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
       )}
 
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-white border-r border-[#E2EEF5] flex flex-col justify-between transition-transform duration-200 lg:static lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-white border-r border-[#90CAF9]/60 flex flex-col justify-between transition-transform duration-200 lg:static lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div>
           {/* Logo Header */}
-          <div className="h-16 px-5 border-b border-[#E2EEF5] flex items-center justify-between">
+          <div className="h-16 px-5 border-b border-[#90CAF9]/60 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#0288D1]/10 text-[#0288D1] flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-lg bg-[#E3F2FD] text-[#2196F3] flex items-center justify-center font-bold border border-[#90CAF9]">
                 <BookOpen className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-extrabold text-sm text-[#064E73] block leading-tight">
-                  কুরআন কানন
+                <span className="font-extrabold text-sm text-[#0D47A1] block leading-tight">
+                  {siteConfig.identity.name.bn}
                 </span>
-                <span className="text-[10px] text-[#0288D1] font-bold">
-                  {userRole === "teacher" ? "শিক্ষক প্যানেল" : "শিক্ষার্থী পোর্টাল"}
+                <span className="text-[10px] text-[#2196F3] font-bold">
+                  {userRole === "admin"
+                    ? "অ্যাডমিন প্যানেল"
+                    : userRole === "teacher"
+                    ? "শিক্ষক প্যানেল"
+                    : "শিক্ষার্থী পোর্টাল"}
                 </span>
               </div>
             </Link>
@@ -96,8 +110,8 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold transition duration-150 ${
                     isActive
-                      ? "bg-[#0288D1] text-white shadow-xs"
-                      : "text-[#4A606D] hover:bg-[#F5FAFD] hover:text-[#064E73]"
+                      ? "bg-[#0D47A1] text-white shadow-xs"
+                      : "text-slate-600 hover:bg-[#E3F2FD] hover:text-[#0D47A1]"
                   }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -109,14 +123,14 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         </div>
 
         {/* User Footer Profile & Action */}
-        <div className="p-4 border-t border-[#E2EEF5] space-y-3">
+        <div className="p-4 border-t border-[#90CAF9]/60 space-y-3">
           <div className="flex items-center gap-3 px-2">
-            <div className="w-9 h-9 rounded-full bg-[#D6EEFA] text-[#064E73] font-black flex items-center justify-center text-sm shrink-0">
-              {user?.name ? user.name.charAt(0) : "U"}
+            <div className="w-9 h-9 rounded-full bg-[#E3F2FD] text-[#0D47A1] border border-[#90CAF9] font-black flex items-center justify-center text-sm shrink-0">
+              {user?.name ? user.name.charAt(0) : "A"}
             </div>
             <div className="overflow-hidden">
-              <p className="text-xs font-bold text-[#064E73] truncate">
-                {user?.name}
+              <p className="text-xs font-bold text-[#0D47A1] truncate">
+                {user?.name || "অ্যাডমিনিস্ট্রেটর"}
               </p>
               <p className="text-[10px] text-gray-400 truncate">
                 {user?.email}
@@ -127,7 +141,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
           <div className="grid grid-cols-2 gap-2 pt-2">
             <Link
               href="/"
-              className="flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold text-[#064E73] bg-[#F5FAFD] border border-[#E2EEF5] rounded-md hover:bg-[#E2EEF5] transition"
+              className="flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold text-[#0D47A1] bg-[#E3F2FD] border border-[#90CAF9] rounded-md hover:bg-[#90CAF9]/30 transition"
             >
               <Home className="w-3.5 h-3.5" />
               <span>হোম সাইট</span>

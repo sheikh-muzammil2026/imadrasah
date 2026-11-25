@@ -1,22 +1,30 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #0D47A1;
+  --color-accent: #2196F3;
+  --color-secondary: #90CAF9;
+  --color-surface: #E3F2FD;
+  
+  --color-navy-dark: #0D47A1;
+  --color-navy-deep: #09357A;
+}
+
 :root {
-  --color-navy-dark: #064E73;
-  --color-navy-deep: #04354F;
-  --color-primary: #0288D1;
-  --color-primary-hover: #0277BD;
-  --color-gold-olive: #8D7B2B;
-  --color-gold-warm: #C89D28;
-  --color-amber: #F59E0B;
-  --color-amber-bar: #FBBF24;
-  --color-bg-ice: #F5FAFD;
-  --color-accent-soft: #D6EEFA;
-  --color-cream-soft: #FEF3C7;
-  --color-surface: #FFFFFF;
-  --color-border: #E2EEF5;
-  --color-thumb-bg: #ECECEC;
-  --color-text-muted: #4A606D;
-  --color-footer-text: #E0F2FE;
+  /* 4-Tone Blue Color System */
+  --color-primary: #0D47A1;    /* Deep Navy Blue — Navbar, Footer, h1/h2 headings, primary buttons */
+  --color-accent: #2196F3;     /* Vibrant Blue — CTAs like "এখনই কোর্সে ভর্তি হোন", active links, icons, badges */
+  --color-secondary: #90CAF9;  /* Soft Sky Blue — card borders, input focus rings, active tab indicators, table header borders */
+  --color-surface: #E3F2FD;    /* Ice Blue — page tint, alternating table rows, feature cards, notice banners */
+
+  /* Semantic Theme Mappings */
+  --color-navy-dark: #0D47A1;
+  --color-navy-deep: #09357A;
+  --color-border: #90CAF9;
+  --color-bg-ice: #E3F2FD;
+  --bg-page: #E3F2FD;
+  --text-slate: #1E293B;
+  --color-text-muted: #475569;
 }
 
 html {
@@ -25,8 +33,8 @@ html {
 
 body {
   font-family: var(--font-hind-siliguri), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: var(--bg-page);
-  color: var(--text-slate);
+  background-color: #E3F2FD;
+  color: #1E293B;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -41,15 +49,15 @@ body {
 
 /* Subtle Diamond Lattice Pattern */
 .bg-lattice {
-  background-image: radial-gradient(rgba(2, 136, 209, 0.08) 1.5px, transparent 1.5px),
-    radial-gradient(rgba(2, 136, 209, 0.08) 1.5px, #F5FAFD 1.5px);
+  background-image: radial-gradient(rgba(33, 150, 243, 0.12) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(33, 150, 243, 0.12) 1.5px, #E3F2FD 1.5px);
   background-size: 32px 32px;
   background-position: 0 0, 16px 16px;
 }
 
 /* Soft Elevation Shadow */
 .shadow-soft {
-  box-shadow: 0 4px 20px rgba(6, 78, 115, 0.06);
+  box-shadow: 0 4px 20px rgba(13, 71, 161, 0.07);
 }
 
 .shadow-card-hover {
@@ -58,7 +66,7 @@ body {
 
 .shadow-card-hover:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(6, 78, 115, 0.1);
+  box-shadow: 0 10px 25px rgba(13, 71, 161, 0.12);
 }
 
 /* Custom scrollbars */
@@ -68,14 +76,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #E3F2FD;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #90CAF9;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #2196F3;
 }
