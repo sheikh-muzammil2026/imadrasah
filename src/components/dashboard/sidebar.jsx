@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -12,6 +13,7 @@ import {
   PlusCircle,
   Briefcase,
   GraduationCap,
+  ChevronDown,
 } from "lucide-react";
 import { logoutUser } from "@/lib/store";
 import { siteConfig } from "@/config/siteConfig";
@@ -20,6 +22,24 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
   const pathname = usePathname();
   const router = useRouter();
   const userRole = user?.role?.toLowerCase() || "student";
+
+  // Track window.location.hash to distinguish root routes from hash-anchor routes
+  const [currentHash, setCurrentHash] = useState("");
+
+  useEffect(() => {
+    const handleHashSync = () => {
+      if (typeof window !== "undefined") {
+        setCurrentHash(window.location.hash || "");
+      }
+    };
+    handleHashSync();
+    window.addEventListener("hashchange", handleHashSync);
+    window.addEventListener("popstate", handleHashSync);
+    return () => {
+      window.removeEventListener("hashchange", handleHashSync);
+      window.removeEventListener("popstate", handleHashSync);
+    };
+  }, [pathname]);
 
   const handleLogout = () => {
     logoutUser();
@@ -102,7 +122,73 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
           <nav className="p-4 space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href.split("#")[0];
+
+              // Normalize pathname: strip trailing slash
+              const cleanPath = (pathname || "").replace(/\/$/, "") || "/";
+
+              // Exact matching helper: handles both normal routes and hash sub-routes
+              const checkIsActive = (href) => {
+                if (!href) return false;
+                const cleanHref = href.replace(/\/$/, "") || "/";
+
+                if (cleanHref.includes("#")) {
+                  const [pathPart, hashPart] = cleanHref.split("#");
+                  const normalizedPathPart = pathPart.replace(/\/$/, "") || "/";
+                  return cleanPath === normalizedPathPart && currentHash === `#${hashPart}`;
+                }
+
+                // Strict exact matching: leaf / root route is active only if path matches exactly and no hash is active
+                return cleanPath === cleanHref && !currentHash;
+              };
+
+              const hasChildren = Array.isArray(item.children) && item.children.length > 0;
+              const isChildActive = hasChildren && item.children.some((child) => checkIsActive(child.href));
+              const isActive = !hasChildren && checkIsActive(item.href);
+
+              if (hasChildren) {
+                return (
+                  <div key={item.title} className="space-y-1">
+                    <div
+                      className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-bold text-slate-700 ${
+                        isChildActive ? "text-[#0D47A1] font-extrabold" : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Icon className="w-4 h-4 shrink-0" />
+                        <span>{item.title}</span>
+                      </div>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          isChildActive ? "rotate-180 text-[#0D47A1]" : "text-slate-400"
+                        }`}
+                      />
+                    </div>
+                    {/* Collapsible child list */}
+                    <div className="pl-6 space-y-1">
+                      {item.children.map((child) => {
+                        const ChildIcon = child.icon || Icon;
+                        const isChildItemActive = checkIsActive(child.href);
+                        return (
+                          <Link
+                            key={child.title}
+                            href={child.href}
+                            onClick={() => setIsOpen(false)}
+                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-bold transition duration-150 ${
+                              isChildItemActive
+                                ? "bg-[#0D47A1] text-white shadow-xs"
+                                : "text-slate-600 hover:bg-[#E3F2FD] hover:text-[#0D47A1]"
+                            }`}
+                          >
+                            <ChildIcon className="w-3.5 h-3.5 shrink-0" />
+                            <span>{child.title}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={item.title}

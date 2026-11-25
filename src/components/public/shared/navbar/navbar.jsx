@@ -60,9 +60,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#90CAF9]/50 transition-all duration-200 ${
-        isScrolled ? "shadow-sm py-2.5" : "py-3"
-      }`}
+      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#90CAF9]/50 transition-all duration-200 ${isScrolled ? "shadow-sm py-2.5" : "py-3"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -89,11 +88,10 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-bold transition-colors duration-150 relative py-1 ${
-                    isActive
+                  className={`text-sm font-bold transition-colors duration-150 relative py-1 ${isActive
                       ? "text-[#2196F3]"
                       : "text-[#0D47A1] hover:text-[#2196F3]"
-                  }`}
+                    }`}
                 >
                   {link.name}
                   {isActive && (
@@ -124,7 +122,7 @@ export default function Navbar() {
                   className="flex items-center gap-1.5 bg-[#0D47A1] hover:bg-[#0a3880] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-xs transition duration-150"
                 >
                   <LayoutDashboard className="w-4 h-4" />
-                  <span>ড্যাশবোর্ড ({user.role === "teacher" ? "শিক্ষক" : "শিক্ষার্থী"})</span>
+                  <span>ড্যাশবোর্ড ({user.role})</span>
                 </Link>
                 <button
                   onClick={handleLogout}
@@ -189,11 +187,10 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-lg text-sm font-bold ${
-                  pathname === link.href
+                className={`block px-3 py-2 rounded-lg text-sm font-bold ${pathname === link.href
                     ? "bg-[#E3F2FD] text-[#2196F3]"
                     : "text-[#0D47A1] hover:bg-[#E3F2FD]/50"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
