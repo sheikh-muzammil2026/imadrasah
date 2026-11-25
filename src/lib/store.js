@@ -146,34 +146,68 @@ export function setCurrentUser(user) {
   setStoredData("qk_current_user", user);
 }
 
-export function registerUser({ name, email, password, role }) {
-  const users = getStoredData("qk_users", [DEMO_TEACHER, DEMO_STUDENT]);
-  const exists = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-  if (exists) {
-    return { success: false, message: "এই ইমেইল দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট তৈরি করা আছে।" };
+export async function registerUser({ name, email, password, role }) {
+  try {
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password, role }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (res.ok && data.success) {
+      // Keep local store in sync with registered account
+      const users = getStoredData("qk_users", [DEMO_TEACHER, DEMO_STUDENT]);
+      users.push({
+        id: data.user?.id || `user-${Date.now()}`,
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        role: role || "student",
+      });
+      setStoredData("qk_users", users);
+      return { success: true, user: data.user, message: data.message };
+    }
+
+    return {
+      success: false,
+      message: data.message || "নিবন্ধন সম্পন্ন করতে ব্যর্থ হয়েছে। দয়া করে আবার চেষ্টা করুন।",
+    };
+  } catch (err) {
+    console.error("registerUser API error:", err);
+    return {
+      success: false,
+      message: "সার্ভারের সাথে সংযোগ স্থাপন করা যায়নি। অনুগ্রহ করে ইন্টারনেট সংযোগ পরীক্ষা করুন।",
+    };
   }
-  const newUser = {
-    id: `user-${Date.now()}`,
-    name,
-    email: email.toLowerCase(),
-    password,
-    role: role || "student",
-  };
-  users.push(newUser);
-  setStoredData("qk_users", users);
-  return { success: true, user: newUser };
 }
 
-export function loginUser(email, password) {
-  const users = getStoredData("qk_users", [DEMO_TEACHER, DEMO_STUDENT]);
-  const user = users.find(
-    (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-  );
-  if (!user) {
-    return { success: false, message: "ভুল ইমেইল বা পাসওয়ার্ড। দয়া করে আবার চেষ্টা করুন।" };
+export async function loginUser(email, password) {
+  try {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (res.ok && data.success && data.user) {
+      setCurrentUser(data.user);
+      return { success: true, user: data.user, message: data.message };
+    }
+
+    return {
+      success: false,
+      message: data.message || "ভুল ইমেইল বা পাসওয়ার্ড। দয়া করে আবার চেষ্টা করুন।",
+    };
+  } catch (err) {
+    console.error("loginUser API error:", err);
+    return {
+      success: false,
+      message: "সার্ভারের সাথে সংযোগ স্থাপন করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    };
   }
-  setCurrentUser(user);
-  return { success: true, user };
 }
 
 export function logoutUser() {

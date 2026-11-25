@@ -24,7 +24,7 @@ export function getCourseEnrollmentsCollection() {
 }
 
 export function getUsersCollection() {
-  return db.collection("user");
+  return db.collection("users");
 }
 
 /**

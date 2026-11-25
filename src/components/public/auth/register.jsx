@@ -28,7 +28,7 @@ export default function RegisterComponent() {
     setFormData({ ...formData, role });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.password) {
@@ -49,7 +49,7 @@ export default function RegisterComponent() {
     setLoading(true);
     initStore();
 
-    const res = registerUser({
+    const res = await registerUser({
       name: formData.name.trim(),
       email: formData.email.trim(),
       password: formData.password,
@@ -59,10 +59,10 @@ export default function RegisterComponent() {
     setLoading(false);
 
     if (res.success) {
-      toast.success("নিবন্ধন সফলভাবে সম্পন্ন হয়েছে! অনুগ্রহ করে লগইন করুন।");
+      toast.success(res.message || "নিবন্ধন সফলভাবে সম্পন্ন হয়েছে! অনুগ্রহ করে লগইন করুন।");
       router.push("/login");
     } else {
-      toast.error(res.message);
+      toast.error(res.message || "নিবন্ধন ব্যর্থ হয়েছে।");
     }
   };
 

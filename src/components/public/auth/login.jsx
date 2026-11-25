@@ -42,18 +42,18 @@ export default function LoginComponent() {
     }
   };
 
-  const handleLogin = (email, password) => {
+  const handleLogin = async (email, password) => {
     setIsSubmitting(true);
     initStore();
 
-    const res = loginUser(email, password);
+    const res = await loginUser(email, password);
     setIsSubmitting(false);
 
     if (res.success) {
-      toast.success(`স্বাগতম, ${res.user.name}! লগইন সফল হয়েছে।`);
+      toast.success(res.message || `স্বাগতম, ${res.user.name}! লগইন সফল হয়েছে।`);
       redirectAfterLogin(res.user);
     } else {
-      toast.error(res.message);
+      toast.error(res.message || "ভুল ইমেইল বা পাসওয়ার্ড।");
     }
   };
 
