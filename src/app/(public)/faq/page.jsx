@@ -10,18 +10,18 @@ export default function FAQPage() {
   const faqs = siteConfig.faqs;
 
   return (
-    <div className="py-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div className="page-shell max-w-4xl space-y-8">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 bg-[#E3F2FD] text-[#2196F3] border border-[#90CAF9]/60 px-3.5 py-1 rounded-full text-xs font-bold shadow-xs">
+      <div className="page-header-block">
+        <div className="section-pill mb-2">
           <HelpCircle className="w-4 h-4" />
           <span>হেল্প সেন্টার ও সাধারণ জিজ্ঞাসা</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0D47A1]">
+        <h1 className="page-title-main">
           সচরাচর জিজ্ঞাসিত প্রশ্নাবলি (FAQ)
         </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-          {siteConfig.identity.name.bn}-এর অনলাইন পাঠদান, ভর্তি ও নিয়মাবলি সম্পর্কিত আপনার যেকোনো প্রশ্নের উত্তর এখানে পাবেন।
+        <p className="page-subtitle-muted">
+          {siteConfig.identity.name.shortBn}-এর অনলাইন ১-অন-১ পাঠদান, শিডিউল ও ভর্তি সংক্রান্ত যেকোনো প্রশ্নের উত্তর এখানে পাবেন।
         </p>
       </div>
 
@@ -32,7 +32,7 @@ export default function FAQPage() {
           return (
             <div
               key={idx}
-              className="bg-white rounded-xl border border-[#90CAF9]/60 overflow-hidden shadow-soft transition duration-200"
+              className="card-white p-0! overflow-hidden"
             >
               <button
                 onClick={() => setOpenIdx(isOpen ? -1 : idx)}
@@ -67,25 +67,25 @@ export default function FAQPage() {
       </div>
 
       {/* Still need help? */}
-      <div className="bg-white rounded-2xl border border-[#90CAF9]/60 p-6 sm:p-8 text-center space-y-3 shadow-soft">
+      <div className="card-white text-center space-y-3">
         <h3 className="font-bold text-base sm:text-lg text-[#0D47A1]">
           আপনার প্রয়োজনীয় উত্তরটি খুঁজে পাননি?
         </h3>
         <p className="text-xs sm:text-sm text-slate-600">
           আমাদের সাপোর্ট টিম সর্বদা আপনার সহযোগিতায় নিয়োজিত রয়েছে।
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <Link
             href="/contact"
-            className="bg-[#0D47A1] hover:bg-[#0a3880] text-white text-xs font-bold px-5 py-2.5 rounded-lg shadow-xs transition"
+            className="btn-primary"
           >
             যোগাযোগ পেজে যান
           </Link>
           <a
-            href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
-            className="border border-[#0D47A1] text-[#0D47A1] hover:bg-[#E3F2FD] text-xs font-bold px-5 py-2.5 rounded-lg transition"
+            href={`mailto:${siteConfig.contact.email}`}
+            className="btn-outline"
           >
-            সরাসরি কল করুন
+            ইমেইল করুন
           </a>
         </div>
       </div>

@@ -5,7 +5,10 @@ import { ChevronRight } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 
 export default function EbooksSection() {
-  const authorName = siteConfig.identity.founder.name;
+  const authorName =
+    siteConfig.identity.founder?.name ||
+    siteConfig.identity.leadership?.chairman?.name ||
+    "শায়েখ তারেক জামিল (হাফি)";
 
   const ebooks = [
     {

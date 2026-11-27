@@ -103,9 +103,11 @@ export async function PATCH(request, { params }) {
         status: "approved",
       });
     } else if (action === "reject") {
+      const reason = body.rejectionReason || body.feedback || "অভিজ্ঞতা বা যোগ্যতার শর্ত পূরণ না হওয়ায়";
       await applicationsCollection.updateOne(query, {
         $set: {
           status: "rejected",
+          rejectionReason: reason,
           rejectedAt: new Date(),
           updatedAt: new Date(),
         },
@@ -113,8 +115,9 @@ export async function PATCH(request, { params }) {
 
       return NextResponse.json({
         success: true,
-        message: "আবেদনটি বাতিল করা হয়েছে।",
+        message: "শিক্ষক আবেদনটি কারণসহ বাতিল করা হয়েছে।",
         status: "rejected",
+        rejectionReason: reason,
       });
     }
 

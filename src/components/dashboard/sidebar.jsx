@@ -13,17 +13,37 @@ import {
   PlusCircle,
   Briefcase,
   GraduationCap,
-  ChevronDown,
+  CalendarCheck2,
+  FileSpreadsheet,
+  ShieldAlert,
+  ShieldCheck,
+  History,
+  Settings,
 } from "lucide-react";
 import { logoutUser } from "@/lib/store";
 import { siteConfig } from "@/config/siteConfig";
+
+const ICON_MAP = {
+  LayoutDashboard,
+  BookOpen,
+  Briefcase,
+  GraduationCap,
+  Users,
+  CalendarCheck2,
+  FileCheck,
+  FileSpreadsheet,
+  PlusCircle,
+  ShieldAlert,
+  ShieldCheck,
+  History,
+  Settings,
+};
 
 export default function Sidebar({ isOpen, setIsOpen, user }) {
   const pathname = usePathname();
   const router = useRouter();
   const userRole = user?.role?.toLowerCase() || "student";
 
-  // Track window.location.hash to distinguish root routes from hash-anchor routes
   const [currentHash, setCurrentHash] = useState("");
 
   useEffect(() => {
@@ -46,31 +66,21 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
     router.push("/login");
   };
 
+  const roleMeta = siteConfig.roleLabels?.[userRole] || {
+    bn: "ব্যবহারকারী",
+    en: "User",
+    badgeClass: "badge-success",
+  };
+
   const getNavItems = () => {
-    if (userRole === "admin") {
-      return [
-        { title: "অ্যাডমিন ড্যাশবোর্ড", href: "/dashboard/admin", icon: LayoutDashboard },
-        { title: "কোর্স ভর্তি আবেদন", href: "/dashboard/admin/course-enrollments", icon: BookOpen },
-        { title: "শিক্ষক আবেদনসমূহ", href: "/dashboard/admin/teacher-applications", icon: Briefcase },
-        { title: "কোর্স ও বিভাগ", href: "/dashboard/admin#courses", icon: GraduationCap },
-        { title: "ব্যবহারকারী তালিকা", href: "/dashboard/admin#users", icon: Users },
-      ];
-    }
-    if (userRole === "teacher") {
-      return [
-        { title: "ড্যাশবোর্ড ওভারভিউ", href: "/dashboard/teacher", icon: LayoutDashboard },
-        { title: "কোর্স ও অ্যাসাইনমেন্ট", href: "/dashboard/teacher#courses", icon: BookOpen },
-        { title: "তালিকাভুক্ত শিক্ষার্থী", href: "/dashboard/teacher#students", icon: Users },
-        { title: "জমা পড়া অ্যাসাইনমেন্ট", href: "/dashboard/teacher#submissions", icon: FileCheck },
-      ];
-    }
-    // Student
-    return [
-      { title: "আমার ড্যাশবোর্ড", href: "/dashboard/student", icon: LayoutDashboard },
-      { title: "আমার কোর্সসমূহ", href: "/dashboard/student#my-courses", icon: BookOpen },
-      { title: "সকল কোর্সে ভর্তি হোন", href: "/dashboard/student#available-courses", icon: PlusCircle },
-      { title: "অ্যাসাইনমেন্ট ও টাস্ক", href: "/dashboard/student#assignments", icon: FileCheck },
-    ];
+    const rawNav = siteConfig.dashboardNav?.[userRole] || siteConfig.dashboardNav?.student || [];
+    return rawNav.map((item) => {
+      const IconComponent = typeof item.icon === "string" ? ICON_MAP[item.icon] || LayoutDashboard : item.icon;
+      return {
+        ...item,
+        icon: IconComponent,
+      };
+    });
   };
 
   const navItems = getNavItems();
@@ -97,15 +107,11 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                 <BookOpen className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-extrabold text-sm text-[#0D47A1] block leading-tight">
-                  {siteConfig.identity.name.bn}
+                <span className="font-extrabold text-xs sm:text-sm text-[#0D47A1] block leading-tight">
+                  {siteConfig.identity.name.shortBn}
                 </span>
-                <span className="text-[10px] text-[#2196F3] font-bold">
-                  {userRole === "admin"
-                    ? "অ্যাডমিন প্যানেল"
-                    : userRole === "teacher"
-                    ? "শিক্ষক প্যানেল"
-                    : "শিক্ষার্থী পোর্টাল"}
+                <span className={`text-[10px] mt-0.5 ${roleMeta.badgeClass}`}>
+                  {roleMeta.bn}
                 </span>
               </div>
             </Link>
@@ -119,82 +125,30 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
           </div>
 
           {/* Navigation Links */}
-          <nav className="p-4 space-y-1">
+          <nav className="p-3 space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
-
-              // Normalize pathname: strip trailing slash
               const cleanPath = (pathname || "").replace(/\/$/, "") || "/";
 
-              // Exact matching helper: handles both normal routes and hash sub-routes
               const checkIsActive = (href) => {
                 if (!href) return false;
                 const cleanHref = href.replace(/\/$/, "") || "/";
-
                 if (cleanHref.includes("#")) {
                   const [pathPart, hashPart] = cleanHref.split("#");
                   const normalizedPathPart = pathPart.replace(/\/$/, "") || "/";
                   return cleanPath === normalizedPathPart && currentHash === `#${hashPart}`;
                 }
-
-                // Strict exact matching: leaf / root route is active only if path matches exactly and no hash is active
                 return cleanPath === cleanHref && !currentHash;
               };
 
-              const hasChildren = Array.isArray(item.children) && item.children.length > 0;
-              const isChildActive = hasChildren && item.children.some((child) => checkIsActive(child.href));
-              const isActive = !hasChildren && checkIsActive(item.href);
-
-              if (hasChildren) {
-                return (
-                  <div key={item.title} className="space-y-1">
-                    <div
-                      className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-bold text-slate-700 ${
-                        isChildActive ? "text-[#0D47A1] font-extrabold" : ""
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <Icon className="w-4 h-4 shrink-0" />
-                        <span>{item.title}</span>
-                      </div>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          isChildActive ? "rotate-180 text-[#0D47A1]" : "text-slate-400"
-                        }`}
-                      />
-                    </div>
-                    {/* Collapsible child list */}
-                    <div className="pl-6 space-y-1">
-                      {item.children.map((child) => {
-                        const ChildIcon = child.icon || Icon;
-                        const isChildItemActive = checkIsActive(child.href);
-                        return (
-                          <Link
-                            key={child.title}
-                            href={child.href}
-                            onClick={() => setIsOpen(false)}
-                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-bold transition duration-150 ${
-                              isChildItemActive
-                                ? "bg-[#0D47A1] text-white shadow-xs"
-                                : "text-slate-600 hover:bg-[#E3F2FD] hover:text-[#0D47A1]"
-                            }`}
-                          >
-                            <ChildIcon className="w-3.5 h-3.5 shrink-0" />
-                            <span>{child.title}</span>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              }
+              const isActive = checkIsActive(item.href);
 
               return (
                 <Link
                   key={item.title}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold transition duration-150 ${
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition duration-150 ${
                     isActive
                       ? "bg-[#0D47A1] text-white shadow-xs"
                       : "text-slate-600 hover:bg-[#E3F2FD] hover:text-[#0D47A1]"
@@ -212,11 +166,11 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         <div className="p-4 border-t border-[#90CAF9]/60 space-y-3">
           <div className="flex items-center gap-3 px-2">
             <div className="w-9 h-9 rounded-full bg-[#E3F2FD] text-[#0D47A1] border border-[#90CAF9] font-black flex items-center justify-center text-sm shrink-0">
-              {user?.name ? user.name.charAt(0) : "A"}
+              {user?.name ? user.name.charAt(0) : "U"}
             </div>
             <div className="overflow-hidden">
               <p className="text-xs font-bold text-[#0D47A1] truncate">
-                {user?.name || "অ্যাডমিনিস্ট্রেটর"}
+                {user?.name || "ব্যবহারকারী"}
               </p>
               <p className="text-[10px] text-gray-400 truncate">
                 {user?.email}
@@ -224,17 +178,17 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2">
+          <div className="grid grid-cols-2 gap-2 pt-1">
             <Link
               href="/"
-              className="flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold text-[#0D47A1] bg-[#E3F2FD] border border-[#90CAF9] rounded-md hover:bg-[#90CAF9]/30 transition"
+              className="btn-outline py-1.5 px-2 text-[11px] justify-center"
             >
               <Home className="w-3.5 h-3.5" />
               <span>হোম সাইট</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="flex items-center justify-center gap-1.5 py-1.5 text-[11px] font-bold text-red-600 bg-red-50 border border-red-100 rounded-md hover:bg-red-100 transition cursor-pointer"
+              className="btn-danger py-1.5 px-2 text-[11px] justify-center"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>লগআউট</span>

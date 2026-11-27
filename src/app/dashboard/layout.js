@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Sidebar from "@/components/dashboard/sidebar";
-import { Menu, BookOpen, LogOut, User, GraduationCap, Shield } from "lucide-react";
+import { Menu, LogOut, User, GraduationCap, Shield } from "lucide-react";
 import { getCurrentUser, logoutUser, initStore } from "@/lib/store";
 import { siteConfig } from "@/config/siteConfig";
 
@@ -22,14 +22,21 @@ export default function DashboardLayout({ children }) {
       return;
     }
 
-    // Role protection
-    const role = user.role?.toLowerCase();
-    if (role === "student" && pathname.startsWith("/dashboard/teacher")) {
-      router.push("/dashboard/student");
+    // Role-based protection from centralized siteConfig.routePermissions
+    const role = user.role?.toLowerCase() || "student";
+    if (pathname.startsWith("/dashboard/super-admin") && role !== "super_admin") {
+      if (role === "admin") router.push("/dashboard/admin");
+      else if (role === "teacher") router.push("/dashboard/teacher");
+      else router.push("/dashboard/student");
       return;
     }
-    if (role === "teacher" && pathname.startsWith("/dashboard/student")) {
-      router.push("/dashboard/teacher");
+    if (pathname.startsWith("/dashboard/admin") && !["admin", "super_admin"].includes(role)) {
+      if (role === "teacher") router.push("/dashboard/teacher");
+      else router.push("/dashboard/student");
+      return;
+    }
+    if (pathname.startsWith("/dashboard/teacher") && !["teacher", "admin", "super_admin"].includes(role)) {
+      router.push("/dashboard/student");
       return;
     }
 
@@ -44,9 +51,9 @@ export default function DashboardLayout({ children }) {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-[#F5FAFD] text-[#064E73]">
+      <div className="h-screen flex items-center justify-center bg-[#F5FAFD] text-[#0D47A1]">
         <div className="text-center space-y-3">
-          <div className="w-10 h-10 border-3 border-[#0288D1] border-t-transparent rounded-full animate-spin mx-auto" />
+          <div className="w-10 h-10 border-3 border-[#2196F3] border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="text-xs font-bold">ড্যাশবোর্ড লোড হচ্ছে...</p>
         </div>
       </div>
@@ -72,7 +79,7 @@ export default function DashboardLayout({ children }) {
             </button>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-sm sm:text-base text-[#0D47A1] tracking-tight">
-                {siteConfig.identity.name.bn} ড্যাশবোর্ড
+                {siteConfig.identity.name.shortBn} ড্যাশবোর্ড
               </span>
             </div>
           </div>
@@ -80,36 +87,31 @@ export default function DashboardLayout({ children }) {
           {/* User Profile & Role Badge & Logout */}
           <div className="flex items-center gap-3 sm:gap-4">
             {/* Role Badge */}
-            <span
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                currentUser?.role === "teacher"
-                  ? "bg-amber-100 text-amber-800 border border-amber-200"
-                  : currentUser?.role === "admin"
-                  ? "bg-purple-100 text-purple-800 border border-purple-200"
-                  : "bg-blue-100 text-[#0288D1] border border-blue-200"
-              }`}
-            >
-              {currentUser?.role === "teacher" ? (
-                <>
-                  <User className="w-3.5 h-3.5" />
-                  <span>শিক্ষক (Teacher)</span>
-                </>
-              ) : currentUser?.role === "admin" ? (
-                <>
-                  <Shield className="w-3.5 h-3.5" />
-                  <span>অ্যাডমিন (Admin)</span>
-                </>
-              ) : (
-                <>
-                  <GraduationCap className="w-3.5 h-3.5" />
-                  <span>শিক্ষার্থী (Student)</span>
-                </>
-              )}
-            </span>
+            {(() => {
+              const roleMeta = siteConfig.roleLabels?.[currentUser?.role] || {
+                bn: "শিক্ষার্থী",
+                en: "Student",
+                badgeClass: "badge-success",
+              };
+              return (
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${roleMeta.badgeClass}`}>
+                  {currentUser?.role === "super_admin" ? (
+                    <Shield className="w-3.5 h-3.5" />
+                  ) : currentUser?.role === "admin" ? (
+                    <Shield className="w-3.5 h-3.5" />
+                  ) : currentUser?.role === "teacher" ? (
+                    <User className="w-3.5 h-3.5" />
+                  ) : (
+                    <GraduationCap className="w-3.5 h-3.5" />
+                  )}
+                  <span>{roleMeta.bn}</span>
+                </span>
+              );
+            })()}
 
             {/* User Name */}
             <div className="hidden sm:block text-right">
-              <p className="text-xs font-bold text-[#064E73] leading-tight">
+              <p className="text-xs font-bold text-[#0D47A1] leading-tight">
                 {currentUser?.name}
               </p>
               <p className="text-[10px] text-gray-400 leading-none mt-0.5">
@@ -120,7 +122,7 @@ export default function DashboardLayout({ children }) {
             {/* Logout Button */}
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-3 py-1.5 rounded-lg text-xs font-bold transition shadow-2xs cursor-pointer"
+              className="btn-danger py-1.5 px-2.5 text-xs"
               title="লগআউট করুন"
             >
               <LogOut className="w-3.5 h-3.5" />

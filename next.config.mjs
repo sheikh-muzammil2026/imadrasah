@@ -10,7 +10,16 @@ const nextConfig = {
       },
     ],
   },
-  reactCompiler: true,
+  // reactCompiler: true,
+  experimental: {
+    webpackBuildWorker: false,
+    parallelServerCompiles: false,
+    parallelServerBuildTraces: false,
+    cpus: 1,
+  },
+  webpack: (config) => {
+    return config;
+  },
   async redirects() {
     return [
       {

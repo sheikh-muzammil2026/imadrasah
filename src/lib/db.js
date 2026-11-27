@@ -27,6 +27,26 @@ export function getUsersCollection() {
   return db.collection("users");
 }
 
+export function getAttendanceCollection() {
+  return db.collection("attendance_records");
+}
+
+export function getMonthlyReportsCollection() {
+  return db.collection("monthly_reports");
+}
+
+export function getAssignmentsCollection() {
+  return db.collection("assignments");
+}
+
+export function getSubmissionsCollection() {
+  return db.collection("submissions");
+}
+
+export function getAuditLogsCollection() {
+  return db.collection("audit_logs");
+}
+
 /**
  * Generate sequential unique Teacher ID starting from "0203"
  */

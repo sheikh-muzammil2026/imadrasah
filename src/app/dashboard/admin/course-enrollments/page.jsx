@@ -9,26 +9,22 @@ import {
   XCircle,
   Trash2,
   Eye,
-  Filter,
   Check,
   X,
-  Phone,
-  Mail,
-  User,
-  Clock,
   RefreshCw,
   AlertCircle,
-  FileText,
-  Calendar,
+  User,
+  Globe2,
 } from "lucide-react";
 import { toast } from "react-toastify";
+import { siteConfig } from "@/config/siteConfig";
+import { getCurrentUser } from "@/lib/store";
 
 export default function CourseEnrollmentsAdminPage() {
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [courseFilter, setCourseFilter] = useState("all");
   const [selectedEnrollment, setSelectedEnrollment] = useState(null);
   const [rejectingItem, setRejectingItem] = useState(null);
   const [rejectFeedback, setRejectFeedback] = useState("");
@@ -37,25 +33,17 @@ export default function CourseEnrollmentsAdminPage() {
   const fetchEnrollments = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/course-enrollments");
+      const user = getCurrentUser();
+      const res = await fetch("/api/course-enrollments", {
+        headers: {
+          "x-user-id": user?.id || "",
+          "x-user-role": user?.role || "admin",
+          "x-user-email": user?.email || "",
+        },
+      });
       const data = await res.json();
       if (data.success && Array.isArray(data.enrollments)) {
         setEnrollments(data.enrollments);
-      } else {
-        // Fallback default sample data
-        setEnrollments([
-          {
-            _id: "demo-enr-1",
-            userName: "মুহাম্মদ আব্দুল্লাহ",
-            userEmail: `student@${siteConfig.identity.name.en.toLowerCase().replace(/[^a-z0-9]/g, "") || "madrasah"}.com`,
-            phone: "01812345678",
-            courseSlug: "nazera",
-            courseTitle: "নাযেরা বিভাগ (Nazera)",
-            status: "pending",
-            adminFeedback: "",
-            appliedAt: new Date().toISOString(),
-          },
-        ]);
       }
     } catch (err) {
       console.error("Failed to fetch course enrollments:", err);
@@ -69,7 +57,6 @@ export default function CourseEnrollmentsAdminPage() {
     fetchEnrollments();
   }, []);
 
-  // Approve Handler: Generates 0401+ (or keeps existing studentId)
   const handleApprove = async (enrollId) => {
     setProcessingId(enrollId);
     try {
@@ -101,7 +88,6 @@ export default function CourseEnrollmentsAdminPage() {
       }
     } catch (err) {
       console.error("Approve error:", err);
-      // Fallback
       const nextId = "0401";
       toast.success(`ভর্তি অনুমোদন সম্পন্ন! শিক্ষার্থী আইডি: ${nextId}`);
       setEnrollments((prev) =>
@@ -116,13 +102,11 @@ export default function CourseEnrollmentsAdminPage() {
     }
   };
 
-  // Open Reject Modal
   const openRejectModal = (enrollment) => {
     setRejectingItem(enrollment);
     setRejectFeedback("আবেদন পর্যালোচনায় তথ্যের ঘাটতি থাকায় এই মুহূর্তে আবেদনটি গ্রহণ করা সম্ভব হয়নি। অনুগ্রহ করে বিস্তারিত তথ্যসহ পুনরায় আবেদন করুন।");
   };
 
-  // Submit Reject with adminFeedback
   const submitReject = async () => {
     if (!rejectingItem) return;
     const enrollId = rejectingItem._id || rejectingItem.id;
@@ -162,13 +146,6 @@ export default function CourseEnrollmentsAdminPage() {
       }
     } catch (err) {
       console.error("Reject error:", err);
-      setEnrollments((prev) =>
-        prev.map((e) =>
-          (e._id === enrollId || e.id === enrollId)
-            ? { ...e, status: "rejected", adminFeedback: rejectFeedback.trim() }
-            : e
-        )
-      );
       setRejectingItem(null);
       toast.info("আবেদন বাতিল করা হয়েছে।");
     } finally {
@@ -176,7 +153,6 @@ export default function CourseEnrollmentsAdminPage() {
     }
   };
 
-  // Delete Handler
   const handleDelete = async (enrollId) => {
     if (!confirm("আপনি কি এই ভর্তি আবেদনটি মুছে ফেলতে চান?")) return;
     setProcessingId(enrollId);
@@ -204,18 +180,16 @@ export default function CourseEnrollmentsAdminPage() {
     }
   };
 
-  // Filtered
   const filteredEnrollments = enrollments.filter((e) => {
     const matchesSearch =
       (e.userName || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
       (e.userEmail || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
       (e.courseTitle || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (e.studentId || "").toLowerCase().includes(searchTerm.toLowerCase());
+      (e.studentId || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (e.country || "").toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesStatus = statusFilter === "all" || e.status === statusFilter;
-    const matchesCourse = courseFilter === "all" || e.courseSlug === courseFilter;
-
-    return matchesSearch && matchesStatus && matchesCourse;
+    return matchesSearch && matchesStatus;
   });
 
   return (
@@ -237,13 +211,13 @@ export default function CourseEnrollmentsAdminPage() {
             কোর্স ভর্তি আবেদন ও শিক্ষার্থী আইডি (0401+) ব্যবস্থাপনা
           </h1>
           <p className="text-xs text-slate-600">
-            শিক্ষার্থীদের কোর্সে ভর্তির আবেদন অনুমোদন করুন এবং স্বয়ংক্রিয়ভাবে শিক্ষার্থী আইডি বরাদ্দ করুন
+            আন্তর্জাতিক শিক্ষার্থীদের ভর্তির আবেদন অনুমোদন করুন এবং স্বয়ংক্রিয়ভাবে শিক্ষার্থী আইডি বরাদ্দ করুন
           </p>
         </div>
 
         <button
           onClick={fetchEnrollments}
-          className="self-start sm:self-auto flex items-center gap-1.5 bg-[#E3F2FD] border border-[#90CAF9] text-[#0D47A1] hover:bg-[#90CAF9]/40 text-xs font-bold px-3.5 py-2 rounded-lg transition cursor-pointer"
+          className="self-start sm:self-auto btn-outline py-2 px-3.5 text-xs"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
           <span>রিফ্রেশ</span>
@@ -251,26 +225,25 @@ export default function CourseEnrollmentsAdminPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white rounded-xl border border-[#90CAF9]/60 p-4 shadow-soft flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="card-white-sm flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="relative w-full md:w-80">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="শিক্ষার্থীর নাম, ইমেইল বা আইডি দিয়ে খুঁজুন..."
-            className="w-full pl-9 pr-4 py-2 border border-[#90CAF9]/60 rounded-lg text-xs bg-[#E3F2FD]/20 text-slate-800 focus:outline-hidden focus:border-[#2196F3] focus:ring-1 focus:ring-[#90CAF9]"
+            placeholder="নাম, দেশ, ইমেইল বা আইডি দিয়ে খুঁজুন..."
+            className="form-input pl-9"
           />
-          <Search className="w-4 h-4 text-[#2196F3] absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-[#2196F3] absolute left-3 top-3" />
         </div>
 
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-          {/* Status Filter */}
           <div className="flex items-center gap-1.5">
             <span className="text-xs text-slate-500 font-semibold">স্ট্যাটাস:</span>
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#90CAF9]/60 rounded-lg text-xs bg-white text-[#0D47A1] font-bold focus:outline-hidden"
+              className="form-select py-1.5 text-xs w-auto font-bold text-[#0D47A1]"
             >
               <option value="all">সকল ({enrollments.length})</option>
               <option value="pending">
@@ -284,39 +257,24 @@ export default function CourseEnrollmentsAdminPage() {
               </option>
             </select>
           </div>
-
-          {/* Course Filter */}
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs text-slate-500 font-semibold">কোর্স:</span>
-            <select
-              value={courseFilter}
-              onChange={(e) => setCourseFilter(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#90CAF9]/60 rounded-lg text-xs bg-white text-[#0D47A1] font-bold focus:outline-hidden"
-            >
-              <option value="all">সকল কোর্স</option>
-              <option value="nurani">নূরানী বিভাগ</option>
-              <option value="nazera">নাযেরা বিভাগ</option>
-              <option value="hifz">হিফজুল কুরআন</option>
-            </select>
-          </div>
         </div>
       </div>
 
-      {/* Main Table: Clean #90CAF9 borders & #E3F2FD striped rows */}
-      <div className="bg-white rounded-2xl border border-[#90CAF9] overflow-hidden shadow-soft">
+      {/* Main Table */}
+      <div className="table-wrapper">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr className="bg-[#E3F2FD] border-b border-[#90CAF9] text-[#0D47A1] font-bold">
-                <th className="py-3.5 px-4">শিক্ষার্থীর নাম ও ইমেইল</th>
-                <th className="py-3.5 px-4">আবেদিত কোর্স</th>
-                <th className="py-3.5 px-4">আবেদনের তারিখ</th>
-                <th className="py-3.5 px-4 text-center">স্ট্যাটাস ও শিক্ষার্থী আইডি</th>
-                <th className="py-3.5 px-4 text-right">পদক্ষেপ (Actions)</th>
+          <table className="table-element">
+            <thead className="table-head">
+              <tr>
+                <th className="table-th">শিক্ষার্থীর নাম ও দেশ</th>
+                <th className="table-th">আবেদিত কোর্স</th>
+                <th className="table-th">পছন্দের শিডিউল</th>
+                <th className="table-th text-center">স্ট্যাটাস ও শিক্ষার্থী আইডি</th>
+                <th className="table-th text-right">পদক্ষেপ (Actions)</th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-[#90CAF9]/50">
+            <tbody className="divide-y divide-[#90CAF9]/40">
               {loading ? (
                 <tr>
                   <td colSpan="5" className="py-10 text-center text-slate-500">
@@ -345,35 +303,37 @@ export default function CourseEnrollmentsAdminPage() {
                         isStriped ? "bg-[#E3F2FD]/25" : "bg-white"
                       }`}
                     >
-                      {/* Student Info */}
-                      <td className="py-3.5 px-4">
+                      <td className="table-td">
                         <div>
                           <span className="font-bold text-sm text-[#0D47A1] block">
                             {enr.userName}
                           </span>
-                          <span className="text-[11px] text-slate-500">
+                          <span className="text-[11px] text-slate-500 block">
                             ✉️ {enr.userEmail}
                           </span>
+                          {enr.country && (
+                            <span className="text-[10px] text-[#2196F3] font-semibold">
+                              🌍 {enr.country}
+                            </span>
+                          )}
                         </div>
                       </td>
 
-                      {/* Course */}
-                      <td className="py-3.5 px-4">
+                      <td className="table-td">
                         <span className="font-bold text-xs text-[#0D47A1] bg-[#E3F2FD] border border-[#90CAF9]/70 px-2.5 py-1 rounded-md inline-block">
                           {enr.courseTitle}
                         </span>
                       </td>
 
-                      {/* Applied Date */}
-                      <td className="py-3.5 px-4 text-slate-600 font-medium">
-                        {enr.appliedAt ? new Date(enr.appliedAt).toLocaleDateString("bn-BD") : "—"}
+                      <td className="table-td text-slate-600 font-medium">
+                        <p>{enr.preferredSchedule || "সাধারণ সময়"}</p>
+                        <span className="text-[10px] text-slate-400">দিন: {enr.preferredDays || "নমনীয়"}</span>
                       </td>
 
-                      {/* Status & Student ID */}
-                      <td className="py-3.5 px-4 text-center">
+                      <td className="table-td text-center">
                         {enr.status === "approved" ? (
                           <div className="inline-flex flex-col items-center">
-                            <span className="bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold px-2.5 py-0.5 rounded-full text-[11px]">
+                            <span className="badge-success">
                               ভর্তি সম্পন্ন (Approved) ✓
                             </span>
                             {enr.studentId && (
@@ -384,7 +344,7 @@ export default function CourseEnrollmentsAdminPage() {
                           </div>
                         ) : enr.status === "rejected" ? (
                           <div className="inline-flex flex-col items-center">
-                            <span className="bg-red-100 text-red-800 border border-red-300 font-bold px-2.5 py-0.5 rounded-full text-[11px]">
+                            <span className="badge-danger">
                               বাতিলকৃত (Rejected)
                             </span>
                             {enr.adminFeedback && (
@@ -397,16 +357,14 @@ export default function CourseEnrollmentsAdminPage() {
                             )}
                           </div>
                         ) : (
-                          <span className="bg-amber-100 text-amber-800 border border-amber-300 font-bold px-2.5 py-0.5 rounded-full text-[11px]">
+                          <span className="badge-pending">
                             অপেক্ষমাণ (Pending)
                           </span>
                         )}
                       </td>
 
-                      {/* Actions */}
-                      <td className="py-3.5 px-4 text-right">
+                      <td className="table-td text-right">
                         <div className="flex items-center justify-end gap-1.5">
-                          {/* View Details */}
                           <button
                             onClick={() => setSelectedEnrollment(enr)}
                             title="বিস্তারিত দেখুন"
@@ -415,37 +373,34 @@ export default function CourseEnrollmentsAdminPage() {
                             <Eye className="w-3.5 h-3.5" />
                           </button>
 
-                          {/* Approve Action */}
                           {enr.status !== "approved" && (
                             <button
                               onClick={() => handleApprove(enrollId)}
                               disabled={isProcessing}
-                              title="অনুমোদন করুন (Generate/Link 0401+ Student ID)"
-                              className="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1.5 rounded-lg shadow-2xs transition cursor-pointer disabled:opacity-50"
+                              title="অনুমোদন করুন (Generate 0401+ Student ID)"
+                              className="btn-primary py-1 px-2 text-[11px]"
                             >
                               <Check className="w-3.5 h-3.5" />
-                              <span className="text-[11px]">অনুমোদন</span>
+                              <span>অনুমোদন</span>
                             </button>
                           )}
 
-                          {/* Reject Action with feedback note */}
                           {enr.status === "pending" && (
                             <button
                               onClick={() => openRejectModal(enr)}
                               disabled={isProcessing}
-                              title="বাতিল করুন ও ফিডব্যাক দিন"
-                              className="p-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition cursor-pointer disabled:opacity-50"
+                              title="বাতিল করুন"
+                              className="p-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition cursor-pointer"
                             >
                               <X className="w-3.5 h-3.5" />
                             </button>
                           )}
 
-                          {/* Delete */}
                           <button
                             onClick={() => handleDelete(enrollId)}
                             disabled={isProcessing}
                             title="মুছে ফেলুন"
-                            className="p-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg transition cursor-pointer disabled:opacity-50"
+                            className="btn-danger p-1.5"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -460,10 +415,10 @@ export default function CourseEnrollmentsAdminPage() {
         </div>
       </div>
 
-      {/* Reject Modal with Admin Feedback note */}
+      {/* Reject Modal */}
       {rejectingItem && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-xl border border-[#90CAF9]">
+          <div className="card-white max-w-md w-full space-y-4 shadow-xl">
             <div className="flex items-center justify-between pb-2 border-b border-[#90CAF9]/50">
               <h3 className="text-base font-bold text-[#0D47A1]">
                 আবেদন বাতিলের কারণ ও ফিডব্যাক নোট
@@ -477,28 +432,27 @@ export default function CourseEnrollmentsAdminPage() {
             </div>
 
             <p className="text-xs text-slate-600">
-              শিক্ষার্থী <span className="font-bold text-[#0D47A1]">{rejectingItem.userName}</span>-কে তার ড্যাশবোর্ডে এই ফিডব্যাক বার্তাটি প্রদর্শিত হবে যাতে সে প্রয়োজনীয় তথ্য সংশোধন করে পুনরায় আবেদন করতে পারে:
+              শিক্ষার্থী <span className="font-bold text-[#0D47A1]">{rejectingItem.userName}</span>-কে তার ড্যাশবোর্ডে এই ফিডব্যাক বার্তাটি প্রদর্শিত হবে:
             </p>
 
             <textarea
               rows={3}
               value={rejectFeedback}
               onChange={(e) => setRejectFeedback(e.target.value)}
-              className="w-full px-3 py-2 border border-[#90CAF9]/60 rounded-xl bg-[#E3F2FD]/20 text-xs text-slate-800 focus:outline-hidden focus:border-[#2196F3]"
+              className="form-textarea"
               placeholder="বাতিলের সুনির্দিষ্ট কারণ লিখুন..."
             />
 
             <div className="flex items-center justify-end gap-2.5 pt-2">
               <button
                 onClick={() => setRejectingItem(null)}
-                className="px-4 py-2 border border-[#90CAF9] text-xs font-bold text-slate-600 rounded-lg hover:bg-[#E3F2FD]"
+                className="btn-outline"
               >
                 বাতিল
               </button>
               <button
                 onClick={submitReject}
-                disabled={processingId === (rejectingItem._id || rejectingItem.id)}
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg shadow-xs transition"
+                className="btn-danger"
               >
                 নিশ্চিত বাতিল করুন
               </button>
@@ -507,13 +461,13 @@ export default function CourseEnrollmentsAdminPage() {
         </div>
       )}
 
-      {/* View Details Modal */}
+      {/* View Details Modal (Doc Compliant Fields) */}
       {selectedEnrollment && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl border border-[#90CAF9]">
+          <div className="card-white max-w-lg w-full max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-[#90CAF9]/50">
               <h3 className="text-lg font-bold text-[#0D47A1]">
-                ভর্তি আবেদন বিস্তারিত
+                ভর্তি আবেদন বিস্তারিত (Student Profile)
               </h3>
               <button
                 onClick={() => setSelectedEnrollment(null)}
@@ -523,65 +477,72 @@ export default function CourseEnrollmentsAdminPage() {
               </button>
             </div>
 
-            {/* Student ID Banner if assigned */}
             {selectedEnrollment.studentId && (
               <div className="bg-[#E3F2FD] border border-[#90CAF9] p-4 rounded-xl flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-[#0D47A1] block">
-                    বরাদ্দকৃত শিক্ষার্থী আইডি (Student ID):
+                    বরাদ্দকৃত শিক্ষার্থী আইডি:
                   </span>
                   <span className="text-xl font-mono font-black text-[#0D47A1]">
                     {selectedEnrollment.studentId}
                   </span>
                 </div>
-                <span className="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-md shadow-2xs">
+                <span className="badge-success">
                   ভর্তি অনুমোদিত ✓
                 </span>
               </div>
             )}
 
-            <div className="space-y-3 text-xs">
-              <div className="bg-[#E3F2FD]/30 p-3 rounded-lg border border-[#90CAF9]/40 flex justify-between">
-                <span className="text-slate-500">শিক্ষার্থীর নাম:</span>
-                <span className="font-bold text-[#0D47A1]">{selectedEnrollment.userName}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div className="card-ice">
+                <span className="text-slate-500 block">শিক্ষার্থীর নাম:</span>
+                <span className="font-bold text-[#0D47A1] text-sm">{selectedEnrollment.userName}</span>
               </div>
-              <div className="bg-[#E3F2FD]/30 p-3 rounded-lg border border-[#90CAF9]/40 flex justify-between">
-                <span className="text-slate-500">ইমেইল ঠিকানা:</span>
+              <div className="card-ice">
+                <span className="text-slate-500 block">পিতার নাম:</span>
+                <span className="font-bold text-[#0D47A1] text-sm">{selectedEnrollment.fatherName || "উল্লেখ নেই"}</span>
+              </div>
+              <div className="card-ice">
+                <span className="text-slate-500 block">ইমেইল:</span>
                 <span className="font-bold text-[#0D47A1]">{selectedEnrollment.userEmail}</span>
               </div>
-              <div className="bg-[#E3F2FD]/30 p-3 rounded-lg border border-[#90CAF9]/40 flex justify-between">
-                <span className="text-slate-500">কোর্সের নাম:</span>
-                <span className="font-bold text-[#0D47A1]">{selectedEnrollment.courseTitle}</span>
+              <div className="card-ice">
+                <span className="text-slate-500 block">হোয়াটসঅ্যাপ:</span>
+                <span className="font-bold text-[#0D47A1]">{selectedEnrollment.phone || selectedEnrollment.whatsapp}</span>
               </div>
-              <div className="bg-[#E3F2FD]/30 p-3 rounded-lg border border-[#90CAF9]/40 flex justify-between">
-                <span className="text-slate-500">কোর্স স্লাগ (Slug):</span>
-                <span className="font-mono text-[#2196F3]">{selectedEnrollment.courseSlug}</span>
+              <div className="card-ice">
+                <span className="text-slate-500 block">দেশ:</span>
+                <span className="font-bold text-[#0D47A1]">{selectedEnrollment.country || "বাংলাদেশ"}</span>
               </div>
-              <div className="bg-[#E3F2FD]/30 p-3 rounded-lg border border-[#90CAF9]/40 flex justify-between">
-                <span className="text-slate-500">আবেদনের তারিখ:</span>
-                <span className="font-semibold text-slate-700">
-                  {selectedEnrollment.appliedAt ? new Date(selectedEnrollment.appliedAt).toLocaleString("bn-BD") : "—"}
-                </span>
+              <div className="card-ice">
+                <span className="text-slate-500 block">জাতীয়তা:</span>
+                <span className="font-bold text-[#0D47A1]">{selectedEnrollment.nationality || "বাংলাদেশী"}</span>
               </div>
-              {selectedEnrollment.adminFeedback && (
-                <div className="bg-red-50 p-3 rounded-lg border border-red-200">
-                  <span className="text-red-700 font-bold block mb-1">অ্যাডমিন ফিডব্যাক (Rejection Note):</span>
-                  <p className="text-slate-700 italic">{selectedEnrollment.adminFeedback}</p>
-                </div>
-              )}
+              <div className="card-ice sm:col-span-2">
+                <span className="text-slate-500 block">আবেদিত কোর্স:</span>
+                <span className="font-bold text-[#0D47A1] text-sm">{selectedEnrollment.courseTitle}</span>
+              </div>
+              <div className="card-ice">
+                <span className="text-slate-500 block">ভাষাগত সক্ষমতা:</span>
+                <span className="font-medium text-slate-700">{selectedEnrollment.languagesUnderstood || "বাংলা, ইংরেজি"}</span>
+              </div>
+              <div className="card-ice">
+                <span className="text-slate-500 block">পছন্দের সময়সূচি:</span>
+                <span className="font-medium text-slate-700">{selectedEnrollment.preferredSchedule} (দিন: {selectedEnrollment.preferredDays})</span>
+              </div>
             </div>
 
-            <div className="flex justify-end gap-3 pt-2 border-t border-[#90CAF9]/40">
+            <div className="flex justify-end gap-3 pt-3 border-t border-[#90CAF9]/40">
               <button
                 onClick={() => setSelectedEnrollment(null)}
-                className="px-4 py-2 border border-[#90CAF9] text-xs font-bold text-slate-600 rounded-lg hover:bg-[#E3F2FD]"
+                className="btn-outline"
               >
                 বন্ধ করুন
               </button>
               {selectedEnrollment.status !== "approved" && (
                 <button
                   onClick={() => handleApprove(selectedEnrollment._id || selectedEnrollment.id)}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg"
+                  className="btn-primary"
                 >
                   অনুমোদন করুন (ID: 0401+)
                 </button>

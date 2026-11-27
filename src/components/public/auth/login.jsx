@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import { BookOpen, LogIn, Lock, Mail, User, GraduationCap, Zap } from "lucide-react";
-import { loginUser, setCurrentUser, DEMO_TEACHER, DEMO_STUDENT, initStore } from "@/lib/store";
+import { BookOpen, LogIn, Lock, Mail, User, GraduationCap, Zap, ShieldCheck, ShieldAlert } from "lucide-react";
+import { loginUser, setCurrentUser, DEMO_TEACHER, DEMO_STUDENT, DEMO_ADMIN, DEMO_SUPER_ADMIN, initStore } from "@/lib/store";
 import { siteConfig } from "@/config/siteConfig";
 
 export default function LoginComponent() {
@@ -33,10 +33,12 @@ export default function LoginComponent() {
       return;
     }
     const role = user.role?.toLowerCase();
-    if (role === "teacher") {
-      router.push("/dashboard/teacher");
+    if (role === "super_admin") {
+      router.push("/dashboard/super-admin");
     } else if (role === "admin") {
       router.push("/dashboard/admin");
+    } else if (role === "teacher") {
+      router.push("/dashboard/teacher");
     } else {
       router.push("/dashboard/student");
     }
@@ -70,7 +72,8 @@ export default function LoginComponent() {
   const handleQuickLogin = (demoUser) => {
     initStore();
     setCurrentUser(demoUser);
-    toast.success(`${demoUser.role === "teacher" ? "শিক্ষক" : "শিক্ষার্থী"} ডেমো হিসেবে লগইন সম্পন্ন!`);
+    const label = siteConfig.roleLabels?.[demoUser.role]?.bn || "ব্যবহারকারী";
+    toast.success(`${label} ডেমো হিসেবে লগইন সম্পন্ন!`);
     redirectAfterLogin(demoUser);
   };
 
@@ -90,7 +93,7 @@ export default function LoginComponent() {
           <p className="text-xs text-slate-600">
             {callbackUrl
               ? "কোর্সে আবেদন সম্পন্ন করতে অনুগ্রহ করে লগইন করুন"
-              : "শিক্ষক বা শিক্ষার্থী ড্যাশবোর্ডে প্রবেশ করতে লগইন করুন"}
+              : "শিক্ষক, অ্যাডমিন বা শিক্ষার্থী ড্যাশবোর্ডে প্রবেশ করতে লগইন করুন"}
           </p>
         </div>
 
@@ -105,19 +108,37 @@ export default function LoginComponent() {
             <button
               type="button"
               onClick={() => handleQuickLogin(DEMO_TEACHER)}
-              className="flex items-center justify-center gap-2 bg-white border border-[#90CAF9] hover:bg-[#0D47A1] hover:text-white text-[#0D47A1] p-2 rounded-lg text-xs font-bold transition shadow-2xs group cursor-pointer"
+              className="flex items-center justify-center gap-1.5 bg-white border border-[#90CAF9] hover:bg-[#0D47A1] hover:text-white text-[#0D47A1] p-2 rounded-lg text-xs font-bold transition shadow-2xs group cursor-pointer"
             >
-              <User className="w-4 h-4 text-[#2196F3] group-hover:text-white" />
+              <User className="w-3.5 h-3.5 text-[#2196F3] group-hover:text-white" />
               <span>শিক্ষক ডেমো</span>
             </button>
 
             <button
               type="button"
               onClick={() => handleQuickLogin(DEMO_STUDENT)}
-              className="flex items-center justify-center gap-2 bg-white border border-[#90CAF9] hover:bg-[#0D47A1] hover:text-white text-[#0D47A1] p-2 rounded-lg text-xs font-bold transition shadow-2xs group cursor-pointer"
+              className="flex items-center justify-center gap-1.5 bg-white border border-[#90CAF9] hover:bg-[#0D47A1] hover:text-white text-[#0D47A1] p-2 rounded-lg text-xs font-bold transition shadow-2xs group cursor-pointer"
             >
-              <GraduationCap className="w-4 h-4 text-[#2196F3] group-hover:text-white" />
+              <GraduationCap className="w-3.5 h-3.5 text-[#2196F3] group-hover:text-white" />
               <span>শিক্ষার্থী ডেমো</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleQuickLogin(DEMO_ADMIN)}
+              className="flex items-center justify-center gap-1.5 bg-white border border-amber-300 hover:bg-amber-600 hover:text-white text-amber-800 p-2 rounded-lg text-xs font-bold transition shadow-2xs group cursor-pointer"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-600 group-hover:text-white" />
+              <span>অ্যাডমিন ডেমো</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleQuickLogin(DEMO_SUPER_ADMIN)}
+              className="flex items-center justify-center gap-1.5 bg-white border border-purple-300 hover:bg-purple-700 hover:text-white text-purple-900 p-2 rounded-lg text-xs font-bold transition shadow-2xs group cursor-pointer"
+            >
+              <ShieldAlert className="w-3.5 h-3.5 text-purple-600 group-hover:text-white" />
+              <span>সুপার অ্যাডমিন</span>
             </button>
           </div>
         </div>

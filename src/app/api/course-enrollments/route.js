@@ -22,6 +22,7 @@ export async function GET(request) {
         { userEmail: { $regex: search, $options: "i" } },
         { courseTitle: { $regex: search, $options: "i" } },
         { studentId: { $regex: search, $options: "i" } },
+        { country: { $regex: search, $options: "i" } },
       ];
     }
 
@@ -56,6 +57,14 @@ export async function POST(request) {
       courseSlug,
       courseTitle,
       phone,
+      fatherName,
+      country,
+      whatsapp,
+      nationality,
+      dateOfBirth,
+      languagesUnderstood,
+      preferredSchedule,
+      preferredDays,
     } = body;
 
     if (!userEmail || !courseSlug) {
@@ -68,7 +77,7 @@ export async function POST(request) {
     const email = userEmail.toLowerCase().trim();
     const collection = getCourseEnrollmentsCollection();
 
-    // Check if active pending or approved enrollment exists
+    // Check if active pending or approved enrollment exists for this course
     const existing = await collection.findOne({
       userEmail: email,
       courseSlug,
@@ -102,9 +111,17 @@ export async function POST(request) {
       userId: userId || "",
       userName: userName ? userName.trim() : "শিক্ষার্থী",
       userEmail: email,
-      phone: phone ? phone.trim() : "",
+      phone: (whatsapp || phone || "").trim(),
       courseSlug: courseSlug.trim(),
       courseTitle: courseTitle ? courseTitle.trim() : courseSlug,
+      fatherName: fatherName ? fatherName.trim() : "",
+      country: country ? country.trim() : "বাংলাদেশ",
+      whatsapp: (whatsapp || phone || "").trim(),
+      nationality: nationality ? nationality.trim() : "বাংলাদেশী",
+      dateOfBirth: dateOfBirth || "",
+      languagesUnderstood: languagesUnderstood ? languagesUnderstood.trim() : "বাংলা",
+      preferredSchedule: preferredSchedule ? preferredSchedule.trim() : "",
+      preferredDays: preferredDays ? preferredDays.trim() : "",
       status: "pending",
       adminFeedback: "",
       appliedAt: new Date(),
@@ -116,7 +133,7 @@ export async function POST(request) {
     return NextResponse.json(
       {
         success: true,
-        message: "কোর্সে ভর্তির আবেদন সফলভাবে জমা হয়েছে। অ্যাডমিন প্যানেল পর্যালোচনা করে অনুমোদন প্রদান করবে।",
+        message: "কোর্সে ভর্তির আবেদন সফলভাবে জমা হয়েছে। অ্যাডমিন প্যানেল পর্যালোচনা করে শিক্ষার্থী আইডি সহ অনুমোদন প্রদান করবে।",
         enrollmentId: result.insertedId,
         enrollment: enrollmentDoc,
       },

@@ -5,21 +5,43 @@ import { siteConfig } from "@/config/siteConfig";
 // Pre-seeded demo accounts (derived from siteConfig)
 export const DEMO_TEACHER = {
   id: "teacher-1",
-  name: siteConfig.identity.founder.name,
-  email: `teacher@${siteConfig.identity.name.en.toLowerCase().replace(/[^a-z0-9]/g, "") || "madrasah"}.com`,
+  name: "মাওলানা ক্বারী লোকমান আল মাহমুদ",
+  email: `teacher@${siteConfig.identity.name.shortEn.toLowerCase().replace(/[^a-z0-9]/g, "") || "qurankanan"}.com`,
   role: "teacher",
   password: "password123",
-  title: siteConfig.identity.founder.role,
+  title: "প্রধান প্রশিক্ষক ও আন্তর্জাতিক ক্বারী",
+  teacherId: "0202",
   phone: siteConfig.contact.phone,
 };
 
 export const DEMO_STUDENT = {
   id: "student-1",
   name: "মুহাম্মদ আব্দুল্লাহ",
-  email: `student@${siteConfig.identity.name.en.toLowerCase().replace(/[^a-z0-9]/g, "") || "madrasah"}.com`,
+  email: `student@${siteConfig.identity.name.shortEn.toLowerCase().replace(/[^a-z0-9]/g, "") || "qurankanan"}.com`,
   role: "student",
   password: "password123",
+  studentId: "0401",
   phone: "01812345678",
+};
+
+export const DEMO_ADMIN = {
+  id: "admin-1",
+  name: "মুহাম্মদ সাইফুল ইসলাম",
+  email: `admin@${siteConfig.identity.name.shortEn.toLowerCase().replace(/[^a-z0-9]/g, "") || "qurankanan"}.com`,
+  role: "admin",
+  password: "password123",
+  title: "প্রধান সমন্বয়ক ও অ্যাডমিন",
+  phone: siteConfig.contact.phone,
+};
+
+export const DEMO_SUPER_ADMIN = {
+  id: "superadmin-1",
+  name: "হাফেজ ক্বারী আব্দুল কাদের",
+  email: `superadmin@${siteConfig.identity.name.shortEn.toLowerCase().replace(/[^a-z0-9]/g, "") || "qurankanan"}.com`,
+  role: "super_admin",
+  password: "password123",
+  title: "মহাপরিচালক ও সুপার অ্যাডমিন",
+  phone: siteConfig.contact.phone,
 };
 
 // Initial default courses strictly derived from siteConfig.courses
@@ -33,7 +55,7 @@ const INITIAL_COURSES = siteConfig.courses.map((c, idx) => ({
   fee: c.fee,
   seats: 15,
   enrolledCount: 10,
-  level: c.titleEn,
+  level: c.level,
   badge: c.badge || "অনলাইন লাইভ",
   description: c.shortDesc,
   createdAt: "2026-01-10",
@@ -43,22 +65,22 @@ const INITIAL_COURSES = siteConfig.courses.map((c, idx) => ({
 const INITIAL_ASSIGNMENTS = [
   {
     id: "assign-1",
-    courseId: "course-1",
-    courseTitle: "আম্মা-পারা নাযেরা ও তাজবীদ কোর্স",
-    title: "সূরা আন-নাবা ১-১০ আয়াতের মাখরাজ রেকর্ড ও জমা",
+    courseId: siteConfig.courses[0]?.slug || "quran-foundations",
+    courseTitle: siteConfig.courses[0]?.titleBn || "Quran Reading Foundations",
+    title: "আরবি হরফের মাখরাজ উচ্চারণ রেকর্ড ও সাবমিট",
     dueDate: "2026-12-05",
     totalMarks: 20,
-    instructions: "১-১০ আয়াতের স্পষ্ট অডিও বা ভিডিও রেকর্ড করে জমা দিন। হরফের সিফাত ও গুন্নাহর দিকে খেয়াল রাখুন।",
+    instructions: "হলক ও জিহ্বার মাখরাজসমূহ স্পষ্ট অডিও রেকর্ড করে গুগল ড্রাইভ লিংক জমা দিন।",
     createdAt: "2026-11-20",
   },
   {
     id: "assign-2",
-    courseId: "course-1",
-    courseTitle: "আম্মা-পারা নাযেরা ও তাজবীদ কোর্স",
-    title: "নূন সাকিন ও তানভীনের ৪টি নিয়মের সারসংক্ষেপ",
+    courseId: siteConfig.courses[1]?.slug || "recitation-tajweed",
+    courseTitle: siteConfig.courses[1]?.titleBn || "Quran Recitation & Tajweed",
+    title: "সূরা নাবার প্রথম ১০ আয়াতের তাজবীদ মাশক",
     dueDate: "2026-12-10",
-    totalMarks: 15,
-    instructions: "ইযহার, ইদগাম, ইকলাব ও ইখফার সংজ্ঞা ও উদাহরণ খাতায় লিখে জমা দিন।",
+    totalMarks: 20,
+    instructions: "মাদ ও গুন্নাহর নিয়ম ঠিক রেখে তিলাওয়াতের অডিও জমা দিন।",
     createdAt: "2026-11-22",
   },
 ];
@@ -70,11 +92,11 @@ const INITIAL_ENROLLMENTS = [
     studentId: "student-1",
     studentName: DEMO_STUDENT.name,
     studentEmail: DEMO_STUDENT.email,
-    courseId: siteConfig.courses[0]?.slug || "nurani",
-    courseTitle: siteConfig.courses[0]?.titleBn || "নূরানী বিভাগ",
+    courseId: siteConfig.courses[0]?.slug || "quran-foundations",
+    courseTitle: siteConfig.courses[0]?.titleBn || "Quran Reading Foundations",
     teacherName: DEMO_TEACHER.name,
     enrolledAt: "2026-02-15",
-    progress: 60,
+    progress: 75,
   },
 ];
 
@@ -83,15 +105,30 @@ const INITIAL_SUBMISSIONS = [
   {
     id: "sub-1",
     assignmentId: "assign-1",
-    assignmentTitle: "সূরা আন-নাবা ১-১০ আয়াতের মাখরাজ রেকর্ড ও জমা",
+    assignmentTitle: "আরবি হরফের মাখরাজ উচ্চারণ রেকর্ড ও সাবমিট",
     studentId: "student-1",
     studentName: DEMO_STUDENT.name,
     studentEmail: DEMO_STUDENT.email,
-    courseId: siteConfig.courses[0]?.slug || "nurani",
+    courseId: siteConfig.courses[0]?.slug || "quran-foundations",
     submittedAt: "2026-11-23",
     status: "graded",
-    grade: "১৮/২০",
-    note: "মাশাল্লাহ, তিলাওয়াত চমৎকার হয়েছে। ইখফার গুন্নাহ আরো স্পষ্ট করবেন।",
+    grade: "১৯/২০",
+    note: "মাশাল্লাহ, হরফের সিফাত ও মাখরাজ সঠিক হয়েছে। নিয়মিত মাশক জারি রাখুন।",
+  },
+];
+
+// Initial demo attendance records
+const INITIAL_ATTENDANCE = [
+  {
+    id: "att-1",
+    courseSlug: siteConfig.courses[0]?.slug || "quran-foundations",
+    courseTitle: siteConfig.courses[0]?.titleBn,
+    date: new Date().toISOString().split("T")[0],
+    teacherId: "teacher-1",
+    lessonTopic: "হরকত ও তানভীনের মাশক",
+    records: [
+      { studentId: "0401", studentName: DEMO_STUDENT.name, studentEmail: DEMO_STUDENT.email, status: "present" },
+    ],
   },
 ];
 
@@ -121,7 +158,7 @@ export function initStore() {
   if (typeof window === "undefined") return;
 
   if (!localStorage.getItem("qk_users")) {
-    setStoredData("qk_users", [DEMO_TEACHER, DEMO_STUDENT]);
+    setStoredData("qk_users", [DEMO_SUPER_ADMIN, DEMO_ADMIN, DEMO_TEACHER, DEMO_STUDENT]);
   }
   if (!localStorage.getItem("qk_courses")) {
     setStoredData("qk_courses", INITIAL_COURSES);
@@ -135,6 +172,9 @@ export function initStore() {
   if (!localStorage.getItem("qk_submissions")) {
     setStoredData("qk_submissions", INITIAL_SUBMISSIONS);
   }
+  if (!localStorage.getItem("qk_attendance")) {
+    setStoredData("qk_attendance", INITIAL_ATTENDANCE);
+  }
 }
 
 // Auth API
@@ -144,6 +184,24 @@ export function getCurrentUser() {
 
 export function setCurrentUser(user) {
   setStoredData("qk_current_user", user);
+  if (typeof document !== "undefined") {
+    if (user) {
+      const roleStr = encodeURIComponent(user.role || "student");
+      const userPayload = encodeURIComponent(
+        JSON.stringify({
+          id: user.id || user._id,
+          role: user.role || "student",
+          email: user.email,
+          name: user.name,
+        })
+      );
+      document.cookie = `qk_role=${roleStr}; path=/; max-age=604800; SameSite=Lax`;
+      document.cookie = `qk_user=${userPayload}; path=/; max-age=604800; SameSite=Lax`;
+    } else {
+      document.cookie = "qk_role=; path=/; max-age=0; SameSite=Lax";
+      document.cookie = "qk_user=; path=/; max-age=0; SameSite=Lax";
+    }
+  }
 }
 
 export async function registerUser({ name, email, password, role }) {
@@ -157,8 +215,7 @@ export async function registerUser({ name, email, password, role }) {
     const data = await res.json().catch(() => ({}));
 
     if (res.ok && data.success) {
-      // Keep local store in sync with registered account
-      const users = getStoredData("qk_users", [DEMO_TEACHER, DEMO_STUDENT]);
+      const users = getStoredData("qk_users", [DEMO_SUPER_ADMIN, DEMO_ADMIN, DEMO_TEACHER, DEMO_STUDENT]);
       users.push({
         id: data.user?.id || `user-${Date.now()}`,
         name: name.trim(),
@@ -213,6 +270,10 @@ export async function loginUser(email, password) {
 export function logoutUser() {
   if (typeof window !== "undefined") {
     localStorage.removeItem("qk_current_user");
+    if (typeof document !== "undefined") {
+      document.cookie = "qk_role=; path=/; max-age=0; SameSite=Lax";
+      document.cookie = "qk_user=; path=/; max-age=0; SameSite=Lax";
+    }
     window.dispatchEvent(new Event("storage"));
   }
 }
@@ -262,43 +323,6 @@ export function getEnrollments() {
   return getStoredData("qk_enrollments", INITIAL_ENROLLMENTS);
 }
 
-export function enrollStudent(student, course) {
-  const enrollments = getEnrollments();
-  const already = enrollments.find(
-    (e) => e.studentId === student.id && e.courseId === course.id
-  );
-  if (already) {
-    return { success: false, message: "আপনি ইতিমধ্যে এই কোর্সে তালিকাভুক্ত আছেন।" };
-  }
-
-  const newEnrollment = {
-    id: `enroll-${Date.now()}`,
-    studentId: student.id,
-    studentName: student.name,
-    studentEmail: student.email,
-    courseId: course.id,
-    courseTitle: course.title,
-    teacherName: course.teacherName || siteConfig.identity.founder.name,
-    enrolledAt: new Date().toISOString().split("T")[0],
-    progress: 10,
-  };
-
-  enrollments.unshift(newEnrollment);
-  setStoredData("qk_enrollments", enrollments);
-
-  // Update course enrolledCount
-  const courses = getCourses();
-  const updatedCourses = courses.map((c) => {
-    if (c.id === course.id) {
-      return { ...c, enrolledCount: (c.enrolledCount || 0) + 1 };
-    }
-    return c;
-  });
-  setStoredData("qk_courses", updatedCourses);
-
-  return { success: true, enrollment: newEnrollment };
-}
-
 // Submissions API
 export function getSubmissions() {
   return getStoredData("qk_submissions", INITIAL_SUBMISSIONS);
@@ -346,4 +370,63 @@ export function gradeSubmission(submissionId, grade, feedback) {
     return s;
   });
   setStoredData("qk_submissions", updated);
+}
+
+// Attendance API (Local fallback)
+export function getAttendanceRecords() {
+  return getStoredData("qk_attendance", INITIAL_ATTENDANCE);
+}
+
+export function saveAttendanceRecord(record) {
+  const list = getAttendanceRecords();
+  const newRecord = {
+    ...record,
+    id: `att-${Date.now()}`,
+    createdAt: new Date().toISOString(),
+  };
+  list.unshift(newRecord);
+  setStoredData("qk_attendance", list);
+  return newRecord;
+}
+
+// Monthly Verified Reports (Local fallback)
+export function getMonthlyReports(studentEmail) {
+  const list = getStoredData("qk_monthly_reports", [
+    {
+      id: "report-1",
+      studentId: "0401",
+      studentName: DEMO_STUDENT.name,
+      studentEmail: DEMO_STUDENT.email,
+      month: "মার্চ ২০২৬",
+      courseTitle: siteConfig.courses[0]?.titleBn || "কুরআন রিডিং ফাউন্ডেশন",
+      totalClasses: 12,
+      attendedClasses: 11,
+      attendanceRate: "92%",
+      punctualityStatus: "সময়নিষ্ঠ",
+      tajweedAccuracy: "৯৪% (মাখরাজ ও গুন্নাহ চমৎকার)",
+      hifzRevision: "সূরা আল-মুলক নির্ভুল তিলাওয়াত",
+      homeworkScore: "১৯ / ২০ (A+)",
+      overallGrade: "মুমতায (A+)",
+      teacherRemarks: "মাশাল্লাহ! ছাত্র অত্যন্ত নিয়মিত ও মনোযোগী। মাখরাজের উচ্চারণ অনেক পরিষ্কার হয়েছে।",
+      teacherName: siteConfig.identity.founder.name,
+      verifiedBy: "পরীক্ষা ও পাঠদান সেল",
+      issuedAt: new Date().toISOString().split("T")[0],
+      verificationSeal: true,
+    },
+  ]);
+  if (!studentEmail) return list;
+  return list.filter((r) => r.studentEmail?.toLowerCase() === studentEmail.toLowerCase());
+}
+
+export function saveMonthlyReport(report) {
+  const list = getMonthlyReports();
+  const newReport = {
+    ...report,
+    id: `report-${Date.now()}`,
+    issuedAt: new Date().toISOString().split("T")[0],
+    verificationSeal: true,
+  };
+  list.unshift(newReport);
+  setStoredData("qk_monthly_reports", list);
+  return newReport;
 }

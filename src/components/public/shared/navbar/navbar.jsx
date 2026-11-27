@@ -34,13 +34,13 @@ export default function Navbar() {
     };
   }, []);
 
-  // Removed standalone FAQ link, replaced with Career link
   const navLinks = [
-    { name: "কোর্স", href: "/courses" },
+    { name: "কোর্সসমূহ", href: "/courses" },
     { name: "ই-বুক", href: "/ebooks" },
     { name: "পরিচিতি", href: "/about" },
-    { name: "ক্যারিয়ার", href: "/career" },
-    { name: "ডোনেশন", href: "/donation" },
+    { name: "শিক্ষক আবেদন", href: "/career" },
+    { name: "সাদাকাহ", href: "/donation" },
+    { name: "যোগাযোগ", href: "/contact" },
   ];
 
   const userRole = user?.role?.toLowerCase() || "student";
@@ -60,8 +60,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#90CAF9]/50 transition-all duration-200 ${isScrolled ? "shadow-sm py-2.5" : "py-3"
-        }`}
+      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#90CAF9]/50 transition-all duration-200 ${
+        isScrolled ? "shadow-sm py-2" : "py-3"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -71,27 +72,28 @@ export default function Navbar() {
               <BookOpen className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-base sm:text-lg text-[#0D47A1] tracking-tight leading-tight">
-                {siteConfig.identity.name.bn}
+              <span className="font-extrabold text-sm sm:text-base text-[#0D47A1] tracking-tight leading-tight">
+                {siteConfig.identity.name.shortBn}
               </span>
-              <span className="text-[11px] font-semibold text-[#2196F3] -mt-0.5 tracking-wide hidden sm:block">
-                {siteConfig.identity.subtitle.bn}
+              <span className="text-[10px] font-semibold text-[#2196F3] tracking-wide hidden sm:block">
+                {siteConfig.identity.name.shortEn} • {siteConfig.presence.serviceArea}
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-bold transition-colors duration-150 relative py-1 ${isActive
+                  className={`text-xs sm:text-sm font-bold transition-colors duration-150 relative py-1 ${
+                    isActive
                       ? "text-[#2196F3]"
                       : "text-[#0D47A1] hover:text-[#2196F3]"
-                    }`}
+                  }`}
                 >
                   {link.name}
                   {isActive && (
@@ -103,7 +105,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Controls */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3.5">
             {/* Language Switcher Pill */}
             <button
               onClick={() => setLang(lang === "bn" ? "en" : "bn")}
@@ -119,9 +121,9 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Link
                   href={getDashboardLink()}
-                  className="flex items-center gap-1.5 bg-[#0D47A1] hover:bg-[#0a3880] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-xs transition duration-150"
+                  className="btn-primary"
                 >
-                  <LayoutDashboard className="w-4 h-4" />
+                  <LayoutDashboard className="w-3.5 h-3.5" />
                   <span>ড্যাশবোর্ড ({user.role})</span>
                 </Link>
                 <button
@@ -136,14 +138,14 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/login"
-                  className="flex items-center gap-1.5 bg-[#0D47A1] hover:bg-[#0a3880] text-white text-xs font-bold px-4 py-2 rounded-lg shadow-xs transition duration-150"
+                  className="btn-primary"
                 >
-                  <LogIn className="w-4 h-4" />
+                  <LogIn className="w-3.5 h-3.5" />
                   <span>লগইন</span>
                 </Link>
                 <Link
                   href="/register"
-                  className="border border-[#0D47A1] text-[#0D47A1] hover:bg-[#E3F2FD] text-xs font-bold px-3 py-2 rounded-lg transition"
+                  className="btn-outline"
                 >
                   রেজিস্টার
                 </Link>
@@ -187,10 +189,11 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-lg text-sm font-bold ${pathname === link.href
+                className={`block px-3 py-2 rounded-lg text-sm font-bold ${
+                  pathname === link.href
                     ? "bg-[#E3F2FD] text-[#2196F3]"
                     : "text-[#0D47A1] hover:bg-[#E3F2FD]/50"
-                  }`}
+                }`}
               >
                 {link.name}
               </Link>
