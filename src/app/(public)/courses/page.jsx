@@ -39,6 +39,11 @@ export default function CoursesPage() {
         <p className="page-subtitle-muted">
           ৪৫ মিনিটের ১-অন-১ লাইভ ক্লাসে আন্তর্জাতিক সনদপ্রাপ্ত শিক্ষকদের সরাসরি তত্ত্বাবধানে সহীহ কুরআন শিক্ষা
         </p>
+        <div className="mt-3 flex items-center justify-center gap-2 text-xs font-bold text-[#2196F3] font-bornomala">
+          <Link href="/policies#admission" className="hover:underline hover:text-[#0D47A1] inline-flex items-center gap-1 bg-[#E3F2FD] border border-[#90CAF9]/60 px-3 py-1 rounded-full">
+            <span>কোর্সে আবেদনের পূর্বে প্রাতিষ্ঠানিক ভর্তি নীতিমালা ও শিক্ষার্থীদের আচরণবিধি দেখুন →</span>
+          </Link>
+        </div>
       </div>
 
       {/* Filter and Search Bar */}

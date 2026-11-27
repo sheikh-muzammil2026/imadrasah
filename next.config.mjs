@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  /* Turbopack configuration to allow Next.js 16 default Turbopack with custom webpack fallback */
+  turbopack: {},
   images: {
     remotePatterns: [
       {

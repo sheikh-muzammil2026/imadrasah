@@ -104,9 +104,9 @@ export const siteConfig = {
     {
       id: "quran-foundations",
       slug: "quran-foundations",
-      titleBn: "Quran Reading Foundations (কুরআন পাঠের ভিত্তি)",
+      titleBn: "কুরআন পাঠের ভিত্তি",
       titleEn: "Quran Reading Foundations",
-      department: "কুরআন শিক্ষা বিভাগ (Quran Studies)",
+      department: "কুরআন শিক্ষা বিভাগ",
       badge: "অনলাইন লাইভ • প্রাথমিক স্তর",
       level: "Beginner",
       classDuration: "৪৫ মিনিট",
@@ -150,9 +150,9 @@ export const siteConfig = {
     {
       id: "recitation-tajweed",
       slug: "recitation-tajweed",
-      titleBn: "Quran Recitation & Tajweed (কুরআন তিলাওয়াত ও তাজবিদ)",
+      titleBn: "কুরআন তিলাওয়াত ও তাজবিদ",
       titleEn: "Quran Recitation & Tajweed",
-      department: "কুরআন শিক্ষা বিভাগ (Quran Studies)",
+      department: "কুরআন শিক্ষা বিভাগ",
       badge: "অনলাইন লাইভ • মধ্যম স্তর",
       level: "Intermediate",
       classDuration: "৪৫ মিনিট",
@@ -195,9 +195,9 @@ export const siteConfig = {
     {
       id: "quran-hifz",
       slug: "quran-hifz",
-      titleBn: "Quran Memorization Program (হিফজুল কুরআন কর্মসূচি)",
+      titleBn: "হিফজুল কুরআন কর্মসূচি",
       titleEn: "Quran Memorization Program (Hifz)",
-      department: "হিফজুল কুরআন বিভাগ (Hifz Studies)",
+      department: "হিফজুল কুরআন বিভাগ",
       badge: "দৈনিক ১-অন-১ লাইভ • অ্যাডভান্সড",
       level: "Personalized",
       classDuration: "৪৫ মিনিট",
@@ -239,81 +239,82 @@ export const siteConfig = {
     },
   ],
 
-  // 6 Academic Departments from doc Section 07
+  // 6 Academic Departments from doc Section 07 (Pure Bengali)
+  departmentsIntro: "Quran Kanan-এ ইসলামিক জ্ঞানের বিভিন্ন শাখায় সুশৃঙ্খল শিক্ষাব্যবস্থা গড়ে তোলার লক্ষ্যে নিম্নলিখিত বিভাগসমূহ পরিচালনার পরিকল্পনা রয়েছে।",
   departments: [
     {
       id: "dept-quran",
-      nameBn: "Department of Quran Studies (কুরআন শিক্ষা বিভাগ)",
+      nameBn: "কুরআন শিক্ষা বিভাগ",
       nameEn: "Department of Quran Studies",
-      topics: ["Quran Reading", "Tajweed", "Hifz-ul-Quran", "Tafsir", "Ulum al-Quran"],
+      topics: ["কুরআন পাঠ", "তাজবিদ", "হিফজুল কুরআন", "তাফসির", "উলুমুল কুরআন"],
     },
     {
       id: "dept-hadith",
-      nameBn: "Department of Hadith Studies (হাদিস শিক্ষা বিভাগ)",
+      nameBn: "হাদিস শিক্ষা বিভাগ",
       nameEn: "Department of Hadith Studies",
-      topics: ["Hadith Studies", "Selected Hadith Collections", "Usul al-Hadith", "Hadith Explanation"],
+      topics: ["হাদিস অধ্যয়ন", "নির্বাচিত হাদিস সংকলন", "উসুলুল হাদিস", "হাদিসের ব্যাখ্যা ও বিশ্লেষণ"],
     },
     {
       id: "dept-arabic",
-      nameBn: "Department of Arabic Language (আরবি ভাষা বিভাগ)",
+      nameBn: "আরবি ভাষা বিভাগ",
       nameEn: "Department of Arabic Language",
-      topics: ["Arabic Grammar (Nahw)", "Arabic Morphology (Sarf)", "Arabic Conversation", "Arabic Reading & Writing"],
+      topics: ["আরবি ব্যাকরণ (নাহু)", "আরবি রূপতত্ত্ব (ছরফ)", "আরবি কথোপকথন", "আরবি পঠন ও লিখন"],
     },
     {
       id: "dept-fiqh",
-      nameBn: "Department of Islamic Jurisprudence (ইসলামিক ফিকহ বিভাগ)",
+      nameBn: "ইসলামী আইন ও ফিকহ বিভাগ",
       nameEn: "Department of Islamic Jurisprudence",
-      topics: ["Fiqh", "Usul al-Fiqh", "Islamic Aqidah", "Contemporary Fiqh Studies"],
+      topics: ["ফিকহ", "উসুলুল ফিকহ", "ইসলামী আকিদা", "সমসাময়িক ফিকহ অধ্যয়ন"],
     },
     {
       id: "dept-studies",
-      nameBn: "Department of Islamic Studies (ইসলামিক স্টাডিজ বিভাগ)",
+      nameBn: "ইসলামিক স্টাডিজ বিভাগ",
       nameEn: "Department of Islamic Studies",
-      topics: ["Seerah", "Islamic History", "Islamic Civilization", "Islamic Ethics", "Dawah Studies"],
+      topics: ["সিরাতুন্নবী ﷺ", "ইসলামের ইতিহাস", "ইসলামী সভ্যতা ও সংস্কৃতি", "ইসলামী নীতিশাস্ত্র ও আখলাক", "দাওয়াহ অধ্যয়ন"],
     },
     {
       id: "dept-research",
-      nameBn: "Department of Research & Publications (গবেষণা ও প্রকাশনা বিভাগ)",
+      nameBn: "গবেষণা ও প্রকাশনা বিভাগ",
       nameEn: "Department of Research & Publications",
-      topics: ["Islamic Research", "Academic Writing", "Research Publications", "Digital Islamic Library"],
+      topics: ["ইসলামিক গবেষণা", "একাডেমিক রচনা ও প্রবন্ধ", "গবেষণা প্রকাশনা", "ডিজিটাল ইসলামিক লাইব্রেরি"],
     },
   ],
 
-  // 7 Educational Programs from doc Section 08
+  // 7 Educational Programs from doc Section 08 (Pure Bengali)
   programs: [
     {
       id: "prog-kids",
-      titleBn: "Kids Islamic Education Program",
+      titleBn: "শিশু ইসলামিক শিক্ষা কর্মসূচি",
       descBn: "শিশুদের জন্য কুরআন শিক্ষা, ছোট সূরা, প্রয়োজনীয় দোয়া, নামাজ, ইসলামী আদব ও মৌলিক আকিদা শিক্ষা।",
     },
     {
       id: "prog-junior",
-      titleBn: "Junior Islamic Education Program",
+      titleBn: "কিশোর ইসলামিক শিক্ষা কর্মসূচি",
       descBn: "কিশোর-কিশোরীদের জন্য কুরআন, তাজবিদ, আকিদা, ফিকহ, সিরাত ও মৌলিক ইসলামিক জ্ঞান।",
     },
     {
       id: "prog-youth",
-      titleBn: "Youth Islamic Studies Program",
+      titleBn: "তরুণ ইসলামিক স্টাডিজ কর্মসূচি",
       descBn: "তরুণ শিক্ষার্থীদের জন্য তুলনামূলক গভীর ইসলামিক শিক্ষা, আরবি ভাষা, হাদিস, ফিকহ ও সমসাময়িক বিষয়াবলি।",
     },
     {
       id: "prog-adult",
-      titleBn: "Adult Islamic Learning Program",
+      titleBn: "প্রাপ্তবয়স্ক ইসলামিক শিক্ষা কর্মসূচি",
       descBn: "প্রাপ্তবয়স্কদের জন্য প্রয়োজনভিত্তিক ইসলামিক শিক্ষা, কুরআন পাঠ, তাজবিদ, দৈনন্দিন মাসআলা ও জ্ঞানচর্চা।",
     },
     {
       id: "prog-advanced",
-      titleBn: "Advanced Islamic Studies Program",
+      titleBn: "উচ্চতর ইসলামিক শিক্ষা কর্মসূচি",
       descBn: "যোগ্য ও প্রস্তুত শিক্ষার্থীদের জন্য তাফসির, হাদিস, ফিকহ, উসুল ও অন্যান্য উচ্চতর ইসলামিক বিষয়ে অধ্যয়ন।",
     },
     {
       id: "prog-arabic",
-      titleBn: "Arabic Language Program",
+      titleBn: "আরবি ভাষা শিক্ষা কর্মসূচি",
       descBn: "আরবি ভাষা শেখার জন্য প্রাথমিক, মধ্যম ও উচ্চতর পর্যায়ের পৃথক শিক্ষাকার্যক্রম।",
     },
     {
       id: "prog-special",
-      titleBn: "Special Courses & Workshops",
+      titleBn: "বিশেষ কোর্স ও কর্মশালা",
       descBn: "নির্দিষ্ট বিষয়ভিত্তিক স্বল্পমেয়াদি কোর্স, সেমিনার, ওয়েবিনার ও প্রশিক্ষণ কর্মসূচি।",
     },
   ],
@@ -331,31 +332,32 @@ export const siteConfig = {
   ],
 
   // Global Teacher Qualification Options from doc
+  // Teacher Educational Qualifications from doc (Pure Bengali)
   teacherQualifications: [
-    "Primary / Elementary Education",
-    "Secondary School Certificate",
-    "Higher Secondary / High School Diploma",
-    "Bachelor's Degree",
-    "Master's Degree",
-    "Doctoral Degree (PhD)",
-    "Traditional Islamic Studies (দাওরায়ে হাদীস / কওমি মাদরাসা)",
-    "Advanced Islamic Scholarship (মুফতি / উচ্চতর উলুম)",
-    "Specialized Islamic Certification",
-    "Ijazah / Sanad in Quran, Hadith or other Islamic Sciences",
-    "Other Relevant Qualifications",
+    "প্রাথমিক শিক্ষা",
+    "মাধ্যমিক / এসএসসি সমমান",
+    "উচ্চ মাধ্যমিক / এইচএসসি সমমান",
+    "স্নাতক (ব্যাচেলর)",
+    "স্নাতকোত্তর (মাস্টার্স)",
+    "পিএইচডি / ডক্টরেট",
+    "দাওরায়ে হাদীস (কওমি মাদরাসা)",
+    "মুফতি / উচ্চতর উলুম",
+    "বিশেষায়িত ইসলামিক সার্টিফিকেশন",
+    "কুরআন, হাদিস বা ইসলামিক শাস্ত্রে ইজাযত / সনদ",
+    "অন্যান্য প্রাসঙ্গিক যোগ্যতা",
   ],
 
-  // Relevant Fields of Study from doc
+  // Relevant Fields of Study from doc (Pure Bengali)
   fieldsOfStudy: [
-    "Quranic Studies (কুরআন ও কিরাত)",
-    "Hadith Studies (হাদিস শাস্ত্র)",
-    "Islamic Jurisprudence (Fiqh - ফিকহ)",
-    "Islamic Theology (Aqidah - আকিদা)",
-    "Arabic Language & Literature (আরবি ভাষা ও সাহিত্য)",
-    "Islamic Studies (ইসলামিক স্টাডিজ)",
-    "Shariah Studies (শরিয়াহ শাস্ত্র)",
-    "Education & Teaching (শিক্ষা ও শিক্ষাদান)",
-    "Other Relevant Fields (অন্যান্য)",
+    "কুরআন ও কিরাত",
+    "হাদিস শাস্ত্র",
+    "ইসলামী ফিকহ",
+    "ইসলামী আকিদা",
+    "আরবি ভাষা ও সাহিত্য",
+    "ইসলামিক স্টাডিজ",
+    "শরিয়াহ শাস্ত্র",
+    "শিক্ষা ও শিক্ষাদান",
+    "অন্যান্য প্রাসঙ্গিক ক্ষেত্র",
   ],
 
   // Teacher Readiness Questionnaire Config from doc
@@ -409,6 +411,179 @@ export const siteConfig = {
       "হ্যাঁ",
       "না",
       "প্রয়োজনীয় দিকনির্দেশনা পেলে পারব।",
+    ],
+  },
+
+  // Teacher Recruitment Policy (Doc verbatim specification)
+  teacherRecruitmentPolicy: {
+    titleEn: "Teacher Recruitment Policy",
+    titleBn: "শিক্ষক নিয়োগনীতি",
+    badge: "নিয়োগ নীতিমালা",
+    leadStatement: "Quran Kanan বিশ্বাস করে, একটি মানসম্মত শিক্ষাপ্রতিষ্ঠানের অন্যতম প্রধান ভিত্তি হলো যোগ্য, দক্ষ, আমানতদার ও দায়িত্বশীল শিক্ষক।",
+    leadIn: "শিক্ষক নিয়োগের ক্ষেত্রে নিম্নলিখিত বিষয়গুলো গুরুত্ব পাবে—",
+    points: [
+      {
+        id: 1,
+        numBn: "১",
+        text: "সংশ্লিষ্ট বিষয়ে প্রয়োজনীয় ইসলামিক ও একাডেমিক যোগ্যতা।",
+      },
+      {
+        id: 2,
+        numBn: "২",
+        text: "নির্ভরযোগ্য শিক্ষাপ্রতিষ্ঠানে অধ্যয়ন ও শিক্ষাগত অভিজ্ঞতা।",
+      },
+      {
+        id: 3,
+        numBn: "৩",
+        text: "পাঠদানের দক্ষতা ও বিষয়বস্তুর যথাযথ অনুধাবন।",
+      },
+      {
+        id: 4,
+        numBn: "৪",
+        text: "উত্তম আখলাক, দায়িত্বশীলতা ও পেশাগত শৃঙ্খলা।",
+      },
+      {
+        id: 5,
+        numBn: "৫",
+        text: "শিক্ষার্থীদের সঙ্গে সুন্দর ও সম্মানজনক আচরণ।",
+      },
+      {
+        id: 6,
+        numBn: "৬",
+        text: "অনলাইন শিক্ষাদানে প্রয়োজনীয় প্রযুক্তিগত দক্ষতা, ডিভাইসের পাশাপাশি ভালো নেট রাখতে হবে।",
+      },
+      {
+        id: 7,
+        numBn: "৭",
+        text: "ইংরেজি, আরবি অথবা বাংলা ভাষায় পাঠদানের সক্ষমতা, সংশ্লিষ্ট পদের প্রয়োজন অনুযায়ী।",
+      },
+      {
+        id: 8,
+        numBn: "৮",
+        text: "শিশুদের শিক্ষাদানের ক্ষেত্রে বিশেষ প্রশিক্ষণ ও নিরাপত্তাবিষয়ক নীতিমালা অনুসরণ।",
+      },
+      {
+        id: 9,
+        numBn: "৯",
+        text: "শিক্ষকদের কাজের মান নিয়মিত পর্যালোচনা ও প্রয়োজনীয় প্রশিক্ষণের ব্যবস্থা।",
+      },
+      {
+        id: 10,
+        numBn: "১০",
+        text: "কর্তৃপক্ষের প্রোগ্রাম ও মিটিং যথাসময়ে উপস্থিত থাকতে হবে।",
+      },
+    ],
+  },
+
+  // 1. Admission Policy (Doc verbatim specification)
+  admissionPolicy: {
+    headingEn: "Admission Policy",
+    headingBn: "ভর্তি নীতিমালা",
+    badge: "ভর্তি নির্দেশিকা",
+    intro: "Quran Kanan-এ শিক্ষার্থীদের জন্য একটি সহজ, স্বচ্ছ ও সুশৃঙ্খল ভর্তি ব্যবস্থা গড়ে তোলা হবে।",
+    points: [
+      {
+        id: 1,
+        numBn: "১",
+        text: "নির্ধারিত ভর্তি ফরম পূরণের মাধ্যমে শিক্ষার্থীরা আবেদন করতে পারবে।",
+      },
+      {
+        id: 2,
+        numBn: "২",
+        text: "শিক্ষার্থীর বয়স, পূর্ববর্তী শিক্ষাগত যোগ্যতা ও কোর্সের ধরন অনুযায়ী ভর্তি বিবেচনা করা হবে।",
+      },
+      {
+        id: 3,
+        numBn: "৩",
+        text: "প্রয়োজন অনুযায়ী শিক্ষার্থীর প্রাথমিক জ্ঞান যাচাইয়ের ব্যবস্থা থাকবে।",
+      },
+      {
+        id: 4,
+        numBn: "৪",
+        text: "শিক্ষার্থীরা ইংরেজি, আরবি ও বাংলা ভাষার উপযুক্ত ব্যাচ নির্বাচন করতে পারবে।",
+      },
+      {
+        id: 5,
+        numBn: "৫",
+        text: "প্রতিটি কোর্সের ভর্তি যোগ্যতা, মেয়াদ, ক্লাসের সময়সূচি ও ফি আগেই প্রকাশ করা হবে।",
+      },
+      {
+        id: 6,
+        numBn: "৬",
+        text: "ভর্তির আগে শিক্ষার্থী ও অভিভাবকদের প্রয়োজনীয় নিয়মাবলি সম্পর্কে অবহিত করা হবে।",
+      },
+      {
+        id: 7,
+        numBn: "৭",
+        text: "শিশুদের ভর্তির ক্ষেত্রে অভিভাবকের সম্মতি গ্রহণ করা হবে।",
+      },
+      {
+        id: 8,
+        numBn: "৮",
+        text: "ভর্তি ও শিক্ষাসংক্রান্ত যাবতীয় তথ্য যথাযথভাবে সংরক্ষণ করা হবে।",
+      },
+    ],
+  },
+
+  // 2. Student Code of Conduct (Doc Section 12 verbatim specification)
+  studentCodeOfConduct: {
+    headingEn: "Student Code of Conduct",
+    headingBn: "শিক্ষার্থীদের আচরণবিধি",
+    sectionNumber: "12",
+    tag: "শিক্ষার্থীদের আচরণবিধি",
+    badge: "আচরণবিধি",
+    intro: "Quran Kanan-এর প্রতিটি শিক্ষার্থীর জন্য জ্ঞান অর্জনের পাশাপাশি উত্তম আখলাক, শৃঙ্খলা ও দায়িত্বশীলতা বজায় রাখা প্রত্যাশিত।",
+    rules: [
+      {
+        id: 1,
+        numBn: "১",
+        text: "শিক্ষক ও সহপাঠীদের প্রতি সম্মানজনক আচরণ করতে হবে।",
+      },
+      {
+        id: 2,
+        numBn: "২",
+        text: "নিয়মিত ক্লাসে উপস্থিত থাকার চেষ্টা করতে হবে।",
+      },
+      {
+        id: 3,
+        numBn: "৩",
+        text: "নির্ধারিত সময় অনুযায়ী ক্লাসে অংশগ্রহণ করতে হবে।",
+      },
+      {
+        id: 4,
+        numBn: "৪",
+        text: "ক্লাসের সময় মনোযোগ ও শৃঙ্খলা বজায় রাখতে হবে।",
+      },
+      {
+        id: 5,
+        numBn: "৫",
+        text: "নির্ধারিত পাঠ, হোমওয়ার্ক ও অ্যাসাইনমেন্ট যথাসময়ে সম্পন্ন করতে হবে।",
+      },
+      {
+        id: 6,
+        numBn: "৬",
+        text: "পরীক্ষায় সততা ও নৈতিকতা বজায় রাখতে হবে।",
+      },
+      {
+        id: 7,
+        numBn: "৭",
+        text: "সহপাঠীদের সঙ্গে সৌহার্দ্যপূর্ণ আচরণ করতে হবে।",
+      },
+      {
+        id: 8,
+        numBn: "৮",
+        text: "কোনো ধরনের বিদ্রূপ, অপমান, হয়রানি বা অসদাচরণ করা যাবে না।",
+      },
+      {
+        id: 9,
+        numBn: "৯",
+        text: "প্রতিষ্ঠানের অনলাইন প্ল্যাটফর্ম দায়িত্বশীলতার সঙ্গে ব্যবহার করতে হবে।",
+      },
+      {
+        id: 10,
+        numBn: "১০",
+        text: "ইসলামিক জ্ঞান অর্জনের পাশাপাশি তা নিজের জীবনে বাস্তবায়নের চেষ্টা করতে হবে।",
+      },
     ],
   },
 
@@ -511,6 +686,7 @@ export const siteConfig = {
       { title: "মাসিক ভেরিফাইড রিপোর্ট", href: "/dashboard/student#monthly-report", icon: "FileSpreadsheet" },
       { title: "সকল কোর্সে ভর্তি হোন", href: "/dashboard/student#available-courses", icon: "PlusCircle" },
       { title: "অ্যাসাইনমেন্ট ও টাস্ক", href: "/dashboard/student#assignments", icon: "FileCheck" },
+      { title: "শিক্ষার্থীদের আচরণবিধি", href: "/dashboard/student#conduct", icon: "ShieldCheck" },
     ],
   },
 
@@ -544,7 +720,7 @@ export const siteConfig = {
 
     vision: {
       sectionNumber: "02",
-      tag: "02. Vision",
+      tag: "আমাদের স্বপ্ন",
       titleBn: "আমাদের স্বপ্ন",
       titleEn: "Our Vision",
       subtitle: "বিশ্বব্যাপী একটি আদর্শ, সুসংগঠিত ও আন্তর্জাতিক মানসম্পন্ন ইসলামিক শিক্ষাপ্রতিষ্ঠান হিসেবে Quran Kanan-কে প্রতিষ্ঠিত করা, যেখানে পবিত্র কুরআন ও সুন্নাহর আলোকে মানুষ বিশুদ্ধ ইসলামিক জ্ঞান অর্জন, নৈতিক উৎকর্ষ সাধন এবং জীবনের প্রতিটি ক্ষেত্রে ইসলামের সুমহান শিক্ষা অনুসরণের সুযোগ লাভ করবে।",
@@ -573,7 +749,7 @@ export const siteConfig = {
 
     mission: {
       sectionNumber: "03",
-      tag: "03. Mission",
+      tag: "আমাদের লক্ষ্য",
       titleBn: "আমাদের লক্ষ্য",
       titleEn: "Our Mission",
       subtitle: "Quran Kanan-এর মূল লক্ষ্য হলো পবিত্র কুরআন ও রাসুলুল্লাহ ﷺ-এর সুন্নাহর আলোকে বিশ্বব্যাপী মানুষের কাছে নির্ভরযোগ্য ইসলামিক জ্ঞান পৌঁছে দেওয়া এবং শিক্ষার্থীদের জ্ঞান, আমল ও চরিত্রের সমন্বয়ে গড়ে তোলা।",
@@ -592,7 +768,7 @@ export const siteConfig = {
 
     objectives: {
       sectionNumber: "04",
-      tag: "04. Institutional Objectives",
+      tag: "প্রতিষ্ঠানের উদ্দেশ্যসমূহ",
       titleBn: "প্রতিষ্ঠানের উদ্দেশ্যসমূহ",
       titleEn: "Institutional Objectives",
       subtitle: "Quran Kanan প্রতিষ্ঠার পেছনে রয়েছে কিছু সুনির্দিষ্ট শিক্ষা ও সমাজকল্যাণমূলক উদ্দেশ্য।",
@@ -612,7 +788,7 @@ export const siteConfig = {
 
     philosophy: {
       sectionNumber: "06",
-      tag: "06. Educational Philosophy",
+      tag: "আমাদের শিক্ষাদর্শ",
       titleBn: "আমাদের শিক্ষাদর্শ",
       titleEn: "Educational Philosophy",
       subtitle: "Quran Kanan বিশ্বাস করে, প্রকৃত শিক্ষা কেবল তথ্য ও জ্ঞান অর্জনের মধ্যে সীমাবদ্ধ নয়; বরং অর্জিত জ্ঞানের সঠিক অনুধাবন, বাস্তব জীবনে প্রয়োগ এবং সুন্দর চরিত্র গঠনের মধ্যেই শিক্ষার প্রকৃত সার্থকতা নিহিত।",
@@ -660,7 +836,7 @@ export const siteConfig = {
 
     methodology: {
       sectionNumber: "09",
-      tag: "09. Teaching Methodology",
+      tag: "আমাদের পাঠদান পদ্ধতি",
       titleBn: "আমাদের পাঠদান পদ্ধতি",
       titleEn: "Teaching Methodology",
       subtitle: "Quran Kanan আধুনিক প্রযুক্তি ও কার্যকর শিক্ষণপদ্ধতির সমন্বয়ে একটি সহজ, সুশৃঙ্খল ও শিক্ষার্থীবান্ধব অনলাইন শিক্ষাব্যবস্থা গড়ে তুলতে প্রতিশ্রুতিবদ্ধ।",
@@ -727,6 +903,80 @@ export const siteConfig = {
           desc: "ইংরেজি, আরবি ও বাংলা ভাষায় শিক্ষাসামগ্রী প্রস্তুত করা।",
         },
       ],
+    },
+
+    // 14. Future Development Plan (Doc Section 14 verbatim specification)
+    futureDevelopmentPlan: {
+      sectionNumber: "14",
+      tag: "ভবিষ্যৎ উন্নয়ন পরিকল্পনা",
+      titleBn: "ভবিষ্যৎ উন্নয়ন পরিকল্পনা",
+      titleEn: "Future Development Plan",
+      badge: "উন্নয়ন পরিকল্পনা",
+      intro: "Quran Kanan-এর লক্ষ্য একটি দীর্ঘমেয়াদি, সুসংগঠিত ও আন্তর্জাতিক ইসলামিক শিক্ষাপ্রতিষ্ঠান হিসেবে বিকশিত হওয়া।",
+      leadIn: "এ লক্ষ্য অর্জনে পর্যায়ক্রমে নিম্নলিখিত উদ্যোগ গ্রহণ করা হবে—",
+      initiatives: [
+        {
+          id: 1,
+          numBn: "১",
+          text: "আন্তর্জাতিক মানসম্পন্ন অনলাইন শিক্ষাব্যবস্থা গড়ে তোলা।",
+        },
+        {
+          id: 2,
+          numBn: "২",
+          text: "ইংরেজি, আরবি ও বাংলা ভাষায় শিক্ষাকার্যক্রম সম্প্রসারণ।",
+        },
+        {
+          id: 3,
+          numBn: "৩",
+          text: "নতুন নতুন ইসলামিক কোর্স ও একাডেমিক বিভাগ চালু করা।",
+        },
+        {
+          id: 4,
+          numBn: "৪",
+          text: "বিশ্বের বিভিন্ন দেশের যোগ্য ও অভিজ্ঞ শিক্ষকদের সম্পৃক্ত করা।",
+        },
+        {
+          id: 5,
+          numBn: "৫",
+          text: "উন্নত Learning Management System (LMS) তৈরি ও পরিচালনা।",
+        },
+        {
+          id: 6,
+          numBn: "৬",
+          text: "সমৃদ্ধ Digital Library ও E-Book Collection গড়ে তোলা।",
+        },
+        {
+          id: 7,
+          numBn: "৭",
+          text: "ইসলামিক গবেষণা ও একাডেমিক প্রকাশনা কার্যক্রম সম্প্রসারণ।",
+        },
+        {
+          id: 8,
+          numBn: "৮",
+          text: "আন্তর্জাতিক শিক্ষার্থী ও শিক্ষক কমিউনিটি গড়ে তোলা।",
+        },
+        {
+          id: 9,
+          numBn: "৯",
+          text: "বিশ্বের বিভিন্ন ইসলামিক প্রতিষ্ঠান ও শিক্ষা সংস্থার সঙ্গে একাডেমিক সহযোগিতা প্রতিষ্ঠা।",
+        },
+        {
+          id: 10,
+          numBn: "১০",
+          text: "শিক্ষকদের দক্ষতা উন্নয়নে নিয়মিত প্রশিক্ষণ কর্মসূচি চালু করা।",
+        },
+        {
+          id: 11,
+          numBn: "১১",
+          text: "শিক্ষার্থীদের জন্য উন্নত পরীক্ষা, মূল্যায়ন ও অগ্রগতি পর্যবেক্ষণ ব্যবস্থা তৈরি।",
+        },
+        {
+          id: 12,
+          numBn: "১২",
+          text: "ভবিষ্যতে প্রয়োজনীয় আইনগত অনুমোদন ও স্বীকৃতি অর্জনের মাধ্যমে প্রাতিষ্ঠানিক কার্যক্রমের পরিধি সম্প্রসারণ।",
+        },
+      ],
+      closingPledge: "আমাদের অঙ্গীকার: জ্ঞান, ঈমান ও উত্তম চরিত্রের সমন্বয়ে একটি আলোকিত মুসলিম সমাজ গঠনে অবদান রাখা।",
     },
   },
 };

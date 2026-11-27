@@ -16,6 +16,8 @@ import {
   UserCheck,
   X,
   Send,
+  FileText,
+  Quote,
 } from "lucide-react";
 import { toast } from "react-toastify";
 import { siteConfig } from "@/config/siteConfig";
@@ -38,11 +40,15 @@ export default function CourseDetailsPage({ params }) {
       return slugMatch || idMatch || aliasMatch;
     }) || siteConfig.courses[0];
 
+  const { admissionPolicy, studentCodeOfConduct } = siteConfig;
+
   const [currentUser, setCurrentUser] = useState(null);
   const [enrollmentStatus, setEnrollmentStatus] = useState(null); // null | "pending" | "approved" | "rejected"
   const [enrollmentData, setEnrollmentData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [showAdmissionModal, setShowAdmissionModal] = useState(false);
+  const [showAdmissionPolicyModal, setShowAdmissionPolicyModal] = useState(false);
+  const [showConductModal, setShowConductModal] = useState(false);
 
   // Student admission form fields (Doc compliant)
   const [studentForm, setStudentForm] = useState({
@@ -54,6 +60,7 @@ export default function CourseDetailsPage({ params }) {
     languagesUnderstood: "বাংলা, ইংরেজি",
     preferredSchedule: "সন্ধ্যা ৭:৩০ - ৮:১৫",
     preferredDays: "শনি, সোম, বুধ",
+    policyAgreed: true,
   });
 
   useEffect(() => {
@@ -108,6 +115,11 @@ export default function CourseDetailsPage({ params }) {
       return;
     }
 
+    if (!studentForm.policyAgreed) {
+      toast.error("ভর্তি নীতিমালা ও শিক্ষার্থীদের আচরণবিধিতে সম্মত হওয়া আবশ্যক।");
+      return;
+    }
+
     setSubmitting(true);
     try {
       const res = await fetch("/api/course-enrollments", {
@@ -128,6 +140,7 @@ export default function CourseDetailsPage({ params }) {
           languagesUnderstood: studentForm.languagesUnderstood,
           preferredSchedule: studentForm.preferredSchedule,
           preferredDays: studentForm.preferredDays,
+          policyAgreed: studentForm.policyAgreed,
         }),
       });
 
@@ -220,7 +233,7 @@ export default function CourseDetailsPage({ params }) {
           <div className="card-white space-y-4">
             <div className="flex items-center justify-between border-b border-[#90CAF9]/40 pb-3">
               <h2 className="text-xl font-bold text-[#0D47A1]">
-                কোর্স পাঠ্যসূচি ও সিলেবাস (Curriculum)
+                কোর্স পাঠ্যসূচি ও সিলেবাস
               </h2>
               <span className="text-xs font-bold text-[#2196F3] bg-[#E3F2FD] border border-[#90CAF9]/50 px-2.5 py-0.5 rounded-full">
                 {course.syllabus.length} টি মডিউল
@@ -255,6 +268,46 @@ export default function CourseDetailsPage({ params }) {
                 >
                   <CheckCircle2 className="w-4 h-4 text-[#2196F3] shrink-0 mt-0.5" />
                   <span className="font-semibold leading-relaxed">{feat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Institutional Admission Policy Card */}
+          <div className="policy-card space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#90CAF9]/40 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="policy-badge font-bornomala text-xs">
+                  <BookOpen className="w-3.5 h-3.5 text-[#2196F3]" />
+                  <span>{admissionPolicy.headingBn}</span>
+                </span>
+                <span className="text-xs font-bold text-[#0D47A1] font-bornomala bg-[#E3F2FD] px-2 py-0.5 rounded border border-[#90CAF9]/60">
+                  {admissionPolicy.badge}
+                </span>
+              </div>
+              <span className="text-xs font-bold text-[#2196F3] bg-[#E3F2FD] px-2.5 py-0.5 rounded-full font-bornomala">
+                ৮টি ভর্তি নিয়মাবলি
+              </span>
+            </div>
+
+            <div className="space-y-1">
+              <h2 className="text-xl font-extrabold text-[#0D47A1] font-bornomala tracking-tight">
+                {admissionPolicy.headingBn}
+              </h2>
+              <p className="text-xs text-slate-600 font-bornomala leading-relaxed">
+                {admissionPolicy.intro}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              {admissionPolicy.points.map((pt) => (
+                <div key={pt.id} className="policy-item font-bornomala">
+                  <span className="policy-num-badge font-bornomala">
+                    {pt.numBn}
+                  </span>
+                  <span className="text-xs text-slate-700 font-bornomala leading-relaxed flex-1">
+                    {pt.text}
+                  </span>
                 </div>
               ))}
             </div>
@@ -387,7 +440,7 @@ export default function CourseDetailsPage({ params }) {
                 </div>
 
                 <div className="form-group mb-0">
-                  <label className="form-label">পিতার নাম (Father's Name) *</label>
+                  <label className="form-label">পিতার নাম *</label>
                   <input
                     type="text"
                     required
@@ -401,7 +454,7 @@ export default function CourseDetailsPage({ params }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="form-group mb-0">
-                  <label className="form-label">আপনার দেশ (Country) *</label>
+                  <label className="form-label">আপনার দেশ *</label>
                   <input
                     type="text"
                     required
@@ -427,7 +480,7 @@ export default function CourseDetailsPage({ params }) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="form-group mb-0">
-                  <label className="form-label">জাতীয়তা (Nationality) *</label>
+                  <label className="form-label">জাতীয়তা *</label>
                   <input
                     type="text"
                     required
@@ -439,7 +492,7 @@ export default function CourseDetailsPage({ params }) {
                 </div>
 
                 <div className="form-group mb-0">
-                  <label className="form-label">জন্ম তারিখ (Date of Birth) *</label>
+                  <label className="form-label">জন্ম তারিখ *</label>
                   <input
                     type="date"
                     required
@@ -488,24 +541,184 @@ export default function CourseDetailsPage({ params }) {
                 </div>
               </div>
 
+              {/* Policy & Code of Conduct Agreement */}
+              <div className="pt-2 border-t border-[#90CAF9]/40 space-y-2">
+                <div className="p-3 bg-[#E3F2FD]/50 border border-[#90CAF9]/70 rounded-xl space-y-1.5">
+                  <label className="flex items-start gap-2 cursor-pointer text-xs font-bold text-[#0D47A1] font-bornomala">
+                    <input
+                      type="checkbox"
+                      checked={studentForm.policyAgreed}
+                      onChange={(e) => setStudentForm({ ...studentForm, policyAgreed: e.target.checked })}
+                      className="w-4 h-4 rounded text-[#2196F3] focus:ring-[#90CAF9] mt-0.5 cursor-pointer"
+                    />
+                    <span>আমি Quran Kanan-এর ভর্তি নীতিমালা ও শিক্ষার্থীদের আচরণবিধি পড়ে সম্মতি জানাচ্ছি *</span>
+                  </label>
+
+                  <div className="flex flex-wrap items-center gap-3 pl-6 text-xs font-bold text-[#2196F3] font-bornomala">
+                    <button
+                      type="button"
+                      onClick={() => setShowAdmissionPolicyModal(true)}
+                      className="hover:text-[#0D47A1] hover:underline inline-flex items-center gap-1 cursor-pointer"
+                    >
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>ভর্তি নীতিমালা পড়ুন</span>
+                    </button>
+                    <span className="text-[#90CAF9]">•</span>
+                    <button
+                      type="button"
+                      onClick={() => setShowConductModal(true)}
+                      className="hover:text-[#0D47A1] hover:underline inline-flex items-center gap-1 cursor-pointer"
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>শিক্ষার্থীদের আচরণবিধি পড়ুন</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <div className="pt-3 border-t border-[#90CAF9]/40 flex justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => setShowAdmissionModal(false)}
-                  className="btn-outline"
+                  className="btn-outline font-bornomala"
                 >
                   বাতিল
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="btn-primary"
+                  className="btn-primary font-bornomala"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{submitting ? "জমা হচ্ছে..." : "ভর্তি আবেদন জমা দিন"}</span>
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Admission Policy Modal Preview */}
+      {showAdmissionPolicyModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="policy-modal-container space-y-5 p-6 sm:p-8 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-[#90CAF9]/50">
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2">
+                  <span className="policy-badge font-bornomala text-xs">
+                    <BookOpen className="w-3.5 h-3.5 text-[#2196F3]" />
+                    <span>{admissionPolicy.headingBn}</span>
+                  </span>
+                  <span className="text-xs font-bold text-[#0D47A1] font-bornomala bg-[#E3F2FD] px-2 py-0.5 rounded">
+                    {admissionPolicy.badge}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-extrabold text-[#0D47A1] font-bornomala">
+                  {admissionPolicy.headingBn}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowAdmissionPolicyModal(false)}
+                className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-700 font-bornomala leading-relaxed">
+              {admissionPolicy.intro}
+            </p>
+
+            <div className="space-y-2.5 max-h-[50vh] overflow-y-auto pr-1">
+              {admissionPolicy.points.map((pt) => (
+                <div key={pt.id} className="policy-item font-bornomala">
+                  <span className="policy-num-badge font-bornomala">
+                    {pt.numBn}
+                  </span>
+                  <span className="text-xs sm:text-sm text-slate-700 font-bornomala leading-relaxed flex-1">
+                    {pt.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-3 border-t border-[#90CAF9]/40 flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  setStudentForm((prev) => ({ ...prev, policyAgreed: true }));
+                  setShowAdmissionPolicyModal(false);
+                }}
+                className="btn-primary text-xs py-2 px-5 font-bold font-bornomala"
+              >
+                বুঝেছি ও একমত
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Student Code of Conduct Modal Preview */}
+      {showConductModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="policy-modal-container space-y-5 p-6 sm:p-8 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-[#90CAF9]/50">
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2">
+                  <span className="policy-badge font-ubuntu-sans text-xs">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#2196F3]" />
+                    <span>{studentCodeOfConduct.tag}</span>
+                  </span>
+                  <span className="text-xs font-bold text-[#0D47A1] font-bornomala bg-[#E3F2FD] px-2 py-0.5 rounded">
+                    {studentCodeOfConduct.badge}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-extrabold text-[#0D47A1] font-bornomala">
+                  {studentCodeOfConduct.headingBn}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowConductModal(false)}
+                className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="policy-quote font-bornomala flex items-start gap-2.5">
+              <Quote className="w-5 h-5 text-[#2196F3] shrink-0 mt-0.5" />
+              <p className="text-xs sm:text-sm font-medium text-[#0D47A1] leading-relaxed">
+                {studentCodeOfConduct.intro}
+              </p>
+            </div>
+
+            <div className="space-y-2.5 max-h-[50vh] overflow-y-auto pr-1">
+              {studentCodeOfConduct.rules.map((rule) => (
+                <div key={rule.id} className="policy-item font-bornomala">
+                  <span className="policy-num-badge font-bornomala">
+                    {rule.numBn}
+                  </span>
+                  <span className="text-xs sm:text-sm text-slate-700 font-bornomala leading-relaxed flex-1">
+                    {rule.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-3 border-t border-[#90CAF9]/40 flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  setStudentForm((prev) => ({ ...prev, policyAgreed: true }));
+                  setShowConductModal(false);
+                }}
+                className="btn-primary text-xs py-2 px-5 font-bold font-bornomala"
+              >
+                বুঝেছি ও একমত
+              </button>
+            </div>
           </div>
         </div>
       )}

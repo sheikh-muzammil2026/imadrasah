@@ -4,7 +4,7 @@ import HeroSection from "@/components/public/home/hero";
 import StatsSection from "@/components/public/home/statsSection";
 import CoursesSection from "@/components/public/home/featuredSection";
 import EbooksSection from "@/components/public/home/ebooksSection";
-import WhyChooseUs from "@/components/public/home/whyChooseUs";
+import AboutSection from "@/components/public/about/AboutSection";
 import ReviewSection from "@/components/public/home/reviews";
 import SadaqahBanner from "@/components/public/home/sadaqahBanner";
 import FaqSection from "@/components/public/home/faqSection";
@@ -16,7 +16,8 @@ export default function HomePage() {
       {/* <StatsSection /> */}
       <CoursesSection />
       <EbooksSection />
-      <WhyChooseUs />
+      {/* Unified Single Source of Truth About Section */}
+      <AboutSection isFullPage={false} />
       {/* <ReviewSection /> */}
       <SadaqahBanner />
       {/* FAQ Relocated to the bottom of Home page, above Footer */}

@@ -73,14 +73,24 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: সহায়তা ও আইন */}
+          {/* Column 3: সহায়তা ও প্রাতিষ্ঠানিক নীতি */}
           <div>
             <h3 className="text-base font-bold text-white mb-2">সহায়তা ও প্রাতিষ্ঠানিক নীতি</h3>
             <div className="w-8 h-0.5 bg-[#90CAF9] mb-4 rounded-full" />
-            <ul className="space-y-2.5 text-xs sm:text-sm text-[#E3F2FD]">
+            <ul className="space-y-2 text-xs sm:text-sm text-[#E3F2FD]">
               <li>
                 <Link href="/about" className="hover:text-white hover:underline transition duration-150">
                   আমাদের পরিচিতি ও শিক্ষাদর্শ
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies#admission" className="hover:text-white hover:underline transition duration-150">
+                  ভর্তি নীতিমালা
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies#conduct" className="hover:text-white hover:underline transition duration-150">
+                  শিক্ষার্থীদের আচরণবিধি
                 </Link>
               </li>
               <li>

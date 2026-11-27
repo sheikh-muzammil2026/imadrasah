@@ -19,6 +19,7 @@ import {
   Printer,
   ShieldCheck,
   Sparkles,
+  Quote,
 } from "lucide-react";
 import { toast } from "react-toastify";
 import {
@@ -186,11 +187,11 @@ export default function StudentDashboard() {
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             <span className="section-pill">
-              শিক্ষার্থী পোর্টাল (Student Portal)
+              শিক্ষার্থী পোর্টাল
             </span>
-            <span className="text-xs font-black text-white bg-[#0D47A1] px-3.5 py-1 rounded-full shadow-xs flex items-center gap-1.5">
+            <span className="text-xs font-black text-white bg-[#0D47A1] px-3.5 py-1 rounded-full shadow-xs flex items-center gap-1.5 font-bornomala">
               <IdCard className="w-3.5 h-3.5 text-[#90CAF9]" />
-              <span>আইডি (Student ID): {studentId}</span>
+              <span>শিক্ষার্থী আইডি: {studentId}</span>
             </span>
           </div>
           <h1 className="page-title-main">
@@ -202,6 +203,13 @@ export default function StudentDashboard() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 shrink-0">
+          <a
+            href="#conduct"
+            className="btn-outline flex items-center gap-1.5 font-bornomala"
+          >
+            <ShieldCheck className="w-4 h-4 text-[#2196F3]" />
+            <span>আচরণবিধি</span>
+          </a>
           <a
             href="#monthly-report"
             className="btn-accent flex items-center gap-2"
@@ -713,6 +721,73 @@ export default function StudentDashboard() {
             })}
           </div>
         )}
+      </div>
+
+      {/* 12. Student Code of Conduct (শিক্ষার্থীদের আচরণবিধি) Section */}
+      <div id="conduct" className="card-white space-y-6 scroll-mt-6 border-2 border-[#90CAF9]/60 shadow-soft">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#90CAF9]/40 pb-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="font-ubuntu-sans text-xs font-bold text-[#0D47A1] bg-[#E3F2FD] border border-[#90CAF9] px-3 py-1 rounded-full flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#2196F3]" />
+                <span>{siteConfig.studentCodeOfConduct.tag}</span>
+              </span>
+              <span className="text-xs font-bold text-[#0D47A1] font-bornomala bg-[#E3F2FD] px-2 py-0.5 rounded border border-[#90CAF9]/60">
+                {siteConfig.studentCodeOfConduct.badge}
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#0D47A1] font-bornomala tracking-tight">
+              {siteConfig.studentCodeOfConduct.headingBn}
+            </h2>
+          </div>
+          <span className="text-xs font-bold text-[#2196F3] bg-[#E3F2FD] px-3 py-1 rounded-full self-start sm:self-auto font-ubuntu-sans">
+            ১০টি মৌলিক নিয়মাবলি
+          </span>
+        </div>
+
+        {/* Lead Quote */}
+        <div className="policy-quote font-bornomala flex items-start gap-3">
+          <Quote className="w-5 h-5 text-[#2196F3] shrink-0 mt-0.5" />
+          <p className="text-xs sm:text-sm font-medium text-[#0D47A1] leading-relaxed">
+            {siteConfig.studentCodeOfConduct.intro}
+          </p>
+        </div>
+
+        {/* 10 Conduct Rules in 2-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+          {siteConfig.studentCodeOfConduct.rules.map((rule) => (
+            <div key={rule.id} className="policy-item font-bornomala">
+              <span className="policy-num-badge font-bornomala">
+                {rule.numBn}
+              </span>
+              <span className="text-xs sm:text-sm text-slate-700 font-bornomala leading-relaxed flex-1">
+                {rule.text}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Highlight Etiquette & Integrity Reminder Box */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2 border-t border-[#90CAF9]/40">
+          <div className="p-3.5 bg-[#E3F2FD]/40 rounded-xl border border-[#90CAF9]/40 space-y-1">
+            <span className="text-xs font-bold text-[#0D47A1] font-bornomala block">১. ক্লাস শিষ্টাচার ও আদব</span>
+            <p className="text-[11px] text-slate-600 font-bornomala leading-relaxed">
+              ক্লাসের শুরুতে শিক্ষককে সালাম দেওয়া, ক্যামেরা ও মাইক্রোফোন যথানিয়মে নিয়ন্ত্রণ এবং শিক্ষকের প্রতি পূর্ণ সম্মান প্রদর্শন করা।
+            </p>
+          </div>
+          <div className="p-3.5 bg-[#E3F2FD]/40 rounded-xl border border-[#90CAF9]/40 space-y-1">
+            <span className="text-xs font-bold text-[#0D47A1] font-bornomala block">২. হোমওয়ার্ক ও মাশক</span>
+            <p className="text-[11px] text-slate-600 font-bornomala leading-relaxed">
+              প্রতিদিনের তিলাওয়াত মাশক ও অ্যাসাইনমেন্ট নির্ধারিত সময়সীমার মধ্যে সম্পন্ন করে পোর্টালে জমা নিশ্চিত করা।
+            </p>
+          </div>
+          <div className="p-3.5 bg-[#E3F2FD]/40 rounded-xl border border-[#90CAF9]/40 space-y-1">
+            <span className="text-xs font-bold text-[#0D47A1] font-bornomala block">৩. পরীক্ষায় সততা ও আমানত</span>
+            <p className="text-[11px] text-slate-600 font-bornomala leading-relaxed">
+              মাসিক ও সমাপনী মূল্যায়নে সততা বজায় রাখা এবং যেকোনো ধরনের অসদুপায় থেকে নিজেকে সম্পূর্ণ মুক্ত রাখা।
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Assignment Submission Modal */}
